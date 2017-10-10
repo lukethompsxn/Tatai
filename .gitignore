@@ -24,3 +24,6 @@ hs_err_pid*
 # intelli j
 *.iml
 *.idea/
+*.out/
+*.META-INF/
+*.data/
