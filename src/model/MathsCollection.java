@@ -96,11 +96,11 @@ public class MathsCollection {
         }
     }
 
-    public HashMap<Integer, String> getQuestionMap(int iteration) {
+    public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;
     }
 
-    public HashMap<Integer, String> getCurrentAnswerMap(int iteration) {
+    public HashMap<Integer, String> getCurrentAnswerMap() {
         return _questionAnswersMap;
     }
 }
