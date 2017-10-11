@@ -97,7 +97,7 @@ public class MathsCollection {
     }
 
     public HashMap<Integer, String> getQuestionMap(int iteration) {
-        return _questionsMap
+        return _questionsMap;
     }
 
     public HashMap<Integer, String> getCurrentAnswerMap(int iteration) {
