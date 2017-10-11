@@ -12,6 +12,7 @@ import java.util.Stack;
 public abstract class AbstractController {
     protected static Pane _mainPane;
     protected static Stack<Parent> _parentStack = new Stack<>();
+    protected static int _attempts;
 
     //Called from subclasses to set a new scene inside the container
     protected void pushChild(String name) {
@@ -30,5 +31,13 @@ public abstract class AbstractController {
     protected void popChild() {
         _parentStack.pop();
         _mainPane.getChildren().setAll(_parentStack.peek());
+    }
+
+    protected void setSuperAttempts(int num) {
+        _attempts = num;
+    }
+
+    protected int getSuperAttempts() {
+        return _attempts;
     }
 }

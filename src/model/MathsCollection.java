@@ -5,7 +5,7 @@ import java.util.*;
 public class MathsCollection {
 
     private HashMap<Integer, String> _questionsMap;
-    private LinkedHashMap<Integer, String> _questionAnswersMap;
+    private HashMap<Integer, String> _questionAnswersMap;
     private NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathsCollection;
 
@@ -24,7 +24,7 @@ public class MathsCollection {
 
     public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
         _questionsMap = new HashMap<>();
-        _questionAnswersMap = new LinkedHashMap<>();
+        _questionAnswersMap = new HashMap<>();
         ArrayList<Integer> answers = new ArrayList();
         List<Integer> divisors;
 
@@ -47,7 +47,7 @@ public class MathsCollection {
                     intY = randomGenerator.nextInt(intZ) + 1;
                     intX = intZ - intY;
                 }
-                _questionsMap.put(i, intX + " + " + intY + " =");
+                _questionsMap.put(i, intX + " + " + intY);
 
             } else if (mode == NumberCollection.Mode.MATH_SUB){
                 intX = randomGenerator.nextInt(level) + intZ + 1;
@@ -58,12 +58,12 @@ public class MathsCollection {
                     intX = randomGenerator.nextInt(level) + 1;
                     intY = intX - intZ;
                 }
-                _questionsMap.put(i, intX + " - " + intY + " =");
+                _questionsMap.put(i, intX + " - " + intY);
             } else if (mode == NumberCollection.Mode.MATH_MULT){
                 intX = randomGenerator.nextInt(level) + 1;
                 intY = randomGenerator.nextInt(level) + 1;
                 intZ = intX * intY;
-                _questionsMap.put(i, intX + " x " + intY + " =");
+                _questionsMap.put(i, intX + " x " + intY);
             } else {
                 divisors = new ArrayList<>();
                 Random randomElement = new Random();
@@ -84,22 +84,23 @@ public class MathsCollection {
                     intY = divisors.get(randomElement.nextInt(divisors.size()));
                 }
                 intZ = intX / intY;
-                _questionsMap.put(i, intX + " / " + intY + " =");
+                _questionsMap.put(i, intX + " / " + intY);
             }
 
 
             answers.add(intZ);
             String maoriName = _model.getMaoriName(intZ);
 
+            System.out.println(_questionsMap.get(i) + " " + maoriName);
             _questionAnswersMap.put(i, maoriName);
         }
     }
 
-    public String getCurrentQuestion(int iteration) {
-        return _questionsMap.get(iteration);
+    public HashMap<Integer, String> getCurrentQuestionMap() {
+        return _questionsMap;
     }
 
-    public String getCurrentAnswer(int iteration) {
-        return _questionAnswersMap.get(iteration);
+    public HashMap<Integer, String> getCurrentAnswerMap() {
+        return _questionAnswersMap;
     }
 }

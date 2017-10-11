@@ -19,19 +19,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class QuestionViewController extends AbstractController implements Initializable{
     private int _iteration = 0;
     private int _score = 0;
-    private boolean _attempted = false;
+    private int _attempt = 1;
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
-    private String _currentQuestion;
-    private String _currentAnswer;
+    private HashMap<Integer, String> _questionMap;
+    private HashMap<Integer, String> _answerMap;
 
     @FXML
     private Label numberLbl;
@@ -48,28 +49,23 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     Label attemptLbl;
 
-    //Action for record button
-    public void record() {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recordBtn.setDisable(false);
 
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
-        if (_attempted) {
-            attemptLbl.setText("Attempt: " + 2);
-        }
-        else {
-            attemptLbl.setText("Attempt: " + 1);
-        }
+        attemptLbl.setText("Attempt: " + _attempt);
+
         //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
-            numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
-            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
-            _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
+            _questionMap = _mathModel.getCurrentQuestionMap();
+            _answerMap = _mathModel.getCurrentAnswerMap();
         }
+        else {
+            _questionMap = _model.getCurrentQuestionMap();
+            _answerMap = _model.getCurrentAnswerMap();
+        }
+        numberLbl.setText(_questionMap.get(_iteration));
     }
 
     // Returns to main menu when button is pressed.
@@ -85,9 +81,6 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_attempted == false) {
-                _iteration-=1;
-            }
             _model.updateStats(_score,_iteration);
             popChild(); //will throw exceptions until proper menu is set up
             //WILL NEED TO ADD LOGIC FOR SAVINGS
@@ -115,8 +108,9 @@ public class QuestionViewController extends AbstractController implements Initia
                 _model.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
-                _attempted = false;
+                _attempt = 1;
                 nextQuestion();
+                resetBtns();
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
@@ -133,8 +127,6 @@ public class QuestionViewController extends AbstractController implements Initia
             return 0;
         }
     }
-
-
 
 
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
@@ -177,19 +169,23 @@ public class QuestionViewController extends AbstractController implements Initia
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
                 System.out.println("textresult: " + _textResult);
-                System.out.println("currentanswer: " + _currentAnswer);
+                System.out.println("currentanswer: " + _answerMap.get(_iteration));
                 try {
                     readResults();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (_textResult.equals(_currentAnswer)) {
+                if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
                     pushChild("CorrectView");
+                    nextQuestion();
                 }
                 else {
+                    setSuperAttempts(_attempt);
                     pushChild("WrongView");
+                    _attempt++;
                 }
+                resetBtns();
 
 
             });
@@ -272,10 +268,21 @@ public class QuestionViewController extends AbstractController implements Initia
 
     private void nextQuestion() {
         _iteration+=1;
-        numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
+        numberLbl.setText(_questionMap.get(_iteration));
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
+        _attempt = 1;
+    }
 
-
+    private void resetBtns() {
+        if (_attempt > 2) {
+            nextQuestion();
+        }
+        skipQuestionBtn.setDisable(false);
+        recordBtn.setDisable(false);
+        returnMainBtn.setDisable(false);
+        progressBar.progressProperty().unbind();
+        progressBar.setProgress(0.0);
+        attemptLbl.setText("Attempt: " + _attempt);
     }
 
 
