@@ -5,12 +5,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import main.Main;
 import model.NumberCollection;
+import model.PracticeCollection;
 
 import java.io.File;
 import java.io.IOException;
 
 public class MenuViewController {
-    private static NumberCollection _model = NumberCollection.instance();
+    private static NumberCollection _model = PracticeCollection.instance();
 
     //Action for practice button
     public void practiceMenu() {

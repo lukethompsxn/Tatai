@@ -2,11 +2,10 @@ package model;
 
 import java.util.*;
 
-public class MathsCollection {
+public class MathsCollection extends NumberCollection {
 
     private HashMap<Integer, String> _questionsMap;
     private HashMap<Integer, String> _questionAnswersMap;
-    private NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathsCollection;
 
     //Singleton Constructor
@@ -20,9 +19,11 @@ public class MathsCollection {
     //Private Constructor
     private MathsCollection() {
         //anything that needs to constructed
+        initialize();
     }
 
     public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
+
         _questionsMap = new HashMap<>();
         _questionAnswersMap = new HashMap<>();
         ArrayList<Integer> answers = new ArrayList();
@@ -89,7 +90,7 @@ public class MathsCollection {
 
 
             answers.add(intZ);
-            String maoriName = _model.getMaoriName(intZ);
+            String maoriName = getMaoriName(intZ);
 
             System.out.println(_questionsMap.get(i) + " " + maoriName);
             _questionAnswersMap.put(i, maoriName);

@@ -4,12 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import model.NumberCollection;
+import model.PracticeCollection;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainContainerViewController extends AbstractController implements Initializable{
-    private static NumberCollection _model = NumberCollection.instance();
+    private static NumberCollection _model = PracticeCollection.instance();
 
     @FXML
     Pane mainPane;

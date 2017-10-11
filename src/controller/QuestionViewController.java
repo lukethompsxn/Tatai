@@ -14,6 +14,7 @@ import main.Main;
 import model.AudioDirector;
 import model.MathsCollection;
 import model.NumberCollection;
+import model.PracticeCollection;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,8 +29,8 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _score = 0;
     private int _attempt = 1;
     private static AudioDirector _audioDirector = AudioDirector.instance();
-    private static NumberCollection _model = NumberCollection.instance();
-    private static MathsCollection _mathModel = MathsCollection.instance();
+    private static NumberCollection _model = PracticeCollection.instance();
+    private static NumberCollection _mathModel = MathsCollection.instance();
     private String _textResult;
     private HashMap<Integer, String> _questionMap;
     private HashMap<Integer, String> _answerMap;

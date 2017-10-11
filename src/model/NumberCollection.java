@@ -1,21 +1,13 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
 
-public class NumberCollection {
+public abstract class NumberCollection {
     private int _totalScore;
     private int _totalIterations;
-    //private List<Integer> _englishNumbers;
-    //private HashMap<Integer, String> _allNumbers = new HashMap<>();
 
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
-    private HashMap<Integer, String> _questionsMap;
-    private HashMap<Integer, String> _questionAnswersMap;
 
-    private static NumberCollection _numberCollection;
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
     public enum Type { PRACTICE, MATH };
     private Mode _currentMode = Mode.PRACTICE_EASY;
@@ -23,17 +15,31 @@ public class NumberCollection {
 
 
     //Singleton Constructor
-    public static NumberCollection instance() {
-        if (_numberCollection == null) {
-            _numberCollection = new NumberCollection();
-        }
-        return _numberCollection;
-    }
+    //public static NumberCollection instance() {
+    //   if (_numberCollection == null) {
+    //        _numberCollection = new NumberCollection();
+    //    }
+    //    return _numberCollection;
+    //}
 
     //Private Constructor
-    private NumberCollection() {
-        //anything that needs to constructed
+    //private NumberCollection() {
+    //    //anything that needs to constructed
+    //
+    //    _mapOfNumbers.put(0, "");
+    //    _mapOfNumbers.put(1, "tahi");
+    //    _mapOfNumbers.put(2, "rua");
+    //    _mapOfNumbers.put(3, "toru");
+    //    _mapOfNumbers.put(4, "whaa");
+    //    _mapOfNumbers.put(5, "rima");
+    //    _mapOfNumbers.put(6, "ono");
+    //    _mapOfNumbers.put(7, "whitu");
+    //    _mapOfNumbers.put(8, "waru");
+    //    _mapOfNumbers.put(9, "iwa");
+    //    _mapOfNumbers.put(10, "tekau");
+    //}
 
+    public void initialize() {
         _mapOfNumbers.put(0, "");
         _mapOfNumbers.put(1, "tahi");
         _mapOfNumbers.put(2, "rua");
@@ -45,28 +51,6 @@ public class NumberCollection {
         _mapOfNumbers.put(8, "waru");
         _mapOfNumbers.put(9, "iwa");
         _mapOfNumbers.put(10, "tekau");
-    }
-
-    public void setCollection(int level) {
-
-        _questionsMap = new HashMap<>();
-        _questionAnswersMap = new HashMap<>();
-        ArrayList<Integer> randNumbers = new ArrayList();
-
-        Random randomGenerator = new Random();
-
-        for (int i = 0; i < 10; i++) {
-            int randomInt = randomGenerator.nextInt(level) + 1;
-            while (randNumbers.contains(randomInt)) {
-                randomInt = randomGenerator.nextInt(level) + 1;
-            }
-            randNumbers.add(randomInt);
-            String maoriName = getMaoriName(randomInt);
-            _questionsMap.put(i, "" + randomInt);
-            _questionAnswersMap.put(i, maoriName);
-            //_englishNumbers.add(randomInt);
-            //_allNumbers.put(randomInt, maoriName);
-        }
     }
 
     public String getMaoriName(int number) {
@@ -128,17 +112,13 @@ public class NumberCollection {
         return maoriNum;
     }
 
+    public abstract HashMap<Integer, String> getCurrentQuestionMap();
+
+    public abstract HashMap<Integer, String> getCurrentAnswerMap();
+
     public void updateStats(int score, int iterations) {
         _totalScore+=score;
         _totalIterations+=iterations;
-    }
-
-    public HashMap<Integer, String> getCurrentQuestionMap() {
-        return _questionsMap;
-    }
-
-    public HashMap<Integer, String> getCurrentAnswerMap() {
-        return _questionAnswersMap;
     }
 
     public void setMode(Mode mode) {

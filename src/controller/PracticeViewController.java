@@ -1,10 +1,11 @@
 package controller;
 
 import model.NumberCollection;
+import model.PracticeCollection;
 
 public class PracticeViewController extends AbstractController {
 
-    private static NumberCollection _model = NumberCollection.instance();
+    private static PracticeCollection _model = PracticeCollection.instance();
 
     public void easy() {
         _model.setCollection(10);
