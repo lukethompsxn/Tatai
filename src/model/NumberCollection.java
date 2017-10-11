@@ -62,7 +62,7 @@ public class NumberCollection {
             }
             randNumbers.add(randomInt);
             String maoriName = getMaoriName(randomInt);
-            _questionsMap.put(i, maoriName.toString());
+            _questionsMap.put(i, "" + randomInt);
             _questionAnswersMap.put(i, maoriName);
             //_englishNumbers.add(randomInt);
             //_allNumbers.put(randomInt, maoriName);
