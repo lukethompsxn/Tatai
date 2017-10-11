@@ -267,7 +267,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     private void nextQuestion() {
         _iteration+=1;
-        numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
+        numberLbl.setText(_questionMap.get(_iteration));
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
         _attempt = 1;
     }
