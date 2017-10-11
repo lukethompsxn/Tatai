@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -30,8 +31,8 @@ public class QuestionViewController extends AbstractController implements Initia
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
-    private String _currentQuestion;
-    private String _currentAnswer;
+    private HashMap<Integer, String> _questionMap;
+    private HashMap<Integer, String> _answerMap;
 
     @FXML
     private Label numberLbl;
@@ -48,11 +49,6 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     Label attemptLbl;
 
-    //Action for record button
-    public void record() {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recordBtn.setDisable(false);
@@ -62,10 +58,14 @@ public class QuestionViewController extends AbstractController implements Initia
 
         //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
-            numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
-            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
-            _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
+            _questionMap = _mathModel.getCurrentQuestionMap();
+            _answerMap = _mathModel.getCurrentAnswerMap();
         }
+        else {
+            _questionMap = _model.getCurrentQuestionMap();
+            _answerMap = _mathModel.getCurrentAnswerMap();
+        }
+        numberLbl.setText(_questionMap.get(_iteration));
     }
 
     // Returns to main menu when button is pressed.
@@ -169,13 +169,13 @@ public class QuestionViewController extends AbstractController implements Initia
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
                 System.out.println("textresult: " + _textResult);
-                System.out.println("currentanswer: " + _currentAnswer);
+                System.out.println("currentanswer: " + _answerMap.get(_iteration));
                 try {
                     readResults();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                if (_textResult.equals(_currentAnswer)) {
+                if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
                     pushChild("CorrectView");
                     nextQuestion();
