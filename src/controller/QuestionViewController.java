@@ -63,7 +63,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
         else {
             _questionMap = _model.getCurrentQuestionMap();
-            _answerMap = _mathModel.getCurrentAnswerMap();
+            _answerMap = _model.getCurrentAnswerMap();
         }
         numberLbl.setText(_questionMap.get(_iteration));
     }
