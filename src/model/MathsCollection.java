@@ -7,7 +7,20 @@ public class MathsCollection {
     private HashMap<Integer, String> _questionsMap;
     private LinkedHashMap<Integer, String> _questionAnswersMap;
     private NumberCollection numberCollection = NumberCollection.instance();
+    private static MathsCollection _mathsCollection;
 
+    //Singleton Constructor
+    public static MathsCollection instance() {
+        if (_mathsCollection == null) {
+            _mathsCollection = new MathsCollection();
+        }
+        return _mathsCollection;
+    }
+
+    //Private Constructor
+    private MathsCollection() {
+        //anything that needs to constructed
+    }
 
     public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
         _questionsMap = new HashMap<>();
@@ -81,6 +94,4 @@ public class MathsCollection {
             _questionAnswersMap.put(i, maoriName);
         }
     }
-
-
 }
