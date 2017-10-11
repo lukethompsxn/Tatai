@@ -26,6 +26,22 @@
                   <Font size="76.0" />
                </font>
             </Label>
+            <Button mnemonicParsing="false" onAction="#tryAgain" prefHeight="34.0" prefWidth="135.0" text="Try Again" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="10.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#skipQuestion" text="Skip Question" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </children>

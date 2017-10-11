@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720" minWidth="1280" prefHeight="400.0" prefWidth="600.0" stylesheets="@/view/MenuViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuViewController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -25,6 +26,7 @@
                       <RowConstraints maxHeight="350.5543518066406" minHeight="10.0" prefHeight="233.20858764648438" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
+                         <MaterialDesignIconView glyphName="MENU" glyphSize="48"/>
                         <Button mnemonicParsing="false" onAction="#settings" text="Settings" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets bottom="15.0" right="15.0" />
@@ -33,27 +35,22 @@
                               <Font size="22.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#recallMenu" text="Recall" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onAction="#practiceMenu" prefHeight="45.0" prefWidth="114.0" text="Practice" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
-                              <Insets right="10.0" />
+                              <Insets bottom="30.0" right="20.0" />
                            </GridPane.margin>
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#mathMenu" prefHeight="45.0" prefWidth="112.0" text="Math" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onAction="#mathMenu" prefHeight="45.0" prefWidth="112.0" text="Math" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
-                              <Insets left="10.0" />
+                              <Insets bottom="30.0" left="20.0" />
                            </GridPane.margin>
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Label text="main menu" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="49.0" />
-                           </font>
-                        </Label>
                      </children>
                   </GridPane>
                </children></Pane>
