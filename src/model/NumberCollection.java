@@ -12,7 +12,7 @@ public class NumberCollection {
     //private HashMap<Integer, String> _allNumbers = new HashMap<>();
 
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
-    private HashMap<Integer, Integer> _questionsMap;
+    private HashMap<Integer, String> _questionsMap;
     private HashMap<Integer, String> _questionAnswersMap;
 
     private static NumberCollection _numberCollection;
@@ -62,7 +62,7 @@ public class NumberCollection {
             }
             randNumbers.add(randomInt);
             String maoriName = getMaoriName(randomInt);
-            _questionsMap.put(i,randomInt);
+            _questionsMap.put(i, maoriName.toString());
             _questionAnswersMap.put(i, maoriName);
             //_englishNumbers.add(randomInt);
             //_allNumbers.put(randomInt, maoriName);
@@ -133,7 +133,7 @@ public class NumberCollection {
         _totalIterations+=iterations;
     }
 
-    public HashMap<Integer, Integer> getCurrentQuestionMap() {
+    public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;
     }
 
