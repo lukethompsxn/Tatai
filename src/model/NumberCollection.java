@@ -8,9 +8,13 @@ import java.util.Random;
 public class NumberCollection {
     private int _totalScore;
     private int _totalIterations;
-    private List<Integer> _englishNumbers;
-    private HashMap<Integer, String> _allNumbers = new HashMap<>();
+    //private List<Integer> _englishNumbers;
+    //private HashMap<Integer, String> _allNumbers = new HashMap<>();
+
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
+    private HashMap<Integer, Integer> _questionsMap;
+    private HashMap<Integer, String> _questionAnswersMap;
+
     private static NumberCollection _numberCollection;
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
     public enum Type { PRACTICE, MATH };
@@ -44,11 +48,12 @@ public class NumberCollection {
     }
 
     public void setCollection(int level) {
-        _englishNumbers = new ArrayList<>();
+
+        _questionsMap = new HashMap<>();
+        _questionAnswersMap = new HashMap<>();
         ArrayList<Integer> randNumbers = new ArrayList();
 
         Random randomGenerator = new Random();
-
 
         for (int i = 0; i < 10; i++) {
             int randomInt = randomGenerator.nextInt(level) + 1;
@@ -57,8 +62,10 @@ public class NumberCollection {
             }
             randNumbers.add(randomInt);
             String maoriName = getMaoriName(randomInt);
-            _englishNumbers.add(randomInt);
-            _allNumbers.put(randomInt, maoriName);
+            _questionsMap.put(i,randomInt);
+            _questionAnswersMap.put(i, maoriName);
+            //_englishNumbers.add(randomInt);
+            //_allNumbers.put(randomInt, maoriName);
         }
     }
 
@@ -124,6 +131,14 @@ public class NumberCollection {
     public void updateStats(int score, int iterations) {
         _totalScore+=score;
         _totalIterations+=iterations;
+    }
+
+    public int getCurrentQuestion(int iteration) {
+        return _questionsMap.get(iteration);
+    }
+
+    public String getCurrentAnswer(int iteration) {
+        return _questionAnswersMap.get(iteration);
     }
 
     public void setMode(Mode mode) {
