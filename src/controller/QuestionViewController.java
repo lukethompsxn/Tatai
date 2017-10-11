@@ -30,7 +30,8 @@ public class QuestionViewController extends AbstractController implements Initia
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
-    private String _currentQuestion;
+    private String _currentMathQuestion;
+    private int _currentPracQuestion;
     private String _currentAnswer;
 
     @FXML
@@ -64,10 +65,14 @@ public class QuestionViewController extends AbstractController implements Initia
         else {
             attemptLbl.setText("Attempt: " + 1);
         }
-        //generateNumber();
+
+        // Gets the current question and answer
         if (_model.getType() == NumberCollection.Type.MATH) {
-            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
+            _currentMathQuestion = _mathModel.getCurrentQuestion(_iteration);
             _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
+        } else {
+            _currentPracQuestion = _model.getCurrentQuestion(_iteration);
+            _currentAnswer = _model.getCurrentAnswer(_iteration);
         }
         _iteration++;
     }
