@@ -74,6 +74,7 @@ public class QuestionViewController extends AbstractController implements Initia
             _currentPracQuestion = _model.getCurrentQuestion(_iteration);
             _currentAnswer = _model.getCurrentAnswer(_iteration);
         }
+
         _iteration++;
     }
 
@@ -138,9 +139,6 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-
-
-
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
     class Timer extends Task<Integer> {
 
@@ -165,7 +163,6 @@ public class QuestionViewController extends AbstractController implements Initia
         }
 
     }
-
 
     //Records audio on a different thread from a bash process
     public void recordAudio() {

@@ -32,7 +32,7 @@ public class MenuViewController {
     private void sceneChange(String scene) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource( File.separator + "View" + File.separator + scene + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource( File.separator + "view" + File.separator + scene + ".fxml"));
             Main.pushScene(new Scene(root, 1280, 720));
         } catch (IOException e) {
             e.printStackTrace();
