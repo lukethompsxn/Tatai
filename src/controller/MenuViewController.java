@@ -12,9 +12,9 @@ import java.io.IOException;
 public class MenuViewController {
     private static NumberCollection _model = NumberCollection.instance();
 
-    //Action for recall button
-    public void recallMenu() {
-        _model.setType(NumberCollection.Type.RECALL);
+    //Action for practice button
+    public void practiceMenu() {
+        _model.setType(NumberCollection.Type.PRACTICE);
         sceneChange("MainContainerView");
     }
 

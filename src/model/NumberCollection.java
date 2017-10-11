@@ -4,10 +4,10 @@ public class NumberCollection {
     private int _totalScore;
     private int _totalIterations;
     private static NumberCollection _numberCollection;
-    public enum Mode { RECALL_EASY, RECALL_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
-    public enum Type { RECALL, MATH };
-    private Mode _currentMode = Mode.RECALL_EASY;
-    private Type _currentType = Type.RECALL;
+    public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
+    public enum Type { PRACTICE, MATH };
+    private Mode _currentMode = Mode.PRACTICE_EASY;
+    private Type _currentType = Type.PRACTICE;
 
 
     //Singleton Constructor

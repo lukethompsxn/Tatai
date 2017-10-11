@@ -1,5 +1,9 @@
 package controller;
 
-public class CorrectViewController {
+public class CorrectViewController extends AbstractController{
+
+    public void nextQuestion() {
+        popChild();
+    }
 
 }

@@ -18,8 +18,8 @@ public class MainContainerViewController extends AbstractController implements I
     public void initialize(URL location, ResourceBundle resources) {
         _mainPane = mainPane;
 
-        if (_model.getType() == NumberCollection.Type.RECALL) {
-            pushChild("RecallView");
+        if (_model.getType().equals(NumberCollection.Type.PRACTICE)) {
+            pushChild("PracticeView");
         }
         else {
             pushChild("MathView");

@@ -7,9 +7,9 @@ public class MathsCollection {
     private HashMap<Integer, String> _questionsMap;
     private LinkedHashMap<Integer, String> _questionAnswersMap;
     private NumberCollection numberCollection = NumberCollection.instance();
+/*
 
-
-    public void addition(int level, int questionNumber, String type) {
+    public void addition(int level, int questionNumber, NumberCollection.Mode mode) {
         _questionsMap = new HashMap<>();
         ArrayList<Integer> answers = new ArrayList();
 
@@ -23,7 +23,7 @@ public class MathsCollection {
 
             intZ = randomGenerator.nextInt(level) + 1;
 
-            if (type.equals("addition")) {
+            if (mode == NumberCollection.Mode.MATH_ADD) {
                 intY = randomGenerator.nextInt(intZ) + 1;
                 intX = intZ - intY;
 
@@ -33,7 +33,7 @@ public class MathsCollection {
                     intX = intZ - intY;
                 }
             }
-            else if (type.equals("subtraction")){
+            else if (mode == NumberCollection.Mode.MATH_SUB){
                 intX = randomGenerator.nextInt(level) + intZ + 1;
                 intY = intX - intZ;
 
@@ -66,5 +66,5 @@ public class MathsCollection {
         }
     }
 
-
+*/
 }

@@ -1,14 +1,12 @@
 package controller;
 
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
 import main.Main;
 import model.AudioDirector;
@@ -81,7 +79,12 @@ public class QuestionViewController extends AbstractController implements Initia
             }
             _model.updateStats(_score,_iteration);
             popChild(); //will throw exceptions until proper menu is set up
+            //WILL NEED TO ADD LOGIC FOR SAVINGS
 
+        }
+        else if (result.get() == no) {
+            _model.updateStats(_score,_iteration);
+            popChild();
         }
     }
 
