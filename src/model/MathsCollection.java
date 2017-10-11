@@ -7,9 +7,22 @@ public class MathsCollection {
     private HashMap<Integer, String> _questionsMap;
     private LinkedHashMap<Integer, String> _questionAnswersMap;
     private NumberCollection numberCollection = NumberCollection.instance();
+    private static MathsCollection _mathsCollection;
 
+    //Singleton Constructor
+    public static MathsCollection instance() {
+        if (_mathsCollection == null) {
+            _mathsCollection = new MathsCollection();
+        }
+        return _mathsCollection;
+    }
 
-    public void arithmetic(int level, int questionNumber, String type) {
+    //Private Constructor
+    private MathsCollection() {
+        //anything that needs to constructed
+    }
+
+    public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
         _questionsMap = new HashMap<>();
         ArrayList<Integer> answers = new ArrayList();
         List<Integer> divisors;
@@ -24,7 +37,7 @@ public class MathsCollection {
 
             intZ = randomGenerator.nextInt(level) + 1;
 
-            if (type.equals("addition")) {
+            if (mode == NumberCollection.Mode.MATH_ADD) {
                 intY = randomGenerator.nextInt(intZ) + 1;
                 intX = intZ - intY;
 
@@ -35,7 +48,7 @@ public class MathsCollection {
                 }
                 _questionsMap.put(i, intX + " + " + intY + " =");
 
-            } else if (type.equals("subtraction")){
+            } else if (mode == NumberCollection.Mode.MATH_SUB){
                 intX = randomGenerator.nextInt(level) + intZ + 1;
                 intY = intX - intZ;
 
@@ -45,7 +58,7 @@ public class MathsCollection {
                     intY = intX - intZ;
                 }
                 _questionsMap.put(i, intX + " - " + intY + " =");
-            } else if (type.equals("multiplication")){
+            } else if (mode == NumberCollection.Mode.MATH_MULT){
                 intX = randomGenerator.nextInt(level) + 1;
                 intY = randomGenerator.nextInt(level) + 1;
                 intZ = intX * intY;
@@ -81,6 +94,4 @@ public class MathsCollection {
             _questionAnswersMap.put(i, maoriName);
         }
     }
-
-
 }
