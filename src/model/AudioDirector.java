@@ -1,11 +1,5 @@
 package model;
 
-import javafx.concurrent.Task;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
 public class AudioDirector {
     private static AudioDirector _audioDirector;
 
