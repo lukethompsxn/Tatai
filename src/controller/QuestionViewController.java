@@ -27,6 +27,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private boolean _attempted = false;
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = NumberCollection.instance();
+    private String _textResult;
 
     @FXML
     private Label numberLbl;
@@ -167,8 +168,7 @@ public class QuestionViewController extends AbstractController implements Initia
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
                 try {
-                    _model.setRecordingResult(readResults());
-                   if (_model.getRecordingResult().equals(_model.returnMaoriName(_model.getCurrentNumber()))) {
+                   if (_textResult.equals(_model.getMaoriName(_model.getCurrentNumber()))) {
                         _score+=1;
                         pushChild("CorrectView");
                     }
@@ -198,6 +198,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     //Reads results of voice recognition, goes to file in documents. Need to change so it work for VM directory
     private String readResults() throws IOException {
+        _textResult = "";
 
         // reads file
         File file = new File("data" + File.separator + "recout.mlf");
@@ -209,20 +210,19 @@ public class QuestionViewController extends AbstractController implements Initia
         String text = new String(bytes, "UTF-8");
         //Puts string from file into string array
         String[] words = text.split("\\W+");
-        String newText = "";
 
         // Places text file back into string without the extra format
         for (int j = 0; j < words.length-1; j++) {
             if (j == words.length-2) {
-                newText += words[j];
+                _textResult += words[j];
                 break;
             }
-            newText += words[j] + " ";
+            _textResult += words[j] + " ";
         }
 
         // Removes any text that is not needed
-        newText = newText.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
-        return newText;
+        _textResult = _textResult.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
+
     }
     // Extends Task to perform work on a worker thread to carry out voice recognition
     class VoiceRecognitionInBackground extends Task<Integer> {
