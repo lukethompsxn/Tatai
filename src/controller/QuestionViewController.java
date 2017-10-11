@@ -182,6 +182,7 @@ public class QuestionViewController extends AbstractController implements Initia
                     nextQuestion();
                 }
                 else {
+                    setSuperAttempts(_attempt);
                     pushChild("WrongView");
                     _attempt++;
                 }
