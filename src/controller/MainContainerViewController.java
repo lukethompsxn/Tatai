@@ -15,8 +15,6 @@ public class MainContainerViewController extends AbstractController implements I
     Pane mainPane;
     @FXML
     Pane menuPane;
-    @FXML
-    Pane darkenPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

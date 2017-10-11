@@ -6,7 +6,7 @@ public class MathsCollection {
 
     private HashMap<Integer, String> _questionsMap;
     private LinkedHashMap<Integer, String> _questionAnswersMap;
-    private NumberCollection numberCollection = NumberCollection.instance();
+    private NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathsCollection;
 
     //Singleton Constructor
@@ -24,6 +24,7 @@ public class MathsCollection {
 
     public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
         _questionsMap = new HashMap<>();
+        _questionAnswersMap = new LinkedHashMap<>();
         ArrayList<Integer> answers = new ArrayList();
         List<Integer> divisors;
 
@@ -88,9 +89,8 @@ public class MathsCollection {
 
 
             answers.add(intZ);
-            String maoriName = numberCollection.getMaoriName(intZ);
+            String maoriName = _model.getMaoriName(intZ);
 
-            System.out.println(_questionsMap.get(i) + " " + maoriName);
             _questionAnswersMap.put(i, maoriName);
         }
     }

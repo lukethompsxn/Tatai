@@ -66,10 +66,10 @@ public class QuestionViewController extends AbstractController implements Initia
         }
         //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
+            numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
             _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
             _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
         }
-        _iteration++;
     }
 
     // Returns to main menu when button is pressed.
@@ -111,11 +111,12 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_iteration > 9) {
+            if (_iteration > 8) {
                 _model.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
                 _attempted = false;
+                nextQuestion();
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
@@ -261,6 +262,12 @@ public class QuestionViewController extends AbstractController implements Initia
             ie.printStackTrace();
             return;
         }
+    }
+
+    private void nextQuestion() {
+        _iteration+=1;
+        numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
+
     }
 
 
