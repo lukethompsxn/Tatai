@@ -30,8 +30,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
-    private String _currentMathQuestion;
-    private int _currentPracQuestion;
+    private String _currentQuestion;
     private String _currentAnswer;
 
     @FXML
@@ -65,17 +64,12 @@ public class QuestionViewController extends AbstractController implements Initia
         else {
             attemptLbl.setText("Attempt: " + 1);
         }
-
-        // Gets the current question and answer
+        //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
-            _currentMathQuestion = _mathModel.getCurrentQuestion(_iteration);
+            numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
+            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
             _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
-        } else {
-            _currentPracQuestion = _model.getCurrentQuestion(_iteration);
-            _currentAnswer = _model.getCurrentAnswer(_iteration);
         }
-
-        _iteration++;
     }
 
     // Returns to main menu when button is pressed.
@@ -117,11 +111,12 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_iteration > 9) {
+            if (_iteration > 8) {
                 _model.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
                 _attempted = false;
+                nextQuestion();
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
@@ -138,6 +133,9 @@ public class QuestionViewController extends AbstractController implements Initia
             return 0;
         }
     }
+
+
+
 
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
     class Timer extends Task<Integer> {
@@ -163,6 +161,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
 
     }
+
 
     //Records audio on a different thread from a bash process
     public void recordAudio() {
@@ -263,6 +262,12 @@ public class QuestionViewController extends AbstractController implements Initia
             ie.printStackTrace();
             return;
         }
+    }
+
+    private void nextQuestion() {
+        _iteration+=1;
+        numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
+
     }
 
 
