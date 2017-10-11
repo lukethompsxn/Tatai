@@ -92,7 +92,6 @@ public class MathsCollection {
             String maoriName = _model.getMaoriName(intZ);
 
             System.out.println(_questionsMap.get(i) + " " + maoriName);
-            System.out.println(i + maoriName);
             _questionAnswersMap.put(i, maoriName);
         }
     }
