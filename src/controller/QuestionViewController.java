@@ -1,12 +1,14 @@
 package controller;
 
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
 import main.Main;
 import model.AudioDirector;
@@ -150,7 +152,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     }
 
-    /*
+
     //Records audio on a different thread from a bash process
     public void recordAudio() {
         recordBtn.setDisable(true);
@@ -193,7 +195,7 @@ public class QuestionViewController extends AbstractController implements Initia
         new Thread(timer).start();
 
     }
-*/
+
     //Reads results of voice recognition, goes to file in documents. Need to change so it work for VM directory
     private String readResults() throws IOException {
 
