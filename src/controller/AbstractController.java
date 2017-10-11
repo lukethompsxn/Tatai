@@ -3,14 +3,15 @@ package controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
+import model.NumberCollection;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
 
 public abstract class AbstractController {
-    Pane _mainPane;
-    Stack<Parent> _parentStack = new Stack<>();
+    protected static Pane _mainPane;
+    protected static Stack<Parent> _parentStack = new Stack<>();
 
     //Called from subclasses to set a new scene inside the container
     protected void pushChild(String name) {

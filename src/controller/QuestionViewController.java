@@ -1,13 +1,24 @@
 package controller;
 
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.layout.Region;
+import main.Main;
 import model.AudioDirector;
+import model.NumberCollection;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class QuestionViewController extends AbstractController implements Initializable{
@@ -15,6 +26,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _score = 0;
     private boolean _attempted = false;
     private static AudioDirector _audioDirector = AudioDirector.instance();
+    private static NumberCollection _model = NumberCollection.instance();
 
     @FXML
     private Label numberLbl;
@@ -22,7 +34,14 @@ public class QuestionViewController extends AbstractController implements Initia
     private ProgressBar progressBar;
     @FXML
     private Button recordBtn;
-
+    @FXML
+    Button returnMainBtn;
+    @FXML
+    Button skipQuestionBtn;
+    @FXML
+    Label scoreLbl;
+    @FXML
+    Label attemptLbl;
 
     //Action for record button
     public void record() {
@@ -40,30 +59,28 @@ public class QuestionViewController extends AbstractController implements Initia
         else {
             attemptLbl.setText("Attempt: " + 1);
         }
-        generateNumber();
+        //generateNumber();
         _iteration++;
     }
 
     // Returns to main menu when button is pressed.
     public void returnToMain() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure?");
-        alert.setContentText("Are you sure you want to return to main menu?");
+        alert.setTitle("You are about to quit!");
+        alert.setContentText("Do you want to save progress?");
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
         ButtonType cancel = new ButtonType("Cancel");
-        alert.getButtonTypes().setAll(yes, cancel);
+        alert.getButtonTypes().setAll(yes, no, cancel);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (model.getAttempted() == false) {
-                model.setIteration(model.getIteration() - 1);
+            if (_attempted == false) {
+                _iteration-=1;
             }
-            model.updateStats();
-            model.setIteration(0);
-            model.setScore(0);
-            model.setAttempted(false);
-            sceneChange("MainView");
+            _model.updateStats(_score,_iteration);
+            popChild(); //will throw exceptions until proper menu is set up
 
         }
     }
@@ -80,14 +97,12 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (model.getIteration() > 9) {
-                model.updateStats();
-                model.setIteration(0);
-                model.setAttempted(false);
-                sceneChange("SummaryView");
+            if (_iteration > 9) {
+                _model.updateStats(_score, _iteration);
+                pushChild("SummaryView");
             } else {
-                model.setAttempted(false);
-                sceneChange("QuestionView");
+                _attempted = false;
+                //NEEDS LOGIC FOR NEXT ITERATION
             }
 
         }
@@ -98,13 +113,13 @@ public class QuestionViewController extends AbstractController implements Initia
 
         @Override
         protected Integer call() throws Exception {
-            String cmd = "ffmpeg -nostats -loglevel 0 -f alsa -i default -t 3 -acodec pcm_s16le -ar 22050 -ac 1 -y  data" + fileSeperator + "audio.wav";
+            String cmd = "ffmpeg -nostats -loglevel 0 -f alsa -i default -t 3 -acodec pcm_s16le -ar 22050 -ac 1 -y  data" + File.separator + "audio.wav";
             runInBash(cmd);
             return 0;
         }
     }
 
-    // Extends Task to perform work on a worker thread to carry out voice recognition
+
 
 
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
@@ -124,7 +139,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private void sceneChange(String scene) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource( fileSeperator + "View" + fileSeperator + scene + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource( File.separator + "View" + File.separator + scene + ".fxml"));
             Main.pushScene(new Scene(root, 1280, 720));
         } catch (IOException e) {
             e.printStackTrace();
@@ -132,6 +147,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     }
 
+    /*
     //Records audio on a different thread from a bash process
     public void recordAudio() {
         recordBtn.setDisable(true);
@@ -141,18 +157,18 @@ public class QuestionViewController extends AbstractController implements Initia
         AudioInBackground record = new AudioInBackground();
 
         record.setOnSucceeded((WorkerStateEvent event) -> {
-            playbackAudio();
+            //playbackAudio();
 
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
                 try {
-                    model.setRecordingResult(readResults());
-                    if (model.getRecordingResult().equals(model.returnMaoriName(model.getCurrentNumber()))) {
-                        model.setScore(model.getScore()+1);
-                        sceneChange("CorrectView");
+                    _model.setRecordingResult(readResults());
+                   if (_model.getRecordingResult().equals(_model.returnMaoriName(_model.getCurrentNumber()))) {
+                        _score+=1;
+                        pushChild("CorrectView");
                     }
                     else {
-                        sceneChange("WrongView");
+                        pushChild("WrongView");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -174,11 +190,54 @@ public class QuestionViewController extends AbstractController implements Initia
         new Thread(timer).start();
 
     }
+*/
+    //Reads results of voice recognition, goes to file in documents. Need to change so it work for VM directory
+    private String readResults() throws IOException {
+
+        // reads file
+        File file = new File("data" + File.separator + "recout.mlf");
+        FileInputStream fis = new FileInputStream(file);
+        byte[] bytes = new byte[(int) file.length()];
+        fis.read(bytes);
+        fis.close();
+
+        String text = new String(bytes, "UTF-8");
+        //Puts string from file into string array
+        String[] words = text.split("\\W+");
+        String newText = "";
+
+        // Places text file back into string without the extra format
+        for (int j = 0; j < words.length-1; j++) {
+            if (j == words.length-2) {
+                newText += words[j];
+                break;
+            }
+            newText += words[j] + " ";
+        }
+
+        // Removes any text that is not needed
+        newText = newText.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
+        return newText;
+    }
+    // Extends Task to perform work on a worker thread to carry out voice recognition
+    class VoiceRecognitionInBackground extends Task<Integer> {
+
+        @Override
+        protected Integer call() throws Exception {
+            String docDirectory ="~" + File.separator + "Documents" + File.separator + "HTK" + File.separator + "MaoriNumbers" + File.separator;
+            String cmd = "HVite -H " + docDirectory + "HMMs" + File.separator + "hmm15" +  File.separator + "macros -H " + docDirectory + "HMMs" +  File.separator +
+                    "hmm15" +  File.separator + "hmmdefs -C " + docDirectory + "user" +  File.separator + "configLR  -w " + docDirectory + "user" +  File.separator
+                    + "wordNetworkNum -o SWT -l '*' -i " + "data" + File.separator + "recout.mlf -p 0.0 -s 5.0  " + docDirectory + "user" +  File.separator +
+                    "dictionaryD " + docDirectory + "user" + File.separator + "tiedList data" + File.separator + "audio.wav";
+            runInBash(cmd);
+            return 0;
+        }
+    }
 
     //Helper method for making the process and process builder so commands can be executed in bash
     private void runInBash(String cmd) {
         Process process;
-        ProcessBuilder processBuilder = new ProcessBuilder(fileSeperator + "bin" + fileSeperator + "bash", "-c", cmd);
+        ProcessBuilder processBuilder = new ProcessBuilder(File.separator + "bin" + File.separator + "bash", "-c", cmd);
         try {
             process = processBuilder.start();
         } catch (IOException excep) {
@@ -193,6 +252,9 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
+
+
+    /*
     //Helper method to playback audio once they have finished recording
     private void playbackAudio() {
         if (model.getPlaybackEnabled()) {
@@ -202,6 +264,7 @@ public class QuestionViewController extends AbstractController implements Initia
             mediaPlayer.setAutoPlay(true);
         }
     }
+    */
 
 
 
