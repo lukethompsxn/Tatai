@@ -23,6 +23,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        if (!(new File(System.getProperty("user.dir") + File.separator + "data").exists())) {
+            File dir = new File(System.getProperty("user.dir") + File.separator + "data");
+            dir.mkdir();
+        }
         launch(args);
     }
 
