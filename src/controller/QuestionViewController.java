@@ -25,13 +25,12 @@ import java.util.ResourceBundle;
 public class QuestionViewController extends AbstractController implements Initializable{
     private int _iteration = 0;
     private int _score = 0;
-    private boolean _attempted = false;
+    private int _attempt = 1;
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
-    private String _currentMathQuestion;
-    private int _currentPracQuestion;
+    private String _currentQuestion;
     private String _currentAnswer;
 
     @FXML
@@ -59,22 +58,13 @@ public class QuestionViewController extends AbstractController implements Initia
         recordBtn.setDisable(false);
 
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
-        if (_attempted) {
-            attemptLbl.setText("Attempt: " + 2);
-        }
-        else {
-            attemptLbl.setText("Attempt: " + 1);
-        }
+        attemptLbl.setText("Attempt: " + _attempt);
 
-        // Gets the current question and answer
+        //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
             numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
-            _currentMathQuestion = _mathModel.getCurrentQuestion(_iteration);
+            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
             _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
-        } else {
-            numberLbl.setText(_model.getCurrentQuestion(_iteration) + "");
-            _currentPracQuestion = _model.getCurrentQuestion(_iteration);
-            _currentAnswer = _model.getCurrentAnswer(_iteration);
         }
     }
 
@@ -91,9 +81,6 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_attempted == false) {
-                _iteration-=1;
-            }
             _model.updateStats(_score,_iteration);
             popChild(); //will throw exceptions until proper menu is set up
             //WILL NEED TO ADD LOGIC FOR SAVINGS
@@ -117,11 +104,13 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_iteration > 9) {
+            if (_iteration > 8) {
                 _model.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
-                _attempted = false;
+                _attempt = 1;
+                nextQuestion();
+                resetBtns();
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
@@ -138,6 +127,7 @@ public class QuestionViewController extends AbstractController implements Initia
             return 0;
         }
     }
+
 
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
     class Timer extends Task<Integer> {
@@ -164,6 +154,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     }
 
+
     //Records audio on a different thread from a bash process
     public void recordAudio() {
         recordBtn.setDisable(true);
@@ -177,11 +168,10 @@ public class QuestionViewController extends AbstractController implements Initia
 
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
-
+                System.out.println("textresult: " + _textResult);
+                System.out.println("currentanswer: " + _currentAnswer);
                 try {
                     readResults();
-                    System.out.println("text result: " + _textResult);
-                    System.out.println("current answer: " + _currentAnswer);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -192,8 +182,9 @@ public class QuestionViewController extends AbstractController implements Initia
                 }
                 else {
                     pushChild("WrongView");
+                    _attempt++;
                 }
-
+                resetBtns();
 
 
             });
@@ -275,10 +266,22 @@ public class QuestionViewController extends AbstractController implements Initia
     }
 
     private void nextQuestion() {
-        _iteration++;
-
+        _iteration+=1;
         numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
+        _attempt = 1;
+    }
+
+    private void resetBtns() {
+        if (_attempt > 2) {
+            nextQuestion();
+        }
+        skipQuestionBtn.setDisable(false);
+        recordBtn.setDisable(false);
+        returnMainBtn.setDisable(false);
+        progressBar.progressProperty().unbind();
+        progressBar.setProgress(0.0);
+        attemptLbl.setText("Attempt: " + _attempt);
     }
 
 
