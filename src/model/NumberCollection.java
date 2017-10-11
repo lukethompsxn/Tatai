@@ -1,10 +1,15 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class NumberCollection {
     private int _totalScore;
     private int _totalIterations;
+    private List<Integer> _englishNumbers;
+    private HashMap<Integer, String> _allNumbers = new HashMap<>();
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
     private static NumberCollection _numberCollection;
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
@@ -36,6 +41,25 @@ public class NumberCollection {
         _mapOfNumbers.put(8, "waru");
         _mapOfNumbers.put(9, "iwa");
         _mapOfNumbers.put(10, "tekau");
+    }
+
+    public void setCollection(int level) {
+        _englishNumbers = new ArrayList<>();
+        ArrayList<Integer> randNumbers = new ArrayList();
+
+        Random randomGenerator = new Random();
+
+
+        for (int i = 0; i < 10; i++) {
+            int randomInt = randomGenerator.nextInt(level) + 1;
+            while (randNumbers.contains(randomInt)) {
+                randomInt = randomGenerator.nextInt(level) + 1;
+            }
+            randNumbers.add(randomInt);
+            String maoriName = getMaoriName(randomInt);
+            _englishNumbers.add(randomInt);
+            _allNumbers.put(randomInt, maoriName);
+        }
     }
 
     public String getMaoriName(int number) {

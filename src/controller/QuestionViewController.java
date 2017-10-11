@@ -12,6 +12,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
 import main.Main;
 import model.AudioDirector;
+import model.MathsCollection;
 import model.NumberCollection;
 
 import java.io.File;
@@ -27,7 +28,10 @@ public class QuestionViewController extends AbstractController implements Initia
     private boolean _attempted = false;
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = NumberCollection.instance();
+    private static MathsCollection _mathModel = MathsCollection.instance();
     private String _textResult;
+    private String _currentQuestion;
+    private String _currentAnswer;
 
     @FXML
     private Label numberLbl;
@@ -61,6 +65,10 @@ public class QuestionViewController extends AbstractController implements Initia
             attemptLbl.setText("Attempt: " + 1);
         }
         //generateNumber();
+        if (_model.getType() == NumberCollection.Type.MATH) {
+            _currentQuestion = _mathModel.getCurrentQuestion(_iteration);
+            _currentAnswer = _mathModel.getCurrentAnswer(_iteration);
+        }
         _iteration++;
     }
 
@@ -167,17 +175,15 @@ public class QuestionViewController extends AbstractController implements Initia
 
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
-                try {
-                   if (_textResult.equals(_model.getMaoriName(_model.getCurrentNumber()))) {
-                        _score+=1;
-                        pushChild("CorrectView");
-                    }
-                    else {
-                        pushChild("WrongView");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
+
+                if (_textResult.equals(_currentAnswer)) {
+                    _score+=1;
+                    pushChild("CorrectView");
                 }
+                else {
+                    pushChild("WrongView");
+                }
+
 
             });
             new Thread(recognition).start();
@@ -197,7 +203,7 @@ public class QuestionViewController extends AbstractController implements Initia
     }
 
     //Reads results of voice recognition, goes to file in documents. Need to change so it work for VM directory
-    private String readResults() throws IOException {
+    private void readResults() throws IOException {
         _textResult = "";
 
         // reads file
@@ -222,8 +228,8 @@ public class QuestionViewController extends AbstractController implements Initia
 
         // Removes any text that is not needed
         _textResult = _textResult.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
-
     }
+
     // Extends Task to perform work on a worker thread to carry out voice recognition
     class VoiceRecognitionInBackground extends Task<Integer> {
 

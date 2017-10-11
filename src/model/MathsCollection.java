@@ -94,4 +94,12 @@ public class MathsCollection {
             _questionAnswersMap.put(i, maoriName);
         }
     }
+
+    public String getCurrentQuestion(int iteration) {
+        return _questionsMap.get(iteration);
+    }
+
+    public String getCurrentAnswer(int iteration) {
+        return _questionAnswersMap.get(iteration);
+    }
 }

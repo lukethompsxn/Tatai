@@ -1,27 +1,35 @@
 package controller;
 
+import model.MathsCollection;
 import model.NumberCollection;
+
+import javax.crypto.MacSpi;
 
 public class MathViewController extends AbstractController{
     private static NumberCollection _model = NumberCollection.instance();
+    private static MathsCollection _mathModel = MathsCollection.instance();
 
     public void add() {
         _model.setMode(NumberCollection.Mode.MATH_ADD);
+        _mathModel.arithmetic(99,10,NumberCollection.Mode.MATH_ADD);
         pushChild("QuestionView");
     }
 
     public void subtract() {
         _model.setMode(NumberCollection.Mode.MATH_SUB);
+        _mathModel.arithmetic(99,10,NumberCollection.Mode.MATH_SUB);
         pushChild("QuestionView");
     }
 
     public void multiply() {
         _model.setMode(NumberCollection.Mode.MATH_MULT);
+        _mathModel.arithmetic(10,10,NumberCollection.Mode.MATH_MULT);
         pushChild("QuestionView");
     }
 
     public void divide() {
         _model.setMode(NumberCollection.Mode.MATH_DIV);
+        _mathModel.arithmetic(99,10,NumberCollection.Mode.MATH_DIV);
         pushChild("QuestionView");
     }
 
