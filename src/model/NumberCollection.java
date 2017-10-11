@@ -133,12 +133,12 @@ public class NumberCollection {
         _totalIterations+=iterations;
     }
 
-    public int getCurrentQuestion(int iteration) {
-        return _questionsMap.get(iteration);
+    public HashMap<Integer, Integer> getCurrentQuestionMap() {
+        return _questionsMap;
     }
 
-    public String getCurrentAnswer(int iteration) {
-        return _questionAnswersMap.get(iteration);
+    public HashMap<Integer, String> getCurrentAnswerMap() {
+        return _questionAnswersMap;
     }
 
     public void setMode(Mode mode) {
