@@ -39,6 +39,10 @@
                   <Font size="76.0" />
                </font>
             </Label>
+            <Button fx:id="returnMainBtn" mnemonicParsing="false" text="Menu" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="skipQuestionBtn" mnemonicParsing="false" text="Skip" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="scoreLbl" text="score" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="attemptLbl" text="attempted" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
