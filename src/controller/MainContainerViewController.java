@@ -13,10 +13,16 @@ public class MainContainerViewController extends AbstractController implements I
 
     @FXML
     Pane mainPane;
+    @FXML
+    Pane menuPane;
+    @FXML
+    Pane darkenPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _mainPane = mainPane;
+        menuPane.setVisible(false);
+        menuPane.disableProperty().bind(menuPane.visibleProperty());
 
         if (_model.getType().equals(NumberCollection.Type.PRACTICE)) {
             pushChild("PracticeView");
@@ -25,5 +31,9 @@ public class MainContainerViewController extends AbstractController implements I
             pushChild("MathView");
         }
 
+    }
+
+    public void toggleMenu() {
+        menuPane.setVisible(!menuPane.isVisible());
     }
 }
