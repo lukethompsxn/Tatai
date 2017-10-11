@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class QuestionViewController extends AbstractController implements Initializable{
     private int _iteration = 0;
     private int _score = 0;
-    private boolean _attempted = false;
+    private int _attempt = 1;
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = NumberCollection.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
@@ -58,12 +58,8 @@ public class QuestionViewController extends AbstractController implements Initia
         recordBtn.setDisable(false);
 
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
-        if (_attempted) {
-            attemptLbl.setText("Attempt: " + 2);
-        }
-        else {
-            attemptLbl.setText("Attempt: " + 1);
-        }
+        attemptLbl.setText("Attempt: " + _attempt);
+
         //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
             numberLbl.setText(_mathModel.getCurrentQuestion(_iteration).toString());
@@ -85,9 +81,6 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_attempted == false) {
-                _iteration-=1;
-            }
             _model.updateStats(_score,_iteration);
             popChild(); //will throw exceptions until proper menu is set up
             //WILL NEED TO ADD LOGIC FOR SAVINGS
@@ -115,8 +108,9 @@ public class QuestionViewController extends AbstractController implements Initia
                 _model.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
-                _attempted = false;
+                _attempt = 1;
                 nextQuestion();
+                resetBtns();
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
@@ -133,8 +127,6 @@ public class QuestionViewController extends AbstractController implements Initia
             return 0;
         }
     }
-
-
 
 
     //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
@@ -186,10 +178,13 @@ public class QuestionViewController extends AbstractController implements Initia
                 if (_textResult.equals(_currentAnswer)) {
                     _score+=1;
                     pushChild("CorrectView");
+                    nextQuestion();
                 }
                 else {
                     pushChild("WrongView");
+                    _attempt++;
                 }
+                resetBtns();
 
 
             });
@@ -274,8 +269,19 @@ public class QuestionViewController extends AbstractController implements Initia
         _iteration+=1;
         numberLbl.setText(_mathModel.getCurrentQuestion(_iteration));
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
+        _attempt = 1;
+    }
 
-
+    private void resetBtns() {
+        if (_attempt > 2) {
+            nextQuestion();
+        }
+        skipQuestionBtn.setDisable(false);
+        recordBtn.setDisable(false);
+        returnMainBtn.setDisable(false);
+        progressBar.progressProperty().unbind();
+        progressBar.setProgress(0.0);
+        attemptLbl.setText("Attempt: " + _attempt);
     }
 
 
