@@ -25,8 +25,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _iteration = 0;
     private int _score = 0;
     private int _attempt = 1;
-
-    private static AudioDirector _audioDirector = AudioDirector.instance();
+    private int _numQuestions;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static NumberCollection _pracModel = PracticeCollection.instance();
@@ -55,22 +54,18 @@ public class QuestionViewController extends AbstractController implements Initia
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recordBtn.setDisable(false);
-
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
         attemptLbl.setText("Attempt: " + _attempt);
+        _numQuestions = _modeDirector.getNumQuestions() - 2;
 
         if (_modeDirector.getType() == ModeDirector.Type.MATH) {
             if (_modeDirector.getMode() == ModeDirector.Mode.MATH_RANDOM) {
                 _questionMap = _customModel.getCurrentQuestionMap();
                 _answerMap = _customModel.getCurrentAnswerMap();
-                System.out.println(_questionMap);
-                System.out.println(_answerMap);
             } else {
                 _questionMap = _mathModel.getCurrentQuestionMap();
                 _answerMap = _mathModel.getCurrentAnswerMap();
             }
-            //_questionMap = _mathModel.getCurrentQuestionMap();
-            //_answerMap = _mathModel.getCurrentAnswerMap();
         }
         else {
             _questionMap = _pracModel.getCurrentQuestionMap();
@@ -115,7 +110,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            if (_iteration > 8) {
+            if (_iteration > _numQuestions) {
                 _modeDirector.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
