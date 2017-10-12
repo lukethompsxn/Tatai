@@ -3,12 +3,14 @@ package model;
 public class ModeDirector {
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
+
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
     public enum Type { PRACTICE, MATH };
     private ModeDirector.Mode _currentMode;
     private ModeDirector.Type _currentType;
     private int _totalScore;
     private int _totalIterations;
+    private int _iteration = 0;
     private int _numQuestions;
 
     //Singleton Constructor
@@ -51,6 +53,14 @@ public class ModeDirector {
 
     public void setNumQuestions(int numQuestions) {
         _numQuestions = numQuestions;
+    }
+
+    public void setIteration(int iteration) {
+        _iteration = iteration;
+    }
+
+    public int getIteration() {
+        return _iteration;
     }
 
 
