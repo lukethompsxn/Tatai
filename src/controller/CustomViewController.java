@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import model.CustomCollection;
+import model.ModeDirector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +53,7 @@ public class CustomViewController extends AbstractController implements Initiali
     @FXML
     private Label questionsAddedLbl;
 
+    private static ModeDirector _modeDirector = ModeDirector.instance();
     private static CustomCollection _customModel = CustomCollection.instance();
     private int _first=0;
     private int _second=0;
@@ -128,6 +130,7 @@ public class CustomViewController extends AbstractController implements Initiali
 
     @FXML
     private void finishQuestionsBtnAction() {
+        _modeDirector.setNumQuestions(_questionNumber);
         operationBtnsCtrl(false);
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
@@ -135,6 +138,7 @@ public class CustomViewController extends AbstractController implements Initiali
         operatorDone = false;
         digitFirst = 1;
         digitSecond = 1;
+        _questionNumber = 0;
         _first = 0;
         _second = 0;
         popChild();
