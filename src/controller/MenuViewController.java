@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import main.Main;
+import model.MathsCollection;
 import model.NumberCollection;
 import model.PracticeCollection;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 
 public class MenuViewController {
     private static NumberCollection _model = PracticeCollection.instance();
+    private static MathsCollection _mathModel = MathsCollection.instance();
 
     //Action for practice button
     public void practiceMenu() {
@@ -21,7 +23,7 @@ public class MenuViewController {
 
     //Action for math button
     public void mathMenu() {
-        _model.setType(NumberCollection.Type.MATH);
+        _mathModel.setType(NumberCollection.Type.MATH);
         sceneChange("MainContainerView");
     }
 

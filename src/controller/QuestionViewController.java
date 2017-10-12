@@ -11,10 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
 import main.Main;
-import model.AudioDirector;
-import model.MathsCollection;
-import model.NumberCollection;
-import model.PracticeCollection;
+import model.*;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,6 +28,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private static AudioDirector _audioDirector = AudioDirector.instance();
     private static NumberCollection _model = PracticeCollection.instance();
     private static NumberCollection _mathModel = MathsCollection.instance();
+    private static NumberCollection _customModel = CustomCollection.instance();
     private String _textResult;
     private HashMap<Integer, String> _questionMap;
     private HashMap<Integer, String> _answerMap;
@@ -57,10 +55,18 @@ public class QuestionViewController extends AbstractController implements Initia
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
         attemptLbl.setText("Attempt: " + _attempt);
 
-        //generateNumber();
         if (_model.getType() == NumberCollection.Type.MATH) {
-            _questionMap = _mathModel.getCurrentQuestionMap();
-            _answerMap = _mathModel.getCurrentAnswerMap();
+            if (_mathModel.getMode() == NumberCollection.Mode.MATH_RANDOM) {
+                _questionMap = _customModel.getCurrentQuestionMap();
+                _answerMap = _customModel.getCurrentAnswerMap();
+                System.out.println(_questionMap);
+                System.out.println(_answerMap);
+            } else {
+                _questionMap = _mathModel.getCurrentQuestionMap();
+                _answerMap = _mathModel.getCurrentAnswerMap();
+            }
+            //_questionMap = _mathModel.getCurrentQuestionMap();
+            //_answerMap = _mathModel.getCurrentAnswerMap();
         }
         else {
             _questionMap = _model.getCurrentQuestionMap();

@@ -125,6 +125,10 @@ public abstract class NumberCollection {
         _currentMode = mode;
     }
 
+    public Mode getMode() {
+        return _currentMode;
+    }
+
     public void setType(Type type) {
        _currentType = type;
     }
