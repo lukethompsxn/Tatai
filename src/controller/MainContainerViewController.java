@@ -15,14 +15,10 @@ public class MainContainerViewController extends AbstractController implements I
 
     @FXML
     Pane mainPane;
-    @FXML
-    Pane menuPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _mainPane = mainPane;
-        menuPane.setVisible(false);
-        menuPane.disableProperty().bind(menuPane.visibleProperty());
 
         if (_modeDirector.getType().equals(ModeDirector.Type.PRACTICE)) {
             pushChild("PracticeView");
@@ -33,7 +29,4 @@ public class MainContainerViewController extends AbstractController implements I
 
     }
 
-    public void toggleMenu() {
-        menuPane.setVisible(!menuPane.isVisible());
-    }
 }
