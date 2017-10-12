@@ -131,8 +131,8 @@ public class CustomViewController extends AbstractController implements Initiali
         digitSecond = 1;
         _first = 0;
         _second = 0;
+        popChild();
         pushChild("QuestionView");
-        //popChild();
     }
 
     @FXML

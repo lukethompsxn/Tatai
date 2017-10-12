@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import main.Main;
 import model.MathsCollection;
+import model.ModeDirector;
 import model.NumberCollection;
 import model.PracticeCollection;
 
@@ -12,18 +13,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class MenuViewController {
-    private static NumberCollection _model = PracticeCollection.instance();
-    private static MathsCollection _mathModel = MathsCollection.instance();
+    private static ModeDirector _modeDirector = ModeDirector.instance();
+    //private static MathsCollection _mathModel = MathsCollection.instance();
 
     //Action for practice button
     public void practiceMenu() {
-        _model.setType(NumberCollection.Type.PRACTICE);
+        _modeDirector.setType(ModeDirector.Type.PRACTICE);
         sceneChange("MainContainerView");
     }
 
     //Action for math button
     public void mathMenu() {
-        _mathModel.setType(NumberCollection.Type.MATH);
+        _modeDirector.setType(ModeDirector.Type.MATH);
         sceneChange("MainContainerView");
     }
 

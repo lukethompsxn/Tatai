@@ -22,7 +22,7 @@ public class MathsCollection extends NumberCollection {
         initialize();
     }
 
-    public void arithmetic(int level, int questionNumber, NumberCollection.Mode mode) {
+    public void arithmetic(int level, int questionNumber, ModeDirector.Mode mode) {
 
         _questionsMap = new HashMap<>();
         _questionAnswersMap = new HashMap<>();
@@ -39,7 +39,7 @@ public class MathsCollection extends NumberCollection {
 
             intZ = randomGenerator.nextInt(level) + 1;
 
-            if (mode == NumberCollection.Mode.MATH_ADD) {
+            if (mode == ModeDirector.Mode.MATH_ADD) {
                 intY = randomGenerator.nextInt(intZ) + 1;
                 intX = intZ - intY;
 
@@ -50,7 +50,7 @@ public class MathsCollection extends NumberCollection {
                 }
                 _questionsMap.put(i, intX + " + " + intY);
 
-            } else if (mode == NumberCollection.Mode.MATH_SUB){
+            } else if (mode == ModeDirector.Mode.MATH_SUB){
                 intX = randomGenerator.nextInt(level) + intZ + 1;
                 intY = intX - intZ;
 
@@ -60,7 +60,7 @@ public class MathsCollection extends NumberCollection {
                     intY = intX - intZ;
                 }
                 _questionsMap.put(i, intX + " - " + intY);
-            } else if (mode == NumberCollection.Mode.MATH_MULT){
+            } else if (mode == ModeDirector.Mode.MATH_MULT){
                 intX = randomGenerator.nextInt(level) + 1;
                 intY = randomGenerator.nextInt(level) + 1;
                 intZ = intX * intY;

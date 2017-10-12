@@ -3,15 +3,15 @@ package model;
 import java.util.HashMap;
 
 public abstract class NumberCollection {
-    private int _totalScore;
-    private int _totalIterations;
+    //private int _totalScore;
+    //private int _totalIterations;
 
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
 
-    public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
-    public enum Type { PRACTICE, MATH };
-    private Mode _currentMode = Mode.PRACTICE_EASY;
-    private Type _currentType = Type.PRACTICE;
+    //public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
+    //public enum Type { PRACTICE, MATH };
+    //private Mode _currentMode = Mode.PRACTICE_EASY;
+    //private Type _currentType = Type.PRACTICE;
 
 
     //Singleton Constructor
@@ -116,26 +116,26 @@ public abstract class NumberCollection {
 
     public abstract HashMap<Integer, String> getCurrentAnswerMap();
 
-    public void updateStats(int score, int iterations) {
-        _totalScore+=score;
-        _totalIterations+=iterations;
-    }
+    //public void updateStats(int score, int iterations) {
+    //   _totalScore+=score;
+    //    _totalIterations+=iterations;
+    //}
 
-    public void setMode(Mode mode) {
-        _currentMode = mode;
-    }
+    //public void setMode(Mode mode) {
+    //    _currentMode = mode;
+    //}
 
-    public Mode getMode() {
-        return _currentMode;
-    }
+    //public Mode getMode() {
+    //    return _currentMode;
+    //}
 
-    public void setType(Type type) {
-       _currentType = type;
-    }
+    //public void setType(Type type) {
+    //   _currentType = type;
+    //}
 
-    public Type getType() {
-        return _currentType;
-    }
+    //public Type getType() {
+    //    return _currentType;
+    //}
 
 
 }

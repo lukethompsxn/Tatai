@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
+import model.ModeDirector;
 import model.NumberCollection;
 import model.PracticeCollection;
 
@@ -10,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainContainerViewController extends AbstractController implements Initializable{
-    private static NumberCollection _model = PracticeCollection.instance();
+    private static ModeDirector _modeDirector = ModeDirector.instance();
 
     @FXML
     Pane mainPane;
@@ -23,7 +24,7 @@ public class MainContainerViewController extends AbstractController implements I
         menuPane.setVisible(false);
         menuPane.disableProperty().bind(menuPane.visibleProperty());
 
-        if (_model.getType().equals(NumberCollection.Type.PRACTICE)) {
+        if (_modeDirector.getType().equals(ModeDirector.Type.PRACTICE)) {
             pushChild("PracticeView");
         }
         else {

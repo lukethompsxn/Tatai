@@ -25,10 +25,14 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _iteration = 0;
     private int _score = 0;
     private int _attempt = 1;
+
     private static AudioDirector _audioDirector = AudioDirector.instance();
-    private static NumberCollection _model = PracticeCollection.instance();
+
+    private static ModeDirector _modeDirector = ModeDirector.instance();
+    private static NumberCollection _pracModel = PracticeCollection.instance();
     private static NumberCollection _mathModel = MathsCollection.instance();
     private static NumberCollection _customModel = CustomCollection.instance();
+
     private String _textResult;
     private HashMap<Integer, String> _questionMap;
     private HashMap<Integer, String> _answerMap;
@@ -55,8 +59,8 @@ public class QuestionViewController extends AbstractController implements Initia
         scoreLbl.setText("Score: " + _score + "/" + _iteration);
         attemptLbl.setText("Attempt: " + _attempt);
 
-        if (_model.getType() == NumberCollection.Type.MATH) {
-            if (_mathModel.getMode() == NumberCollection.Mode.MATH_RANDOM) {
+        if (_modeDirector.getType() == ModeDirector.Type.MATH) {
+            if (_modeDirector.getMode() == ModeDirector.Mode.MATH_RANDOM) {
                 _questionMap = _customModel.getCurrentQuestionMap();
                 _answerMap = _customModel.getCurrentAnswerMap();
                 System.out.println(_questionMap);
@@ -69,8 +73,8 @@ public class QuestionViewController extends AbstractController implements Initia
             //_answerMap = _mathModel.getCurrentAnswerMap();
         }
         else {
-            _questionMap = _model.getCurrentQuestionMap();
-            _answerMap = _model.getCurrentAnswerMap();
+            _questionMap = _pracModel.getCurrentQuestionMap();
+            _answerMap = _pracModel.getCurrentAnswerMap();
         }
         numberLbl.setText(_questionMap.get(_iteration));
     }
@@ -88,13 +92,13 @@ public class QuestionViewController extends AbstractController implements Initia
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
-            _model.updateStats(_score,_iteration);
+            _modeDirector.updateStats(_score,_iteration);
             popChild(); //will throw exceptions until proper menu is set up
             //WILL NEED TO ADD LOGIC FOR SAVINGS
 
         }
         else if (result.get() == no) {
-            _model.updateStats(_score,_iteration);
+            _modeDirector.updateStats(_score,_iteration);
             popChild();
         }
     }
@@ -112,7 +116,7 @@ public class QuestionViewController extends AbstractController implements Initia
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == yes) {
             if (_iteration > 8) {
-                _model.updateStats(_score, _iteration);
+                _modeDirector.updateStats(_score, _iteration);
                 pushChild("SummaryView");
             } else {
                 _attempt = 1;
