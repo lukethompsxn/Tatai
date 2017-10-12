@@ -9,6 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import model.CustomCollection;
+import model.ModeDirector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,6 +53,7 @@ public class CustomViewController extends AbstractController implements Initiali
     @FXML
     private Label questionsAddedLbl;
 
+    private static ModeDirector _modeDirector = ModeDirector.instance();
     private static CustomCollection _customModel = CustomCollection.instance();
     private int _first=0;
     private int _second=0;
@@ -128,6 +130,7 @@ public class CustomViewController extends AbstractController implements Initiali
 
     @FXML
     private void finishQuestionsBtnAction() {
+        _modeDirector.setNumQuestions(_questionNumber);
         operationBtnsCtrl(false);
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
@@ -135,6 +138,7 @@ public class CustomViewController extends AbstractController implements Initiali
         operatorDone = false;
         digitFirst = 1;
         digitSecond = 1;
+        _questionNumber = 0;
         _first = 0;
         _second = 0;
         popChild();
@@ -186,6 +190,9 @@ public class CustomViewController extends AbstractController implements Initiali
                 digitSecond += 1;
                 addQuestionBtn.setDisable(false);
                 possibleNumberDisable();
+                if ((_operator.equals(" x ") && ((_first * ((_second*10) + 0) > 0) && (_first * ((_second*10) + 0) < 100)))) {
+                    zeroBtn.setDisable(false);
+                }
             } else {
                 _second = (_second*10) + num;
                 digitSecond--;
@@ -196,6 +203,7 @@ public class CustomViewController extends AbstractController implements Initiali
 
     private void possibleNumberDisable() {
         if (needDisbale(0)) {
+            System.out.println("zero");
             zeroBtn.setDisable(true);
         }
         if (needDisbale(1)) {
@@ -239,14 +247,15 @@ public class CustomViewController extends AbstractController implements Initiali
                 }
             } else if (_operator.equals(" x ")) {
                 if (((_first * ((_second*10) + btnNumber)) <= 0) || ((_first * ((_second*10) + btnNumber)) > 99)) {
+                    System.out.println((_first * ((_second*10) + btnNumber)));
                     return true;
                 }
+            } else  {
+                //if (_first / ((_second*10) + btnNumber) != 0) {
+                //    return true;
+                //}
+                numberBtnCtrl(true);
             }
-            //else  {
-            //    if (_first / ((_second*10) + btnNumber) != 0) {
-            //        return true;
-             //   }
-            //}
         }
         else {
             if (_operator.equals(" + ")) {
@@ -261,20 +270,15 @@ public class CustomViewController extends AbstractController implements Initiali
                 if (((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
                     return true;
                 }
+            } else  {
+                if (btnNumber == 0) {
+                    return true;
+                }
+                if (_first % btnNumber != 0) {
+                    return true;
+                }
             }
-            //else  {
-            //    if (btnNumber == 0) {
-            //        return true;
-            //    }
-            //    if (_first % btnNumber != 0) {
-            //        return true;
-            //    }
-            //}
         }
-        //if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99) || ((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99) ||
-        //        ((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
-        //    return true;
-        //}
         return false;
     }
 
