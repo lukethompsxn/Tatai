@@ -49,10 +49,12 @@ public class CustomViewController extends AbstractController implements Initiali
     private Button finishQuestionsBtn;
     @FXML
     private Label equationLbl;
+    @FXML
+    private Label questionsAddedLbl;
 
     private static CustomCollection _customModel = CustomCollection.instance();
-    private int _first;
-    private int _second;
+    private int _first=0;
+    private int _second=0;
     private int _answer;
     private String _operator;
     private boolean operatorDone = false;
@@ -79,6 +81,8 @@ public class CustomViewController extends AbstractController implements Initiali
             _operator = " / ";
             equationLbl.setText(equationLbl.getText() + " / ");
         }
+
+        possibleNumberDisable();
     }
 
     @FXML
@@ -99,6 +103,8 @@ public class CustomViewController extends AbstractController implements Initiali
         if ((_answer < 100) && (_answer > 0)) {
             _customModel.addCustomQuestion(_questionNumber, _first + _operator + _second, _answer);
             _questionNumber++;
+            questionsAddedLbl.setText("Questions Added: " + _questionNumber);
+            finishQuestionsBtn.setDisable(false);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Answer was not greater than zero and less than 100",
                     ButtonType.OK);
@@ -137,6 +143,7 @@ public class CustomViewController extends AbstractController implements Initiali
 
     @FXML
     private void numberSelectAction(ActionEvent event2) {
+        finishQuestionsBtn.setDisable(true);
 
         if (event2.getSource() == oneBtn) {
             idkmethod(1);
@@ -178,12 +185,97 @@ public class CustomViewController extends AbstractController implements Initiali
                 _second += num;
                 digitSecond += 1;
                 addQuestionBtn.setDisable(false);
+                possibleNumberDisable();
             } else {
                 _second = (_second*10) + num;
                 digitSecond--;
                 numberBtnCtrl(true);
             }
         }
+    }
+
+    private void possibleNumberDisable() {
+        if (needDisbale(0)) {
+            zeroBtn.setDisable(true);
+        }
+        if (needDisbale(1)) {
+            oneBtn.setDisable(true);
+        }
+        if (needDisbale(2)) {
+            twoBtn.setDisable(true);
+        }
+        if (needDisbale(3)) {
+            threeBtn.setDisable(true);
+        }
+        if (needDisbale(4)) {
+            fourBtn.setDisable(true);
+        }
+        if (needDisbale(5)) {
+            fiveBtn.setDisable(true);
+        }
+        if (needDisbale(6)) {
+            sixBtn.setDisable(true);
+        }
+        if (needDisbale(7)) {
+            sevenBtn.setDisable(true);
+        }
+        if (needDisbale(8)) {
+            eightBtn.setDisable(true);
+        }
+        if (needDisbale(9)) {
+            nineBtn.setDisable(true);
+        }
+    }
+
+    private boolean needDisbale(int btnNumber) {
+        if (_second > 0) {
+            if (_operator.equals(" + ")) {
+                if (((_first + ((_second*10) + btnNumber)) <= 0) || ((_first + ((_second*10) + btnNumber)) > 99)) {
+                    return true;
+                }
+            } else if (_operator.equals(" - ")) {
+                if (((_first - ((_second*10) + btnNumber)) <= 0) || ((_first - ((_second*10) + btnNumber)) > 99)) {
+                    return true;
+                }
+            } else if (_operator.equals(" x ")) {
+                if (((_first * ((_second*10) + btnNumber)) <= 0) || ((_first * ((_second*10) + btnNumber)) > 99)) {
+                    return true;
+                }
+            }
+            //else  {
+            //    if (_first / ((_second*10) + btnNumber) != 0) {
+            //        return true;
+             //   }
+            //}
+        }
+        else {
+            if (_operator.equals(" + ")) {
+                if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99)) {
+                    return true;
+                }
+            } else if (_operator.equals(" - ")) {
+                if (((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99)) {
+                    return true;
+                }
+            } else if (_operator.equals(" x ")) {
+                if (((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
+                    return true;
+                }
+            }
+            //else  {
+            //    if (btnNumber == 0) {
+            //        return true;
+            //    }
+            //    if (_first % btnNumber != 0) {
+            //        return true;
+            //    }
+            //}
+        }
+        //if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99) || ((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99) ||
+        //        ((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
+        //    return true;
+        //}
+        return false;
     }
 
     private void operationBtnsCtrl(boolean option) {
@@ -209,5 +301,6 @@ public class CustomViewController extends AbstractController implements Initiali
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addQuestionBtn.setDisable(true);
+        finishQuestionsBtn.setDisable(true);
     }
 }
