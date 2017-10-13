@@ -51,18 +51,24 @@ public class MathsCollection extends NumberCollection {
                 _questionsMap.put(i, intX + " + " + intY);
 
             } else if (mode == ModeDirector.Mode.MATH_SUB){
-                intX = randomGenerator.nextInt(level) + intZ + 1;
-                intY = intX - intZ;
+                intX = randomGenerator.nextInt(level) + 10;
+                intY = randomGenerator.nextInt(level - 1) + 1;
 
-                while (answers.contains(intZ)) {
-                    intZ = randomGenerator.nextInt(level) + intZ + 1;
-                    intX = randomGenerator.nextInt(level) + 1;
-                    intY = intX - intZ;
+                while ((intX - intY) < 1) {
+                    intX = randomGenerator.nextInt(level) + 10;
+                    intY = randomGenerator.nextInt(level - 1) + 1;
                 }
+
+                intZ = intX - intY;
                 _questionsMap.put(i, intX + " - " + intY);
             } else if (mode == ModeDirector.Mode.MATH_MULT){
                 intX = randomGenerator.nextInt(level) + 1;
                 intY = randomGenerator.nextInt(level) + 1;
+
+                while ((intX == intY) && (intX == 10)) {
+                    intY = randomGenerator.nextInt(level) + 1;
+                }
+
                 intZ = intX * intY;
                 _questionsMap.put(i, intX + " x " + intY);
             } else {
@@ -78,12 +84,29 @@ public class MathsCollection extends NumberCollection {
                 }
 
                 intX = intZ;
-                if (divisors.size() == 2) {
-                    intY = divisors.get(randomElement.nextInt(divisors.size()));
-                } else {
-                    divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
-                    intY = divisors.get(randomElement.nextInt(divisors.size()));
+
+                while (divisors.size() == 2) {
+                    intZ = randomGenerator.nextInt(level) + 1;
+                    limit = intZ;
+
+                    divisors = new ArrayList<>();
+                    for (int j = 1; j <= limit; j++) {
+                        if (intZ % j == 0) {
+                            divisors.add(j);
+                        }
+                    }
+                    intX = intZ;
                 }
+
+                divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
+                intY = divisors.get(randomElement.nextInt(divisors.size()));
+                //if (divisors.size() == 2) {
+                //    divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
+                //    intY = divisors.get(randomElement.nextInt(divisors.size()));
+                //} //else {
+                //    divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
+                //    intY = divisors.get(randomElement.nextInt(divisors.size()));
+                //}
                 intZ = intX / intY;
                 _questionsMap.put(i, intX + " / " + intY);
             }
