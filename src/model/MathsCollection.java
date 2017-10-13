@@ -26,7 +26,7 @@ public class MathsCollection extends NumberCollection {
 
         _questionsMap = new HashMap<>();
         _questionAnswersMap = new HashMap<>();
-        ArrayList<Integer> answers = new ArrayList();
+        ArrayList<Integer> answers = new ArrayList<>();
         List<Integer> divisors;
 
         Random randomGenerator = new Random();
