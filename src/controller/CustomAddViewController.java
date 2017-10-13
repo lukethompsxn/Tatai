@@ -11,6 +11,7 @@ import model.ModeDirector;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomAddViewController extends AbstractController implements Initializable {
@@ -143,8 +144,18 @@ public class CustomAddViewController extends AbstractController implements Initi
         _questionNumber = 0;
         _first = 0;
         _second = 0;
+
+        TextInputDialog enterName = new TextInputDialog();
+        enterName.setTitle("Please enter a name");
+        enterName.setContentText("Choose a name for you custom list");
+
+        Optional<String> result = enterName.showAndWait();
+        if (result.isPresent()) {
+            _customModel.addToStoredMap(result.get());
+        }
+
         popChild();
-        pushChild("QuestionView");
+        pushChild("CustomView");
     }
 
     @FXML
