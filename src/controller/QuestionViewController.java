@@ -54,8 +54,8 @@ public class QuestionViewController extends AbstractController implements Initia
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recordBtn.setDisable(false);
-        scoreLbl.setText("Score: " + _score + "/" + _iteration);
-        attemptLbl.setText("Attempt: " + _attempt);
+        scoreLbl.setText(_score + "/" + _iteration);
+        attemptLbl.setText(_attempt + "");
         _numQuestions = _modeDirector.getNumQuestions() - 2;
 
         if (_modeDirector.getType() == ModeDirector.Type.MATH) {
@@ -152,7 +152,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private void sceneChange(String scene) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource( File.separator + "View" + File.separator + scene + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource( File.separator + "view" + File.separator + scene + ".fxml"));
             Main.pushScene(new Scene(root, 1280, 720));
         } catch (IOException e) {
             e.printStackTrace();
@@ -276,7 +276,7 @@ public class QuestionViewController extends AbstractController implements Initia
         _iteration+=1;
         _modeDirector.setIteration(_iteration);
         numberLbl.setText(_questionMap.get(_iteration));
-        scoreLbl.setText("Score: " + _score + "/" + _iteration);
+        scoreLbl.setText(_score + "/" + _iteration);
         _attempt = 1;
     }
 
@@ -289,7 +289,7 @@ public class QuestionViewController extends AbstractController implements Initia
         returnMainBtn.setDisable(false);
         progressBar.progressProperty().unbind();
         progressBar.setProgress(0.0);
-        attemptLbl.setText("Attempt: " + _attempt);
+        attemptLbl.setText("" +  _attempt);
     }
 
 

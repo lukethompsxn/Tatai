@@ -1,0 +1,15 @@
+StackPane {
+    -fx-background-image:url('CorrectView.png');
+}
+
+Button {
+    -fx-background-color: Transparent;
+    -fx-background-radius: 22;
+    -fx-border-color: Transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 22;
+}
+
+Button:hover {
+    -fx-border-color: #e4e4e4;
+}

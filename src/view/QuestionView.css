@@ -13,3 +13,22 @@ Button {
 Button:hover {
     -fx-border-color: white;
 }
+
+
+.progress-bar, .progress-bar > .bar, .progress-bar .track, .progress-bar > .progress {
+    -fx-background-radius: 15;
+    -fx-background-color: Transparent;
+    -fx-border-radius: 15;
+    -fx-border-width: 0;
+}
+
+.progress-bar > .track {
+    -fx-background-color: black;
+    -fx-border-width: 2;
+    -fx-border-color: Transparent;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #e4e4e4 ;
+}
+
