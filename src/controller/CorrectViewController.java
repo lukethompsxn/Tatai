@@ -25,6 +25,10 @@ public class CorrectViewController extends AbstractController implements Initial
         }
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {

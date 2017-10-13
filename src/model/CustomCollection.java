@@ -35,6 +35,10 @@ public class CustomCollection extends NumberCollection {
         System.out.println("question#: " + questionNumber + " question: " + question + " answer: " + getMaoriName(answer));
     }
 
+    public void importCustomLists() {
+
+    }
+
     public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;
     }

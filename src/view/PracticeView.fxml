@@ -35,6 +35,11 @@
                   <Insets bottom="15.0" left="35.0" />
                </GridPane.margin>
             </Button>
+            <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="81.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="20.0" right="15.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </children>

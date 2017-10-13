@@ -148,19 +148,6 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    //Helper method for changing the scene, takes a string of the scene name as a parameter
-    private void sceneChange(String scene) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource( File.separator + "view" + File.separator + scene + ".fxml"));
-            Main.pushScene(new Scene(root, 1280, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-
     //Records audio on a different thread from a bash process
     public void recordAudio() {
         recordBtn.setDisable(true);
@@ -291,6 +278,11 @@ public class QuestionViewController extends AbstractController implements Initia
         progressBar.setProgress(0.0);
         attemptLbl.setText("" +  _attempt);
     }
+
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
 
 
 

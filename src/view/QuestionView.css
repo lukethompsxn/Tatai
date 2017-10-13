@@ -32,3 +32,8 @@ Button:hover {
     -fx-background-color: #e4e4e4 ;
 }
 
+.root{
+    -fx-font-family: "Marker Felt Wide";
+    -fx-font-color: #e4e4e4;
+}
+

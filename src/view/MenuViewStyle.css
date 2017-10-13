@@ -2,6 +2,7 @@ Pane {
     -fx-background-image:url('FrontGUIScreen.png');
 }
 
+
 Button {
     -fx-background-color: Transparent;
     -fx-background-radius: 22;
@@ -11,5 +12,5 @@ Button {
 }
 
 Button:hover {
-    -fx-border-color: white;
+    -fx-border-color: #e4e4e4;
 }

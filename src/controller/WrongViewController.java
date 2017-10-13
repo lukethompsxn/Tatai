@@ -26,6 +26,10 @@ public class WrongViewController extends AbstractController implements Initializ
         //other logic
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(getSuperAttempts());

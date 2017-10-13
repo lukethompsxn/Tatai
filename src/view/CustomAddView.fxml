@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomAddViewController">
+    <children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="349.0" minHeight="10.0" prefHeight="349.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="11.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="equationLbl" alignment="CENTER" prefHeight="87.0" prefWidth="352.0" />
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                      <Button fx:id="zeroBtn" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#numberSelectAction" text="0" />
+                      <Button fx:id="oneBtn" layoutX="51.0" layoutY="3.0" mnemonicParsing="false" onAction="#numberSelectAction" text="1" />
+                      <Button fx:id="twoBtn" layoutX="84.0" layoutY="11.0" mnemonicParsing="false" onAction="#numberSelectAction" text="2" />
+                      <Button fx:id="threeBtn" layoutX="119.0" layoutY="10.0" mnemonicParsing="false" onAction="#numberSelectAction" text="3" />
+                      <Button fx:id="fourBtn" layoutX="153.0" layoutY="10.0" mnemonicParsing="false" onAction="#numberSelectAction" text="4" />
+                      <Button fx:id="fiveBtn" layoutX="184.0" layoutY="11.0" mnemonicParsing="false" onAction="#numberSelectAction" text="5" />
+                      <Button fx:id="eightBtn" layoutX="24.0" layoutY="52.0" mnemonicParsing="false" onAction="#numberSelectAction" text="8" />
+                      <Button fx:id="sixBtn" layoutX="216.0" layoutY="12.0" mnemonicParsing="false" onAction="#numberSelectAction" text="6" />
+                      <Button fx:id="sevenBtn" layoutX="253.0" layoutY="16.0" mnemonicParsing="false" onAction="#numberSelectAction" text="7" />
+                      <Button fx:id="nineBtn" layoutX="75.0" layoutY="50.0" mnemonicParsing="false" onAction="#numberSelectAction" text="9" />
+                      <Button fx:id="addBtn" layoutX="121.0" layoutY="48.0" mnemonicParsing="false" onAction="#operationAction" text="+" />
+                      <Button fx:id="subBtn" layoutX="155.0" layoutY="49.0" mnemonicParsing="false" onAction="#operationAction" text="-" />
+                      <Button fx:id="multBtn" layoutX="190.0" layoutY="50.0" mnemonicParsing="false" onAction="#operationAction" text="x" />
+                      <Button fx:id="diviBtn" layoutX="222.0" layoutY="56.0" mnemonicParsing="false" onAction="#operationAction" text="/" />
+                  <Button fx:id="addQuestionBtn" layoutX="171.0" layoutY="100.0" mnemonicParsing="false" onAction="#addQuestionBtnAction" text="Add" />
+                  <Button fx:id="finishQuestionsBtn" layoutX="214.0" layoutY="100.0" mnemonicParsing="false" onAction="#finishQuestionsBtnAction" text="Finish" />
+                  <Label fx:id="questionsAddedLbl" alignment="CENTER" layoutX="19.0" layoutY="146.0" prefHeight="78.0" prefWidth="322.0" text="Questions Added: " />
+               </children>
+            </AnchorPane>
+            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            </children>
+        </GridPane>
+    </children>
+</StackPane>

@@ -27,6 +27,11 @@ public class PracticeViewController extends AbstractController implements Initia
         pushChild("QuestionView");
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }

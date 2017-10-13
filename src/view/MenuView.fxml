@@ -33,7 +33,7 @@
                               <Font size="24.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#mathMenu" prefHeight="92.0" prefWidth="295.0" rotate="5.5" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                        <Button fx:id="mathBtn" mnemonicParsing="false" onAction="#mathMenu" prefHeight="92.0" prefWidth="295.0" rotate="5.5" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>

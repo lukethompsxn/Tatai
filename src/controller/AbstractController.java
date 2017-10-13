@@ -2,7 +2,9 @@ package controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import main.Main;
 import model.NumberCollection;
 
 import java.io.File;
@@ -31,6 +33,18 @@ public abstract class AbstractController {
     protected void popChild() {
         _parentStack.pop();
         _mainPane.getChildren().setAll(_parentStack.peek());
+    }
+
+    //Helper method for changing the scene, takes a string of the scene name as a parameter
+    protected void sceneChange(String scene) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource( File.separator + "view" + File.separator + scene + ".fxml"));
+            Main.pushScene(new Scene(root, 1280, 720));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     protected void setSuperAttempts(int num) {

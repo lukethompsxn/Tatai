@@ -42,6 +42,10 @@ public class MathViewController extends AbstractController{
         pushChild("CustomView");
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
 
 
 }
