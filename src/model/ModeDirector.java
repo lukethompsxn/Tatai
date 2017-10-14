@@ -66,25 +66,25 @@ public class ModeDirector {
             if (_totalAddIterations == 0) {
                 return 0;
             }
-            return _totalAddScore/_totalAddIterations;
+            return 100*_totalAddScore/_totalAddIterations;
         }
         else if (mode == Mode.MATH_SUB) {
             if (_totalSubIterations == 0) {
                 return 0;
             }
-            return _totalSubScore/_totalSubIterations;
+            return 100*_totalSubScore/_totalSubIterations;
         }
         else if (mode == Mode.MATH_MULT) {
             if (_totalMultIterations == 0) {
                 return 0;
             }
-            return _totalMultScore/_totalMultIterations;
+            return 100*_totalMultScore/_totalMultIterations;
         }
         else if (mode == Mode.MATH_DIV) {
             if (_totalDivIterations == 0) {
                 return 0;
             }
-            return _totalDivScore/_totalDivIterations;
+            return 100*_totalDivScore/_totalDivIterations;
         }
         return 0;
     }
