@@ -37,12 +37,14 @@ public class WrongViewController extends AbstractController implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(getSuperAttempts());
-        answerLbl.setText(_modeDirector.getCurrentAnswer());
+        answerLbl.setText("You said " + _modeDirector.getCurrentAttempt());
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             btn.setText("Finish");
+            answerLbl.setText("You said " + _modeDirector.getCurrentAttempt() + ", the answer was " + _modeDirector.getCurrentAnswer());
         }
         else if ((getSuperAttempts() > 1)) {
             btn.setText("Next Question");
+            answerLbl.setText("You said " + _modeDirector.getCurrentAttempt() + ", the answer was " + _modeDirector.getCurrentAnswer());
         }
         else {
             btn.setText("Try Again!");

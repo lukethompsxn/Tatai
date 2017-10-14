@@ -15,6 +15,7 @@ public class ModeDirector {
     private int _iteration = 0;
     private int _numQuestions;
     private String _currentAnswer;
+    private String _currentAttempt;
 
     //Singleton Constructor
     public static ModeDirector instance() {
@@ -74,12 +75,17 @@ public class ModeDirector {
         return _score;
     }
 
-    public void setCurrentAnswer(String answer) {
+    public void setCurrentAnswer(String attempt, String answer) {
         _currentAnswer = answer;
+        _currentAttempt = attempt;
     }
 
     public String getCurrentAnswer() {
         return _currentAnswer;
+    }
+
+    public String getCurrentAttempt() {
+        return _currentAttempt;
     }
 }
 

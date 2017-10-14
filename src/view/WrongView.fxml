@@ -37,7 +37,7 @@
                      <Insets bottom="20.0" left="25.0" />
                  </GridPane.margin>
              </Button>
-            <Label fx:id="answerLbl" alignment="CENTER" prefHeight="48.0" prefWidth="199.0" text="You said: " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label fx:id="answerLbl" alignment="CENTER" prefHeight="48.0" prefWidth="803.0" text="You said: " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="50.0" />
                </GridPane.margin>
