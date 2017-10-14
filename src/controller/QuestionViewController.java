@@ -161,15 +161,17 @@ public class QuestionViewController extends AbstractController implements Initia
 
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
-                System.out.println("textresult: " + _textResult);
-                System.out.println("currentanswer: " + _answerMap.get(_iteration));
                 try {
                     readResults();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                System.out.println("textresult: " + _textResult);
+                System.out.println("currentanswer: " + _answerMap.get(_iteration));
+                _modeDirector.setCurrentAnswer(_textResult, _answerMap.get(_iteration));
                 if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
+                    _modeDirector.setScore(_score);
                     pushChild("CorrectView");
                     nextQuestion();
                 }

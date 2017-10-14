@@ -120,7 +120,7 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             });
         }
-        operationBtnsCtrl(false);
+        //operationBtnsCtrl(false);
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
@@ -134,7 +134,7 @@ public class CustomAddViewController extends AbstractController implements Initi
     @FXML
     private void finishQuestionsBtnAction() {
         _modeDirector.setNumQuestions(_questionNumber);
-        operationBtnsCtrl(false);
+        //operationBtnsCtrl(false);
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
@@ -163,35 +163,36 @@ public class CustomAddViewController extends AbstractController implements Initi
         finishQuestionsBtn.setDisable(true);
 
         if (event2.getSource() == oneBtn) {
-            idkmethod(1);
+            formingDigits(1);
         } else if (event2.getSource() == twoBtn) {
-            idkmethod(2);
+            formingDigits(2);
         } else if (event2.getSource() == threeBtn) {
-            idkmethod(3);
+            formingDigits(3);
         } else if (event2.getSource() == fourBtn) {
-            idkmethod(4);
+            formingDigits(4);
         } else if (event2.getSource() == fiveBtn) {
-            idkmethod(5);
+            formingDigits(5);
         } else if (event2.getSource() == sixBtn) {
-            idkmethod(6);
+            formingDigits(6);
         } else if (event2.getSource() == sevenBtn) {
-            idkmethod(7);
+            formingDigits(7);
         } else if (event2.getSource() == eightBtn) {
-            idkmethod(8);
+            formingDigits(8);
         } else if (event2.getSource() == nineBtn) {
-            idkmethod(9);
+            formingDigits(9);
         } else if (event2.getSource() == zeroBtn) {
-            idkmethod(0);
+            formingDigits(0);
         }
 
     }
 
-    private void idkmethod(int num) {
+    private void formingDigits(int num) {
         equationLbl.setText(equationLbl.getText() + num);
         if (!operatorDone) {
             if (digitFirst == 1) {
                 _first += num;
                 digitFirst++;
+                operationBtnsCtrl(false);
             } else {
                 _first = (_first*10) + num;
                 digitFirst--;
@@ -317,6 +318,7 @@ public class CustomAddViewController extends AbstractController implements Initi
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        operationBtnsCtrl(true);
         addQuestionBtn.setDisable(true);
         finishQuestionsBtn.setDisable(true);
     }
