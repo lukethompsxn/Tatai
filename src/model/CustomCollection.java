@@ -41,8 +41,6 @@ public class CustomCollection extends NumberCollection {
 
         _questionsMap.put(questionNumber, question);
         _questionAnswersMap.put(questionNumber, getMaoriName(answer));
-        //_storedQuestions.put(_currentMap, _questionsMap);
-        //_storedAnswers.put(_currentMap, _questionAnswersMap);
         _currentItems.add(question);
         _currentItems.add(Integer.toString(answer));
     }
