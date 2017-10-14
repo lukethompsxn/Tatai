@@ -43,7 +43,6 @@ public class CustomViewController extends AbstractController implements Initiali
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        _customCollection.importCustomLists();
         listView.getItems().addAll(_customCollection.getStoredNames().toArray());
 
         //Adds listener for selection events

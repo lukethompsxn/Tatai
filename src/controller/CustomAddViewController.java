@@ -151,7 +151,7 @@ public class CustomAddViewController extends AbstractController implements Initi
 
         Optional<String> result = enterName.showAndWait();
         if (result.isPresent()) {
-            _customModel.addToStoredMap(result.get());
+            _customModel.configureAdd(result.get());
         }
 
         popChild();

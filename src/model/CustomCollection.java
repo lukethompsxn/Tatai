@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -13,6 +14,7 @@ public class CustomCollection extends NumberCollection {
     private HashMap<Integer, String> _questionsMap;
     private HashMap<Integer, String> _questionAnswersMap;
     private String _currentMap;
+    private ArrayList<String> _currentItems = new ArrayList<>();
     private HashMap<String, HashMap<Integer, String>> _storedQuestions = new HashMap<>();
     private HashMap<String, HashMap<Integer, String>> _storedAnswers = new HashMap<>();
     private static CustomCollection _customCollection;
@@ -39,9 +41,10 @@ public class CustomCollection extends NumberCollection {
 
         _questionsMap.put(questionNumber, question);
         _questionAnswersMap.put(questionNumber, getMaoriName(answer));
-
-        _storedQuestions.put(_currentMap, _questionsMap);
-        _storedAnswers.put(_currentMap, _questionAnswersMap);
+        //_storedQuestions.put(_currentMap, _questionsMap);
+        //_storedAnswers.put(_currentMap, _questionAnswersMap);
+        _currentItems.add(question);
+        _currentItems.add(Integer.toString(answer));
     }
 
     public void importCustomLists() {
@@ -108,12 +111,6 @@ public class CustomCollection extends NumberCollection {
         return _storedAnswers.get(_currentMap);
     }
 
-    public void addToStoredMap(String name) {
-        _storedQuestions.put(name, _questionsMap);
-        _storedAnswers.put(name, _questionAnswersMap);
-        writeToFile("@" + name, -1, true);
-    }
-
     public Set<String> getStoredNames() {
         return _storedQuestions.keySet();
     }
@@ -175,6 +172,17 @@ public class CustomCollection extends NumberCollection {
         _storedQuestions.remove(name);
         _storedAnswers.remove(name);
 
+    }
+
+    public void configureAdd(String name) {
+        _storedQuestions.put(name, _questionsMap);
+        _storedAnswers.put(name, _questionAnswersMap);
+        writeToFile("@" + name, -1, true);
+        for (String s : _currentItems) {
+            System.out.println(s);
+            writeToFile(s, -1, true);
+        }
+        _currentItems = new ArrayList<>();
     }
 
 }
