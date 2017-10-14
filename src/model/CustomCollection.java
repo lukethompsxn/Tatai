@@ -1,10 +1,8 @@
 package model;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javafx.scene.control.Alert;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
