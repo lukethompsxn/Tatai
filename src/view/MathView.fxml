@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@MathViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MathViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@MathViewStyle.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MathViewController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -36,13 +38,18 @@
                <GridPane.margin>
                   <Insets left="45.0" />
                </GridPane.margin></Button>
-            <Button fx:id="randomBtn" mnemonicParsing="false" onAction="#random" prefHeight="145.0" prefWidth="473.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <Button fx:id="randomBtn" mnemonicParsing="false" onAction="#custom" prefHeight="145.0" prefWidth="473.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="15.0" top="25.0" />
                </GridPane.margin></Button>
             <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="75.0" prefWidth="155.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="25.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="randomBtn1" mnemonicParsing="false" onAction="#random" prefHeight="145.0" prefWidth="433.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="30.0" top="20.0" />
                </GridPane.margin>
             </Button>
          </children>

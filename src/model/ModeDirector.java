@@ -5,6 +5,7 @@ public class ModeDirector {
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
+    public enum RandomModes { MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM};
     public enum Type { PRACTICE, MATH };
     private ModeDirector.Mode _currentMode;
     private ModeDirector.Type _currentType;

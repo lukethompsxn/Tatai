@@ -10,36 +10,43 @@ public class MathViewController extends AbstractController{
 
     public void add() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_ADD);
-        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_ADD);
+        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_ADD, false);
         _modeDirector.setNumQuestions(10);
         pushChild("QuestionView");
     }
 
     public void subtract() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_SUB);
-        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_SUB);
+        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_SUB, false);
         _modeDirector.setNumQuestions(10);_modeDirector.setNumQuestions(10);
         pushChild("QuestionView");
     }
 
     public void multiply() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_MULT);
-        _mathModel.arithmetic(10,10,ModeDirector.Mode.MATH_MULT);
+        _mathModel.arithmetic(10,10,ModeDirector.Mode.MATH_MULT, false);
         _modeDirector.setNumQuestions(10);
         pushChild("QuestionView");
     }
 
     public void divide() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_DIV);
-        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_DIV);
+        _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_DIV, false);
         _modeDirector.setNumQuestions(10);
         pushChild("QuestionView");
     }
 
-    public void random() {
-        _modeDirector.setMode(ModeDirector.Mode.MATH_RANDOM);
+    public void custom() {
+        _modeDirector.setMode(ModeDirector.Mode.MATH_CUSTOM);
         _modeDirector.setNumQuestions(10); //WILL NOT BE 10 IT WILL DEPEND ON THE LENGTH OF THE LAST/HASHMAP ETC
         pushChild("CustomView");
+    }
+
+    public void random() {
+        _modeDirector.setMode(ModeDirector.Mode.MATH_RANDOM);
+        _mathModel.randomArithmetic(10);
+        _modeDirector.setNumQuestions(10); //WILL NOT BE 10 IT WILL DEPEND ON THE LENGTH OF THE LAST/HASHMAP ETC
+        pushChild("QuestionView");
     }
 
     public void mainMenu() {
