@@ -28,6 +28,11 @@ public class CustomViewController extends AbstractController implements Initiali
         pushChild("QuestionView");
     }
 
+    public void delete() {
+        _customCollection.deleteCustomList(listView.getSelectionModel().getSelectedItem().toString());
+        listView.getItems().remove(listView.getSelectionModel().getSelectedItem().toString());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _customCollection.importCustomLists();
