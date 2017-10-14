@@ -1,8 +1,10 @@
 package model;
 
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javafx.scene.control.Alert;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -40,7 +42,7 @@ public class CustomCollection extends NumberCollection {
         _questionAnswersMap.put(questionNumber, getMaoriName(answer));
 
         System.out.println(question + " " + answer);
-        writeToFile(question, answer);
+        writeToFile(question, answer, true);
     }
 
     public void importCustomLists() {
@@ -51,9 +53,9 @@ public class CustomCollection extends NumberCollection {
         int questionNum = 0;
         int answerNum = 0;
         String temp;
-        String name;
+        String name = "";
 
-        File file = new File("data" + File.separator + ".CustomQuestions.txt");
+        File file = new File("data" + File.separator + "CustomQuestions.txt");
         Scanner scanner = null;
         try {
             scanner = new Scanner(file);
@@ -67,8 +69,7 @@ public class CustomCollection extends NumberCollection {
 
             }
             else if (temp.startsWith("@")) {
-                _storedQuestions.put(temp.replaceFirst("@", ""), _questionsMap);
-                _storedAnswers.put(temp.replaceFirst("@", ""), _questionAnswersMap);
+                name = temp.replaceFirst("@", "");
                 _questionsMap = new HashMap<>();
                 _questionAnswersMap = new HashMap<>();
                 questionNum = 0;
@@ -81,6 +82,7 @@ public class CustomCollection extends NumberCollection {
             }
             else {
                 try {
+                    temp = temp.replaceAll("\\s+","");
                     _questionAnswersMap.put(answerNum, getMaoriName(Integer.parseInt(temp)));
                 }
                 catch (Exception e) {
@@ -93,7 +95,10 @@ public class CustomCollection extends NumberCollection {
                 answerNum++;
                 toggle = !toggle;
             }
-
+            if (!temp.isEmpty()) {
+                _storedQuestions.put(name, _questionsMap);
+                _storedAnswers.put(name, _questionAnswersMap);
+            }
         }
 
     }
@@ -109,7 +114,7 @@ public class CustomCollection extends NumberCollection {
     public void addToStoredMap(String name) {
         _storedQuestions.put(name, _questionsMap);
         _storedAnswers.put(name, _questionAnswersMap);
-        writeToFile("@" + name, -1);
+        writeToFile("@" + name, -1, true);
     }
 
     public Set<String> getStoredNames() {
@@ -120,9 +125,9 @@ public class CustomCollection extends NumberCollection {
         _currentMap = name;
     }
 
-    private void writeToFile(String f1, int f2) {
+    private void writeToFile(String f1, int f2, boolean append) {
         try {
-            FileWriter fileWriter = new FileWriter("data" + File.separator + ".CustomQuestions.txt", true);
+            FileWriter fileWriter = new FileWriter("data" + File.separator + "CustomQuestions.txt", append);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             PrintWriter toFile = new PrintWriter(bufferedWriter);
             toFile.println(f1);
@@ -138,23 +143,41 @@ public class CustomCollection extends NumberCollection {
     }
 
     public void deleteCustomList(String name) {
-        _storedQuestions.remove(name);
-        _storedAnswers.remove(name);
+        String temp = "";
 
-        for (String key : _storedQuestions.keySet() ) {
-            for (int i = 0; i < _storedQuestions.get(key).size(); i++) {
-                try {
-                    FileWriter fileWriter = new FileWriter("data" + File.separator + ".CustomQuestions.txt", false);
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    PrintWriter toFile = new PrintWriter(bufferedWriter);
-                    toFile.println(_storedQuestions.get(key).get(i));
-                    toFile.println(_storedAnswers.get(key).get(i));
-                    toFile.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        try {
+            Files.copy(new File("data" + File.separator + "CustomQuestions.txt").toPath(), new File("data" + File.separator + ".CustomQuestions.txt").toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File old = new File("data" + File.separator + "CustomQuestions.txt");
+        old.delete();
+
+        File file = new File("data" + File.separator + ".CustomQuestions.txt");
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        while(scanner.hasNextLine()) {
+            temp = scanner.nextLine();
+            if (!temp.equals("@" + name)) {
+                System.out.println(temp);
+                writeToFile(temp, -1, true);
+            }
+            else {
+                System.out.println(2 * (_storedQuestions.get(name).size()));
+                for (int i = 0; i < 2 * (_storedQuestions.get(name).size()); i++) {
+                    temp = scanner.nextLine();
                 }
             }
         }
+        file.delete();
+        _storedQuestions.remove(name);
+        _storedAnswers.remove(name);
+
     }
 
 }
