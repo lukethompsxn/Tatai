@@ -59,7 +59,7 @@ public class QuestionViewController extends AbstractController implements Initia
         _numQuestions = _modeDirector.getNumQuestions() - 2;
 
         if (_modeDirector.getType() == ModeDirector.Type.MATH) {
-            if (_modeDirector.getMode() == ModeDirector.Mode.MATH_RANDOM) {
+            if (_modeDirector.getMode() == ModeDirector.Mode.MATH_CUSTOM) {
                 _questionMap = _customModel.getCurrentQuestionMap();
                 _answerMap = _customModel.getCurrentAnswerMap();
             } else {
