@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import main.Main;
 import model.*;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -72,6 +74,8 @@ public class QuestionViewController extends AbstractController implements Initia
             _answerMap = _pracModel.getCurrentAnswerMap();
         }
         numberLbl.setText(_questionMap.get(_iteration));
+
+        setFonts(numberLbl, 76, scoreLbl, 34, attemptLbl, 34, new Label(), 1, 3);
     }
 
     // Returns to main menu when button is pressed.

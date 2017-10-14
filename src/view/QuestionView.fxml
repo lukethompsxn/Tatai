@@ -38,7 +38,7 @@
                   <Insets bottom="45.0" />
                </padding>
             </ProgressBar>
-            <Label fx:id="numberLbl" text="5" textFill="#dddddd" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="numberLbl" text="5" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="Marker Felt Wide" size="76.0" />
                </font>

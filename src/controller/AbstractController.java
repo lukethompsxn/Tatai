@@ -3,11 +3,15 @@ package controller;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import main.Main;
 import model.NumberCollection;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Stack;
 
@@ -45,6 +49,44 @@ public abstract class AbstractController {
             e.printStackTrace();
         }
 
+    }
+
+    protected void setFonts(Label l1, int s1, Label l2, int s2, Label l3, int s3, Label l4, int s4, int num) {
+        try {
+            if (num == 1) {
+                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s1);
+                l1.setFont(f1);
+            }
+            else if (num == 2) {
+                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s1);
+                l1.setFont(f1);
+                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s2);
+                l2.setFont(f2);
+            }
+            else if (num == 3) {
+                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s1);
+                l1.setFont(f1);
+                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s2);
+                l2.setFont(f2);
+                final Font f3 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s3);
+                l3.setFont(f3);
+            }
+            else {
+                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s1);
+                l1.setFont(f1);
+                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s2);
+                l2.setFont(f2);
+                final Font f3 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s3);
+                l3.setFont(f3);
+                final Font f4 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), s4);
+                l4.setFont(f4);
+            }
+
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void setSuperAttempts(int num) {
