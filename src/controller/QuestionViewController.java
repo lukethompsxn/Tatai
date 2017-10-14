@@ -170,6 +170,7 @@ public class QuestionViewController extends AbstractController implements Initia
                 }
                 if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
+                    _modeDirector.setScore(_score);
                     pushChild("CorrectView");
                     nextQuestion();
                 }
@@ -224,6 +225,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
         // Removes any text that is not needed
         _textResult = _textResult.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
+        _modeDirector.setCurrentAnswer(_textResult);
     }
 
     // Extends Task to perform work on a worker thread to carry out voice recognition

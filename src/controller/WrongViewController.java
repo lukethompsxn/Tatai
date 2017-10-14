@@ -3,14 +3,18 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import model.ModeDirector;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WrongViewController extends AbstractController implements Initializable {
+
     @FXML
-    Button btn;
+    private Button btn;
+    @FXML
+    private Label answerLbl;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
@@ -33,6 +37,7 @@ public class WrongViewController extends AbstractController implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println(getSuperAttempts());
+        answerLbl.setText(_modeDirector.getCurrentAnswer());
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             btn.setText("Finish");
         }

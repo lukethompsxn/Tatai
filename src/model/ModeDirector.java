@@ -5,14 +5,16 @@ public class ModeDirector {
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
-    public enum RandomModes { MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM};
+    public enum RandomModes { MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV };
     public enum Type { PRACTICE, MATH };
     private ModeDirector.Mode _currentMode;
     private ModeDirector.Type _currentType;
     private int _totalScore;
+    private int _score = 0;
     private int _totalIterations;
     private int _iteration = 0;
     private int _numQuestions;
+    private String _currentAnswer;
 
     //Singleton Constructor
     public static ModeDirector instance() {
@@ -64,6 +66,20 @@ public class ModeDirector {
         return _iteration;
     }
 
+    public void setScore(int score) {
+        _score = score;
+    }
 
+    public int getScore() {
+        return _score;
+    }
+
+    public void setCurrentAnswer(String answer) {
+        _currentAnswer = answer;
+    }
+
+    public String getCurrentAnswer() {
+        return _currentAnswer;
+    }
 }
 
