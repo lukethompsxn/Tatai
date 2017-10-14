@@ -51,6 +51,8 @@ public class CustomCollection extends NumberCollection {
         int questionNum = 0;
         int answerNum = 0;
         String temp;
+        String name;
+
         File file = new File("data" + File.separator + ".CustomQuestions.txt");
         Scanner scanner = null;
         try {
@@ -132,6 +134,26 @@ public class CustomCollection extends NumberCollection {
             toFile.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void deleteCustomList(String name) {
+        _storedQuestions.remove(name);
+        _storedAnswers.remove(name);
+
+        for (String key : _storedQuestions.keySet() ) {
+            for (int i = 0; i < _storedQuestions.get(key).size(); i++) {
+                try {
+                    FileWriter fileWriter = new FileWriter("data" + File.separator + ".CustomQuestions.txt", false);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    PrintWriter toFile = new PrintWriter(bufferedWriter);
+                    toFile.println(_storedQuestions.get(key).get(i));
+                    toFile.println(_storedAnswers.get(key).get(i));
+                    toFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
