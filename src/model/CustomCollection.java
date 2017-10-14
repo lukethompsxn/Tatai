@@ -56,47 +56,45 @@ public class CustomCollection extends NumberCollection {
 
         File file = new File("data" + File.separator + "CustomQuestions.txt");
         Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while(scanner.hasNextLine()){
-            temp = scanner.nextLine();
+        if (file.exists()) {
+            try {
+                scanner = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            while (scanner.hasNextLine()) {
+                temp = scanner.nextLine();
 
-            if (temp.isEmpty()) {
+                if (temp.isEmpty()) {
 
-            }
-            else if (temp.startsWith("@")) {
-                name = temp.replaceFirst("@", "");
-                _questionsMap = new HashMap<>();
-                _questionAnswersMap = new HashMap<>();
-                questionNum = 0;
-                answerNum = 0;
-            }
-            else if (toggle) {
-                _questionsMap.put(questionNum, temp);
-                questionNum++;
-                toggle = !toggle;
-            }
-            else {
-                try {
-                    temp = temp.replaceAll("\\s+","");
-                    _questionAnswersMap.put(answerNum, getMaoriName(Integer.parseInt(temp)));
+                } else if (temp.startsWith("@")) {
+                    name = temp.replaceFirst("@", "");
+                    _questionsMap = new HashMap<>();
+                    _questionAnswersMap = new HashMap<>();
+                    questionNum = 0;
+                    answerNum = 0;
+                } else if (toggle) {
+                    _questionsMap.put(questionNum, temp);
+                    questionNum++;
+                    toggle = !toggle;
+                } else {
+                    try {
+                        temp = temp.replaceAll("\\s+", "");
+                        _questionAnswersMap.put(answerNum, getMaoriName(Integer.parseInt(temp)));
+                    } catch (Exception e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setContentText("Please fix the Custom Question File");
+                        alert.showAndWait();
+                    }
+
+                    answerNum++;
+                    toggle = !toggle;
                 }
-                catch (Exception e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setContentText("Please fix the Custom Question File");
-                    alert.showAndWait();
+                if (!temp.isEmpty()) {
+                    _storedQuestions.put(name, _questionsMap);
+                    _storedAnswers.put(name, _questionAnswersMap);
                 }
-
-                answerNum++;
-                toggle = !toggle;
-            }
-            if (!temp.isEmpty()) {
-                _storedQuestions.put(name, _questionsMap);
-                _storedAnswers.put(name, _questionAnswersMap);
             }
         }
 
