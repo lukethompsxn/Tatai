@@ -53,6 +53,10 @@ public class MathViewController extends AbstractController{
         sceneChange("MenuView");
     }
 
+    public void stats() {
+        pushChild("StatsView");
+    }
+
 
 
 }
