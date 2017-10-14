@@ -2,6 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import model.CustomCollection;
 import model.ModeDirector;
@@ -15,11 +16,18 @@ public class CustomViewController extends AbstractController implements Initiali
 
     @FXML
     ListView listView;
+    @FXML
+    Button playBtn;
+    @FXML
+    Button deleteBtn;
 
     public void addQuestions() {
         pushChild("CustomAddView");
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
 
     public void play() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_CUSTOM);
@@ -37,5 +45,19 @@ public class CustomViewController extends AbstractController implements Initiali
     public void initialize(URL location, ResourceBundle resources) {
         _customCollection.importCustomLists();
         listView.getItems().addAll(_customCollection.getStoredNames().toArray());
+
+        //Adds listener for selection events
+        listView.getSelectionModel().selectedItemProperty().addListener((obj, before, now) -> {
+            if (now != null) {
+                playBtn.setDisable(false);
+                deleteBtn.setDisable(false);
+            } else {
+                playBtn.setDisable(true);
+                deleteBtn.setDisable(true);
+            }
+        });
+
+        playBtn.setDisable(true);
+        deleteBtn.setDisable(true);
     }
 }

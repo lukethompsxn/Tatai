@@ -1,6 +1,5 @@
 package model;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javafx.scene.control.Alert;
 
 import java.io.*;
@@ -41,8 +40,8 @@ public class CustomCollection extends NumberCollection {
         _questionsMap.put(questionNumber, question);
         _questionAnswersMap.put(questionNumber, getMaoriName(answer));
 
-        System.out.println(question + " " + answer);
-        writeToFile(question, answer, true);
+        _storedQuestions.put(_currentMap, _questionsMap);
+        _storedAnswers.put(_currentMap, _questionAnswersMap);
     }
 
     public void importCustomLists() {
