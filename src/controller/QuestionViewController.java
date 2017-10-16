@@ -237,7 +237,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
         @Override
         protected Integer call() throws Exception {
-            String docDirectory ="~" + File.separator + "Documents" + File.separator + "HTK" + File.separator + "MaoriNumbers" + File.separator;
+            String docDirectory = "models" + File.separator + "HTK" + File.separator + "MaoriNumbers" + File.separator;
             String cmd = "HVite -H " + docDirectory + "HMMs" + File.separator + "hmm15" +  File.separator + "macros -H " + docDirectory + "HMMs" +  File.separator +
                     "hmm15" +  File.separator + "hmmdefs -C " + docDirectory + "user" +  File.separator + "configLR  -w " + docDirectory + "user" +  File.separator
                     + "wordNetworkNum -o SWT -l '*' -i " + "data" + File.separator + "recout.mlf -p 0.0 -s 5.0  " + docDirectory + "user" +  File.separator +
