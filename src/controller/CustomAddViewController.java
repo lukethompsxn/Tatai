@@ -152,10 +152,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         Optional<String> result = enterName.showAndWait();
         if (result.isPresent()) {
             _customModel.configureAdd(result.get());
+            popChild();
+            pushChild("CustomView");
         }
 
-        popChild();
-        pushChild("CustomView");
+
     }
 
     @FXML
