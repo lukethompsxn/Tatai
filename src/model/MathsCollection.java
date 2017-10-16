@@ -29,8 +29,7 @@ public class MathsCollection extends NumberCollection {
             _questionsMap = new HashMap<>();
             _questionAnswersMap = new HashMap<>();
         }
-        //_questionsMap = new HashMap<>();
-        //_questionAnswersMap = new HashMap<>();
+
         ArrayList<Integer> answers = new ArrayList<>();
         List<Integer> divisors;
 
@@ -48,12 +47,12 @@ public class MathsCollection extends NumberCollection {
                 intY = randomGenerator.nextInt(intZ) + 1;
                 intX = intZ - intY;
 
-                while (answers.contains(intZ)) {
+                while ((answers.contains(intZ)) && (intZ == intY)) {
                     intZ = randomGenerator.nextInt(level) + 1;
                     intY = randomGenerator.nextInt(intZ) + 1;
                     intX = intZ - intY;
                 }
-                //_questionsMap.put(i, intX + " + " + intY);
+
                 if (random) {
                     _questionsMap.put(_randomQuestionCount, intX + " + " + intY);
                 } else {
@@ -69,7 +68,7 @@ public class MathsCollection extends NumberCollection {
                 }
 
                 intZ = intX - intY;
-                //_questionsMap.put(i, intX + " - " + intY);
+
                 if (random) {
                     _questionsMap.put(_randomQuestionCount, intX + " - " + intY);
                 } else {
@@ -85,7 +84,7 @@ public class MathsCollection extends NumberCollection {
                 }
 
                 intZ = intX * intY;
-                //_questionsMap.put(i, intX + " x " + intY);
+
                 if (random) {
                     _questionsMap.put(_randomQuestionCount, intX + " x " + intY);
                 } else {
@@ -98,7 +97,9 @@ public class MathsCollection extends NumberCollection {
 
                 for (int j = 1; j <= limit; j++) {
                     if (intZ % j == 0) {
-                        divisors.add(j);
+                        if (j < 11) {
+                            divisors.add(j);
+                        }
                     }
                 }
 
@@ -111,23 +112,18 @@ public class MathsCollection extends NumberCollection {
                     divisors = new ArrayList<>();
                     for (int j = 1; j <= limit; j++) {
                         if (intZ % j == 0) {
-                            divisors.add(j);
+                            if (j < 11) {
+                                divisors.add(j);
+                            }
                         }
                     }
                     intX = intZ;
                 }
 
                 divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
+
                 intY = divisors.get(randomElement.nextInt(divisors.size()));
-                //if (divisors.size() == 2) {
-                //    divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
-                //    intY = divisors.get(randomElement.nextInt(divisors.size()));
-                //} //else {
-                //    divisors.remove(new Integer(intX)); divisors.remove(new Integer(1));
-                //    intY = divisors.get(randomElement.nextInt(divisors.size()));
-                //}
                 intZ = intX / intY;
-                //_questionsMap.put(i, intX + " / " + intY);
                 if (random) {
                     _questionsMap.put(_randomQuestionCount, intX + " / " + intY);
                 } else {
@@ -146,7 +142,6 @@ public class MathsCollection extends NumberCollection {
                 _questionAnswersMap.put(i, maoriName);
                 System.out.println(_questionsMap.get(i) + " " + maoriName);
             }
-            //_questionAnswersMap.put(i, maoriName);
         }
     }
 
