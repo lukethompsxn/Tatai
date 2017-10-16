@@ -170,8 +170,6 @@ public class QuestionViewController extends AbstractController implements Initia
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                System.out.println("textresult: " + _textResult);
-                System.out.println("currentanswer: " + _answerMap.get(_iteration));
                 _modeDirector.setCurrentAnswer(_textResult, _answerMap.get(_iteration));
                 if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;

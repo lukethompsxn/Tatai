@@ -137,10 +137,8 @@ public class MathsCollection extends NumberCollection {
 
             if (random) {
                 _questionAnswersMap.put(_randomQuestionCount, maoriName);
-                System.out.println(_questionsMap.get(_randomQuestionCount) + " " + maoriName);
             } else {
                 _questionAnswersMap.put(i, maoriName);
-                System.out.println(_questionsMap.get(i) + " " + maoriName);
             }
         }
     }

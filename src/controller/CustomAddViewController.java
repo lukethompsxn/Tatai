@@ -226,7 +226,6 @@ public class CustomAddViewController extends AbstractController implements Initi
 
     private void possibleNumberDisable() {
         if (needDisbale(0)) {
-            System.out.println("zero");
             zeroBtn.setDisable(true);
         }
         if (needDisbale(1)) {
@@ -270,7 +269,6 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             } else if (_operator.equals(" x ")) {
                 if (((_first * ((_second*10) + btnNumber)) <= 0) || ((_first * ((_second*10) + btnNumber)) > 99)) {
-                    System.out.println((_first * ((_second*10) + btnNumber)));
                     return true;
                 }
             } else  {

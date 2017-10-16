@@ -156,11 +156,9 @@ public class CustomCollection extends NumberCollection {
         while(scanner.hasNextLine()) {
             temp = scanner.nextLine();
             if (!temp.equals("@" + name)) {
-                System.out.println(temp);
                 writeToFile(temp, -1, true);
             }
             else {
-                System.out.println(2 * (_storedQuestions.get(name).size()));
                 for (int i = 0; i < 2 * (_storedQuestions.get(name).size()); i++) {
                     temp = scanner.nextLine();
                 }
@@ -177,7 +175,6 @@ public class CustomCollection extends NumberCollection {
         _storedAnswers.put(name, _questionAnswersMap);
         writeToFile("@" + name, -1, true);
         for (String s : _currentItems) {
-            System.out.println(s);
             writeToFile(s, -1, true);
         }
         _currentItems = new ArrayList<>();
