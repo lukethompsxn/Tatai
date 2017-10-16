@@ -193,10 +193,18 @@ public class CustomAddViewController extends AbstractController implements Initi
                 _first += num;
                 digitFirst++;
                 operationBtnsCtrl(false);
+                if (num == 0) {
+                    diviBtn.setDisable(true);
+                    multBtn.setDisable(true);
+                    subBtn.setDisable(true);
+                }
             } else {
                 _first = (_first*10) + num;
                 digitFirst--;
                 numberBtnCtrl(true);
+                diviBtn.setDisable(false);
+                multBtn.setDisable(false);
+                subBtn.setDisable(false);
             }
         } else {
             if (digitSecond == 1) {
