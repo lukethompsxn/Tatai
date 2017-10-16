@@ -43,7 +43,6 @@
                   <Font name="Marker Felt Wide" size="76.0" />
                </font>
             </Label>
-            <Button fx:id="returnMainBtn" mnemonicParsing="false" onAction="#returnToMain" prefHeight="27.0" prefWidth="108.0" text="Menu" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
             <Button fx:id="skipQuestionBtn" mnemonicParsing="false" onAction="#skipQuestion" prefHeight="53.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
             <Label fx:id="scoreLbl" text="7/9" textFill="#dddddd" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
