@@ -45,8 +45,6 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     private Button recordBtn;
     @FXML
-    Button returnMainBtn;
-    @FXML
     Button skipQuestionBtn;
     @FXML
     Label scoreLbl;
@@ -155,7 +153,6 @@ public class QuestionViewController extends AbstractController implements Initia
     //Records audio on a different thread from a bash process
     public void recordAudio() {
         recordBtn.setDisable(true);
-        returnMainBtn.setDisable(true);
         skipQuestionBtn.setDisable(true);
 
         AudioInBackground record = new AudioInBackground();
@@ -277,7 +274,6 @@ public class QuestionViewController extends AbstractController implements Initia
         }
         skipQuestionBtn.setDisable(false);
         recordBtn.setDisable(false);
-        returnMainBtn.setDisable(false);
         progressBar.progressProperty().unbind();
         progressBar.setProgress(0.0);
         attemptLbl.setText("" +  _attempt);
