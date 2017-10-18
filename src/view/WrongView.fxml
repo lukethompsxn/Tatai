@@ -47,7 +47,7 @@
                   <Insets bottom="60.0" />
                </GridPane.margin>
                <font>
-                  <Font name="Marker Felt Wide" size="20.0" />
+                  <Font name="Marker Felt Wide" size="30.0" />
                </font>
             </Label>
             <Label fx:id="lbl" prefHeight="115.0" prefWidth="281.0" text="Try again!" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
