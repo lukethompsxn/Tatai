@@ -41,5 +41,6 @@ public class CorrectViewController extends AbstractController implements Initial
         }
 
         setFonts(lbl, 82, null, -1, null, -1, null, -1, 1);
+
     }
 }
