@@ -56,6 +56,40 @@ public class CustomAddViewController extends AbstractController implements Initi
     private Label questionsAddedLbl;
     @FXML
     private ListView listView;
+    @FXML
+    private Label zero;
+    @FXML
+    private Label one;
+    @FXML
+    private Label two;
+    @FXML
+    private Label three;
+    @FXML
+    private Label four;
+    @FXML
+    private Label five;
+    @FXML
+    private Label six;
+    @FXML
+    private Label seven;
+    @FXML
+    private Label eight;
+    @FXML
+    private Label nine;
+    @FXML
+    private Label plus;
+    @FXML
+    private Label minus;
+    @FXML
+    private Label multiply;
+    @FXML
+    private Label divide;
+    @FXML
+    private Label add;
+    @FXML
+    private Label finish;
+
+
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static CustomCollection _customModel = CustomCollection.instance();
@@ -327,6 +361,10 @@ public class CustomAddViewController extends AbstractController implements Initi
         diviBtn.setDisable(option);
     }
 
+    public void mainMenu() {
+        sceneChange("MenuView");
+    }
+
     private void numberBtnCtrl(boolean option) {
         oneBtn.setDisable(option);
         twoBtn.setDisable(option);
@@ -345,5 +383,30 @@ public class CustomAddViewController extends AbstractController implements Initi
         operationBtnsCtrl(true);
         addQuestionBtn.setDisable(true);
         finishQuestionsBtn.setDisable(true);
+        customizeListView(listView);
+
+        zero.visibleProperty().bind(zeroBtn.disabledProperty().not());
+        one.visibleProperty().bind(oneBtn.disabledProperty().not());
+        two.visibleProperty().bind(twoBtn.disabledProperty().not());
+        three.visibleProperty().bind(threeBtn.disabledProperty().not());
+        four.visibleProperty().bind(fourBtn.disabledProperty().not());
+        five.visibleProperty().bind(fiveBtn.disabledProperty().not());
+        six.visibleProperty().bind(sixBtn.disabledProperty().not());
+        seven.visibleProperty().bind(sevenBtn.disabledProperty().not());
+        eight.visibleProperty().bind(eightBtn.disabledProperty().not());
+        nine.visibleProperty().bind(nineBtn.disabledProperty().not());
+        plus.visibleProperty().bind(addBtn.disabledProperty().not());
+        minus.visibleProperty().bind(subBtn.disabledProperty().not());
+        multiply.visibleProperty().bind(multBtn.disabledProperty().not());
+        divide.visibleProperty().bind(diviBtn.disabledProperty().not());
+        add.visibleProperty().bind(addQuestionBtn.disabledProperty().not());
+        finish.visibleProperty().bind(finishQuestionsBtn.disabledProperty().not());
+
+        setFonts(zero, 85, one, 85, two, 85, three, 85, 4);
+        setFonts(four, 85, five, 85, six, 85, seven, 85, 4);
+        setFonts(eight, 85, nine, 85, add, 81, finish, 81, 4);
+        setFonts(plus, 85, minus, 85, multiply, 85, divide, 85, 4);
+        setFonts(questionsAddedLbl, 23, equationLbl,36, null, -1, null, -1, 2);
+
     }
 }
