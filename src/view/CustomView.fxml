@@ -14,28 +14,37 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@CustomViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomViewController">
    <children>
       <GridPane>
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0934143066406" minWidth="10.0" prefWidth="220.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="873.1593017578125" minWidth="10.0" prefWidth="838.42724609375" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.960205078125" minWidth="10.0" prefWidth="220.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0934143066406" minWidth="10.0" prefWidth="374.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="873.1593017578125" minWidth="10.0" prefWidth="563.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="10.0" prefWidth="343.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="97.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="463.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="353.0" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="241.0" minHeight="0.0" prefHeight="241.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="463.0" minHeight="10.0" prefHeight="191.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="353.0" minHeight="10.0" prefHeight="243.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" onAction="#addQuestions" text="Add Questions" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="playBtn" mnemonicParsing="false" onAction="#play" text="Play" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#delete" text="Delete" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#mainMenu" text="Main Menu" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <ListView fx:id="listView" prefHeight="196.0" prefWidth="528.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#addQuestions" prefHeight="68.0" prefWidth="165.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets left="50.0" />
+                  <Insets left="10.0" top="39.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="playBtn" mnemonicParsing="false" onAction="#play" prefHeight="67.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="208.0" top="38.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#delete" prefHeight="69.0" prefWidth="161.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="38.0" />
+               </GridPane.margin></Button>
+            <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="83.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="20.0" right="18.0" />
                </GridPane.margin>
             </Button>
          </children>

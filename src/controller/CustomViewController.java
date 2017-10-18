@@ -1,12 +1,19 @@
 package controller;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Cell;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.text.Font;
 import model.CustomCollection;
 import model.ModeDirector;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -58,5 +65,24 @@ public class CustomViewController extends AbstractController implements Initiali
 
         playBtn.setDisable(true);
         deleteBtn.setDisable(true);
+
+        listView.setCellFactory((Object cell) -> {
+            return new ListCell<String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item != null) {
+                        setText(item);
+                        Font f1 = null;
+                        try {
+                            f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), 20);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        setFont(f1);
+                    }
+                }
+            };
+        });
     }
 }
