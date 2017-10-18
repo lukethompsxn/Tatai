@@ -66,6 +66,10 @@ public abstract class AbstractController {
             scalePopup.play();
             fadePopup.play();
         }
+        else {
+            _overlay.setOpacity(0.6);
+            _popupPaneContainer.setOpacity(1);
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + name + ".fxml"));
             Parent root = loader.load();
@@ -77,7 +81,7 @@ public abstract class AbstractController {
 
     protected void closePopup() {
         _popupPaneContainer.setVisible(false);
-        FadeTransition fadeOverlay = new FadeTransition(Duration.millis(150), _overlay);
+        FadeTransition fadeOverlay = new FadeTransition(Duration.millis(100), _overlay);
         fadeOverlay.setFromValue(0.6);
         fadeOverlay.setToValue(0.0);
 

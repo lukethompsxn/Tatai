@@ -1,12 +1,12 @@
 AnchorPane {
-    -fx-background-image:url('SettingsPopup.png');
+    -fx-background-image:url('ParentsHelpPopup.png');
 }
 
 
 Button {
     -fx-background-color: Transparent;
-    -fx-background-radius: 22;
+    -fx-background-radius: 5;
     -fx-border-color: Transparent;
     -fx-border-width: 2;
-    -fx-border-radius: 22;
+    -fx-border-radius: 5;
 }

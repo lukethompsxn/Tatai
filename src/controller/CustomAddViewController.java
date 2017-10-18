@@ -181,18 +181,7 @@ public class CustomAddViewController extends AbstractController implements Initi
         _first = 0;
         _second = 0;
 
-        TextInputDialog enterName = new TextInputDialog();
-        enterName.setTitle("Please enter a name");
-        enterName.setContentText("Choose a name for you custom list");
-
-        Optional<String> result = enterName.showAndWait();
-        if (result.isPresent()) {
-            _customModel.configureAdd(result.get());
-            popChild();
-            pushChild("CustomView");
-        }
-
-
+        pushPopup("EnterNamePopup", true);
     }
 
     @FXML
@@ -408,6 +397,8 @@ public class CustomAddViewController extends AbstractController implements Initi
         setFonts(eight, 85, nine, 85, add, 81, finish, 81, 4);
         setFonts(plus, 85, minus, 85, multiply, 85, divide, 85, 4);
         setFonts(questionsAddedLbl, 23, equationLbl,36, null, -1, null, -1, 2);
+
+        pushPopup("ParentsHelpPopup", false);
 
     }
 }
