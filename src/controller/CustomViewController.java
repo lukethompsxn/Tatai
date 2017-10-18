@@ -46,6 +46,7 @@ public class CustomViewController extends AbstractController implements Initiali
     public void delete() {
         _customCollection.deleteCustomList(listView.getSelectionModel().getSelectedItem().toString());
         listView.getItems().remove(listView.getSelectionModel().getSelectedItem().toString());
+        listView.getItems().sorted();
     }
 
     @Override
@@ -80,6 +81,9 @@ public class CustomViewController extends AbstractController implements Initiali
                             e.printStackTrace();
                         }
                         setFont(f1);
+                    }
+                    else {
+                        setText("");
                     }
                 }
             };
