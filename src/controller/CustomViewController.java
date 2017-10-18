@@ -67,26 +67,6 @@ public class CustomViewController extends AbstractController implements Initiali
         playBtn.setDisable(true);
         deleteBtn.setDisable(true);
 
-        listView.setCellFactory((Object cell) -> {
-            return new ListCell<String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item != null) {
-                        setText(item);
-                        Font f1 = null;
-                        try {
-                            f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), 20);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        setFont(f1);
-                    }
-                    else {
-                        setText("");
-                    }
-                }
-            };
-        });
+        customizeListView(listView);
     }
 }

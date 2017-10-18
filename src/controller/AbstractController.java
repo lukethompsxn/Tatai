@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import main.Main;
@@ -87,6 +89,30 @@ public abstract class AbstractController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void customizeListView(ListView listView) {
+        listView.setCellFactory((Object cell) -> {
+            return new ListCell<String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item != null) {
+                        setText(item);
+                        Font f1 = null;
+                        try {
+                            f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), 20);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        setFont(f1);
+                    }
+                    else {
+                        setText("");
+                    }
+                }
+            };
+        });
     }
 
     protected void setSuperAttempts(int num) {
