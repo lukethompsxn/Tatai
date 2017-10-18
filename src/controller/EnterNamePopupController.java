@@ -41,6 +41,7 @@ public class EnterNamePopupController extends AbstractController implements Init
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        textField.requestFocus();
 
     }
 }

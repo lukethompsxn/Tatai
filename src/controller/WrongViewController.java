@@ -15,6 +15,8 @@ public class WrongViewController extends AbstractController implements Initializ
     private Button btn;
     @FXML
     private Label answerLbl;
+    @FXML
+    private Label lbl;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
@@ -51,15 +53,17 @@ public class WrongViewController extends AbstractController implements Initializ
 
         answerLbl.setText("You said " + attempt);
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
-            btn.setText("Finish");
+            lbl.setText("Finish");
             answerLbl.setText("You said " + attempt + ", the answer was " + answer);
         }
         else if ((getSuperAttempts() > 1)) {
-            btn.setText("Next Question");
+            lbl.setText("Next Question");
             answerLbl.setText("You said " + attempt + ", the answer was " + answer);
         }
         else {
-            btn.setText("Try Again!");
+            lbl.setText("Try Again!");
         }
+
+        setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);
     }
 }

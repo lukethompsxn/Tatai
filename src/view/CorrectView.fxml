@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@CorrectViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CorrectViewController">
    <children>
       <GridPane>
@@ -42,6 +43,19 @@
                   <Insets bottom="20.0" left="25.0" />
                </GridPane.margin>
             </Button>
+            <Label fx:id="lbl" alignment="CENTER" prefHeight="119.0" prefWidth="208.0" text="Finish" textAlignment="CENTER" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Marker Felt Wide" size="82.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="250.0" top="5.0" />
+               </GridPane.margin>
+            </Label>
+             <MaterialDesignIconView glyphName="SKIP-NEXT" glyphSize="48">
+                 <GridPane.margin>
+                     <Insets right="350.0" top="5.0" />
+                 </GridPane.margin>
+             </MaterialDesignIconView>
          </children>
       </GridPane>
    </children>

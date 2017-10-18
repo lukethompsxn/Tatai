@@ -10,3 +10,7 @@ Button {
     -fx-border-width: 2;
     -fx-border-radius: 22;
 }
+
+Button:hover {
+    -fx-border-color: #e4e4e4;
+}

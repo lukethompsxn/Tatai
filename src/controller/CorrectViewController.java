@@ -3,6 +3,7 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import model.ModeDirector;
 
 import java.net.URL;
@@ -12,6 +13,8 @@ public class CorrectViewController extends AbstractController implements Initial
 
     @FXML
     private Button nextBtn;
+    @FXML
+    Label lbl;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
@@ -32,9 +35,9 @@ public class CorrectViewController extends AbstractController implements Initial
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
-            nextBtn.setText("Finish");
+            lbl.setText("Finish");
         } else {
-            nextBtn.setText("Next Question");
+            lbl.setText("Next");
         }
     }
 }
