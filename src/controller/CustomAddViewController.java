@@ -3,12 +3,16 @@ package controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import model.CustomCollection;
 import model.ModeDirector;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -181,7 +185,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         _first = 0;
         _second = 0;
 
-        pushPopup("EnterNamePopup", true);
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "EnterNamePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -398,7 +406,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         setFonts(plus, 85, minus, 85, multiply, 85, divide, 85, 4);
         setFonts(questionsAddedLbl, 23, equationLbl,36, null, -1, null, -1, 2);
 
-        pushPopup("ParentsHelpPopup", false);
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

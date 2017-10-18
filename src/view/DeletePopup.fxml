@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="360.0" prefWidth="640.0" stylesheets="@DeletePopupStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Button layoutX="509.0" layoutY="291.0" mnemonicParsing="false" onAction="#delete" prefHeight="54.0" prefWidth="107.0" />
+      <Button layoutX="376.0" layoutY="292.0" mnemonicParsing="false" onAction="#cancel" prefHeight="54.0" prefWidth="107.0" />
+   </children>
+</AnchorPane>

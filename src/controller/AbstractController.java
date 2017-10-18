@@ -3,6 +3,7 @@ package controller;
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,7 +43,7 @@ public abstract class AbstractController {
         }
     }
 
-    protected void pushPopup(String name, boolean transitions) {
+    protected void pushPopup(Scene scene, boolean transitions) {
         _popupPaneContainer.setVisible(true);
         _overlay.setVisible(true);
 
@@ -70,13 +71,8 @@ public abstract class AbstractController {
             _overlay.setOpacity(0.6);
             _popupPaneContainer.setOpacity(1);
         }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + name + ".fxml"));
-            Parent root = loader.load();
-            _popupPane.getChildren().setAll(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        _popupPane.getChildren().setAll(scene.getRoot());
+
     }
 
     protected void closePopup() {

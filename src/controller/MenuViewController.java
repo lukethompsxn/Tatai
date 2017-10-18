@@ -43,7 +43,11 @@ public class MenuViewController extends AbstractController implements Initializa
     }
 
     public void settings() {
-        pushPopup("SettingsPopup", true);
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "SettingsPopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

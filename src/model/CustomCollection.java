@@ -11,13 +11,15 @@ import java.util.Set;
 
 public class CustomCollection extends NumberCollection {
 
+    private static CustomCollection _customCollection;
     private HashMap<Integer, String> _questionsMap;
     private HashMap<Integer, String> _questionAnswersMap;
     private String _currentMap;
     private ArrayList<String> _currentItems = new ArrayList<>();
     private HashMap<String, HashMap<Integer, String>> _storedQuestions = new HashMap<>();
     private HashMap<String, HashMap<Integer, String>> _storedAnswers = new HashMap<>();
-    private static CustomCollection _customCollection;
+    private boolean delete;
+
 
     //Singleton Constructor
     public static CustomCollection instance() {
@@ -178,6 +180,14 @@ public class CustomCollection extends NumberCollection {
             writeToFile(s, -1, true);
         }
         _currentItems = new ArrayList<>();
+    }
+
+    public void setDelete(boolean bool) {
+        delete = bool;
+    }
+
+    public boolean getDelete() {
+        return delete;
     }
 
 }

@@ -26,6 +26,7 @@ public class EnterNamePopupController extends AbstractController implements Init
             _customModel.configureAdd(textField.getText());
             closePopup();
             popChild();
+            pushChild("CustomView");
         }
         error.setVisible(true);
     }
