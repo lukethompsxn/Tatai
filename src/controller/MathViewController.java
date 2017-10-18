@@ -50,7 +50,7 @@ public class MathViewController extends AbstractController{
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
     public void stats() {

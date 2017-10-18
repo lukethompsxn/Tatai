@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Region;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import main.Main;
 import model.*;
@@ -28,6 +30,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _score = 0;
     private int _attempt = 1;
     private int _numQuestions;
+    private MediaPlayer mediaPlayer;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static NumberCollection _pracModel = PracticeCollection.instance();
@@ -158,7 +161,7 @@ public class QuestionViewController extends AbstractController implements Initia
         AudioInBackground record = new AudioInBackground();
 
         record.setOnSucceeded((WorkerStateEvent event) -> {
-            //playbackAudio();
+            playbackAudio();
 
             VoiceRecognitionInBackground recognition = new VoiceRecognitionInBackground();
             recognition.setOnSucceeded((WorkerStateEvent revent) -> {
@@ -280,23 +283,20 @@ public class QuestionViewController extends AbstractController implements Initia
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
 
-
-
-    /*
     //Helper method to playback audio once they have finished recording
     private void playbackAudio() {
-        if (model.getPlaybackEnabled()) {
-            File file = new File(System.getProperty("user.dir") + fileSeperator + "data" + fileSeperator + "audio.wav");
+        if (_modeDirector.getPlaybackEnabled()) {
+            File file = new File(System.getProperty("user.dir") + File.separator + "data" + File.separator + "audio.wav");
             Media media = new Media(file.toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setAutoPlay(true);
         }
     }
-    */
+
 
 
 

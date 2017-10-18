@@ -1,13 +1,18 @@
 package controller;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 import main.Main;
 import model.NumberCollection;
 
@@ -19,6 +24,9 @@ import java.util.Stack;
 
 public abstract class AbstractController {
     protected static Pane _mainPane;
+    protected static Pane _popupPaneContainer;
+    protected static AnchorPane _popupPane;
+    protected static Pane _overlay;
     protected static Stack<Parent> _parentStack = new Stack<>();
     protected static int _attempts;
 
@@ -29,10 +37,56 @@ public abstract class AbstractController {
             Parent root = loader.load();
             _parentStack.add(root);
             _mainPane.getChildren().setAll(_parentStack.peek());
-            //_mainPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected void pushPopup(String name, boolean transitions) {
+        _popupPaneContainer.setVisible(true);
+        _overlay.setVisible(true);
+
+        if(transitions) {
+            FadeTransition fadeOverlay = new FadeTransition(Duration.millis(150), _overlay);
+            fadeOverlay.setFromValue(0.0);
+            fadeOverlay.setToValue(0.6);
+
+            FadeTransition fadePopup = new FadeTransition(Duration.millis(150), _popupPaneContainer);
+            fadePopup.setFromValue(0.0);
+            fadePopup.setToValue(1);
+
+            ScaleTransition scalePopup = new ScaleTransition(Duration.millis(150), _popupPaneContainer);
+            scalePopup.setFromX(0);
+            scalePopup.setFromY(0);
+            scalePopup.setToX(1);
+            scalePopup.setToY(1);
+
+
+            fadeOverlay.play();
+            scalePopup.play();
+            fadePopup.play();
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + name + ".fxml"));
+            Parent root = loader.load();
+            _popupPane.getChildren().setAll(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void closePopup() {
+        _popupPaneContainer.setVisible(false);
+        FadeTransition fadeOverlay = new FadeTransition(Duration.millis(150), _overlay);
+        fadeOverlay.setFromValue(0.6);
+        fadeOverlay.setToValue(0.0);
+
+        FadeTransition fadePopup = new FadeTransition(Duration.millis(150), _popupPaneContainer);
+        fadePopup.setFromValue(1);
+        fadePopup.setToValue(0);
+
+        fadeOverlay.play();
+        fadePopup.play();
     }
 
     //Called from subclasses to return to the previous scene inside the container

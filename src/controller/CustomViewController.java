@@ -33,7 +33,7 @@ public class CustomViewController extends AbstractController implements Initiali
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
     public void play() {

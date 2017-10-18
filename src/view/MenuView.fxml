@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720" minWidth="1280" prefHeight="400.0" prefWidth="600.0" stylesheets="@/view/MenuViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720" minWidth="1280" prefHeight="400.0" prefWidth="600.0" stylesheets="@MenuViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuViewController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -40,6 +40,11 @@
                            <font>
                               <Font size="24.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#settings" prefHeight="74.0" prefWidth="145.0" rotate="8.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets right="28.0" top="70.0" />
+                           </GridPane.margin>
                         </Button>
                      </children>
                   </GridPane>

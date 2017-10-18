@@ -31,7 +31,7 @@ public class WrongViewController extends AbstractController implements Initializ
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
     @Override

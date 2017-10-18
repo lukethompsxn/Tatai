@@ -26,7 +26,7 @@ public class CorrectViewController extends AbstractController implements Initial
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
     @Override

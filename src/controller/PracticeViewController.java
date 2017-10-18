@@ -28,7 +28,7 @@ public class PracticeViewController extends AbstractController implements Initia
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
 

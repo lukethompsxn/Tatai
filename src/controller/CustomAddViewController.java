@@ -362,7 +362,7 @@ public class CustomAddViewController extends AbstractController implements Initi
     }
 
     public void mainMenu() {
-        sceneChange("MenuView");
+        pushChild("MenuView");
     }
 
     private void numberBtnCtrl(boolean option) {

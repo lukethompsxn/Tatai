@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="360.0" prefWidth="640.0" stylesheets="@SettingsPopupStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SettingsPopupController">
+   <children>
+      <Button layoutX="509.0" layoutY="291.0" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="107.0" />
+      <CheckBox fx:id="playback" layoutX="398.0" layoutY="191.0" mnemonicParsing="false" selected="true">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>

@@ -27,6 +27,8 @@ public class ModeDirector {
     private int _totalScore = 0;
     private int _totalIterations = 0;
 
+    private boolean _playbackEnabled = true;
+
     //Singleton Constructor
     public static ModeDirector instance() {
         if (_modeDirector == null) {
@@ -141,5 +143,14 @@ public class ModeDirector {
     public String getCurrentAttempt() {
         return _currentAttempt;
     }
+
+    public void setPlaybackEnabled(Boolean bool) {
+        _playbackEnabled = bool;
+    }
+
+    public boolean getPlaybackEnabled() {
+        return _playbackEnabled;
+    }
 }
+
 
