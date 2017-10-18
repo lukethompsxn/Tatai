@@ -201,6 +201,7 @@ public class CustomAddViewController extends AbstractController implements Initi
             finishQuestionsBtn.setDisable(false);
         }
         numberBtnCtrl(false);
+        operationBtnsCtrl(true);
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
         operatorDone = false;
