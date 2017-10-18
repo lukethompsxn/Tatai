@@ -49,6 +49,8 @@ public class CustomAddViewController extends AbstractController implements Initi
     @FXML
     private Button finishQuestionsBtn;
     @FXML
+    private Button clearBtn;
+    @FXML
     private Label equationLbl;
     @FXML
     private Label questionsAddedLbl;
@@ -157,6 +159,21 @@ public class CustomAddViewController extends AbstractController implements Initi
         }
 
 
+    }
+
+    @FXML
+    private void clearBtnAction() {
+        if (_questionNumber > 0) {
+            finishQuestionsBtn.setDisable(false);
+        }
+        numberBtnCtrl(false);
+        addQuestionBtn.setDisable(true);
+        equationLbl.setText("");
+        operatorDone = false;
+        digitFirst = 1;
+        digitSecond = 1;
+        _first = 0;
+        _second = 0;
     }
 
     @FXML
