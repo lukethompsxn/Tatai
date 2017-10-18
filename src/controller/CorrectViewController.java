@@ -1,5 +1,7 @@
 package controller;
 
+
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +17,10 @@ public class CorrectViewController extends AbstractController implements Initial
     private Button nextBtn;
     @FXML
     Label lbl;
+    @FXML
+    private MaterialDesignIconView nextIcon;
+    @FXML
+    private MaterialDesignIconView finishIcon;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
@@ -34,10 +40,15 @@ public class CorrectViewController extends AbstractController implements Initial
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nextIcon.setVisible(false);
+        finishIcon.setVisible(false);
+
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             lbl.setText("Finish");
+            finishIcon.setVisible(true);
         } else {
             lbl.setText("Next");
+            nextIcon.setVisible(true);
         }
     }
 }
