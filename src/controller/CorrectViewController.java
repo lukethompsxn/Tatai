@@ -39,5 +39,7 @@ public class CorrectViewController extends AbstractController implements Initial
         } else {
             lbl.setText("Next");
         }
+
+        setFonts(lbl, 82, null, -1, null, -1, null, -1, 1);
     }
 }
