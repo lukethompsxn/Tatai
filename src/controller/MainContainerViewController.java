@@ -1,13 +1,17 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import model.ModeDirector;
 import model.NumberCollection;
 import model.PracticeCollection;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +24,8 @@ public class MainContainerViewController extends AbstractController implements I
     AnchorPane popupPane;
     @FXML
     Pane overlay;
+    @FXML
+    Pane frontPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -27,8 +33,15 @@ public class MainContainerViewController extends AbstractController implements I
         _popupPaneContainer = popupPaneContainer;
         _popupPane = popupPane;
         _overlay = overlay;
+        _frontPane = frontPane;
 
-        pushChild("MenuView");
+        try {
+            FXMLLoader loader = FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "MenuView.fxml"));
+            frontPane.getChildren().setAll(new Scene(loader.load()).getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
