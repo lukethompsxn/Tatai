@@ -2,8 +2,6 @@ package controller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import main.Main;
-import model.NumberCollection;
 
 import java.io.File;
 import java.io.FileInputStream;

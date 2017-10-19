@@ -123,18 +123,18 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
-                   <Label fx:id="add" layoutX="135.0" layoutY="28.0" prefHeight="114.0" prefWidth="148.0" rotate="-2.5" text="Add" textFill="#e4e4e4">
+                   <Label fx:id="add" layoutX="134.0" layoutY="25.0" prefHeight="114.0" prefWidth="148.0" rotate="-1.5" text="Add" textFill="#e4e4e4">
                        <font>
-                           <Font name="Marker Felt Wide" size="81.0" />
+                           <Font name="Marker Felt Wide" size="80.0" />
                        </font>
                    </Label>
-                   <Label fx:id="finish" layoutX="478.0" layoutY="24.0" prefHeight="114.0" prefWidth="233.0" text="Finish" textFill="#e4e4e4">
+                   <Label fx:id="finish" layoutX="480.0" layoutY="24.0" prefHeight="114.0" prefWidth="233.0" text="Finish" textFill="#e4e4e4">
                        <font>
                            <Font name="Marker Felt Wide" size="81.0" />
                        </font>
                    </Label>
                   <Button fx:id="finishQuestionsBtn" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" onAction="#finishQuestionsBtnAction" prefHeight="99.0" prefWidth="243.0" />
-                  <Button fx:id="addQuestionBtn" layoutX="88.0" layoutY="37.0" mnemonicParsing="false" onAction="#addQuestionBtnAction" prefHeight="99.0" prefWidth="243.0" />
+                  <Button fx:id="addQuestionBtn" layoutX="86.0" layoutY="37.0" mnemonicParsing="false" onAction="#addQuestionBtnAction" prefHeight="99.0" prefWidth="243.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
