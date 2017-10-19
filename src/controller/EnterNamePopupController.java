@@ -22,11 +22,14 @@ public class EnterNamePopupController extends AbstractController implements Init
     Label error;
 
     public void close() {
-        if (!textField.getText().isEmpty()) {
+        if (!textField.getText().trim().isEmpty() ) {
             _customModel.configureAdd(textField.getText());
             closePopup();
             popChild();
             pushChild("CustomView");
+        }
+        else {
+            textField.clear();
         }
         error.setVisible(true);
     }
