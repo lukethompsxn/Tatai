@@ -1,5 +1,7 @@
 package controller;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +19,12 @@ public class WrongViewController extends AbstractController implements Initializ
     private Label answerLbl;
     @FXML
     private Label lbl;
+    @FXML
+    private MaterialDesignIconView nextIcon;
+    @FXML
+    private MaterialDesignIconView redoIcon;
+    @FXML
+    private MaterialDesignIconView finishIcon;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
@@ -38,6 +46,9 @@ public class WrongViewController extends AbstractController implements Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        finishIcon.setVisible(false);
+        redoIcon.setVisible(false);
+        nextIcon.setVisible(false);
         String attempt = _modeDirector.getCurrentAttempt();
         String answer = _modeDirector.getCurrentAnswer();
 
@@ -55,13 +66,16 @@ public class WrongViewController extends AbstractController implements Initializ
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             lbl.setText("Finish");
             answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            finishIcon.setVisible(true);
         }
         else if ((getSuperAttempts() > 1)) {
-            lbl.setText("Next Question");
+            lbl.setText("Next");
             answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            nextIcon.setVisible(true);
         }
         else {
             lbl.setText("Try Again!");
+            redoIcon.setVisible(true);
         }
 
         setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);

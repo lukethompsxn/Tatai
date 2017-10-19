@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@WrongViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WrongViewController">
    <children>
       <GridPane>
@@ -29,14 +30,6 @@
             <RowConstraints maxHeight="470.0" minHeight="10.0" prefHeight="212.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btn" mnemonicParsing="false" onAction="#btnAction" prefHeight="110.0" prefWidth="387.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="10.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
              <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="81.0" prefWidth="158.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                  <GridPane.margin>
                      <Insets bottom="20.0" left="25.0" />
@@ -50,7 +43,7 @@
                   <Font name="Marker Felt Wide" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="lbl" prefHeight="115.0" prefWidth="281.0" text="Try again!" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+            <Label fx:id="lbl" prefHeight="115.0" prefWidth="300.0" text="Try again!" alignment="CENTER" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets right="230.0" top="5.0" />
                </GridPane.margin>
@@ -58,6 +51,29 @@
                   <Font name="Marker Felt Wide" size="65.0" />
                </font>
             </Label>
+             <MaterialDesignIconView fx:id="nextIcon" visible="false" glyphName="SKIP_NEXT" glyphSize="100" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" rotate="-2" style="-fx-fill: #e4e4e4">
+                 <GridPane.margin>
+                     <Insets right="450.0" top="18.0" />
+                 </GridPane.margin>
+             </MaterialDesignIconView>
+             <MaterialDesignIconView fx:id="redoIcon" visible="false" glyphName="REPLAY" glyphSize="80" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" rotate="-2" style="-fx-fill: #e4e4e4">
+                 <GridPane.margin>
+                     <Insets right="525.0" top="30.0" />
+                 </GridPane.margin>
+             </MaterialDesignIconView>
+             <MaterialDesignIconView fx:id="finishIcon" visible="false" glyphName="FORWARD" glyphSize="100" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" rotate="-2" style="-fx-fill: #e4e4e4">
+                 <GridPane.margin>
+                     <Insets right="450.0" top="18.0" />
+                 </GridPane.margin>
+             </MaterialDesignIconView>
+             <Button fx:id="btn" mnemonicParsing="false" onAction="#btnAction" prefHeight="110.0" prefWidth="387.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                 <GridPane.margin>
+                     <Insets top="10.0" />
+                 </GridPane.margin>
+                 <font>
+                     <Font size="17.0" />
+                 </font>
+             </Button>
          </children>
       </GridPane>
    </children>
