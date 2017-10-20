@@ -15,7 +15,7 @@
     -fx-font-family: 'Marker Felt Wide';
     -fx-background-image: none;
     -fx-background-color: transparent;
-    -fx-font-size: 20;
+    -fx-font-size: 25;
 }
 
 .list-cell {
@@ -40,5 +40,5 @@
 
 .text-field {
     -fx-font-family:'Marker Felt Wide';
-    -fx-font-size: 20;
+    -fx-font-size: 25;
 }
