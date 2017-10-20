@@ -1,5 +1,5 @@
 StackPane {
-    -fx-background-image:url('CustomView.png');
+    -fx-background-image:url('../images/CustomView.png');
 }
 
 Button {

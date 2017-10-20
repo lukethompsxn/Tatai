@@ -1,5 +1,5 @@
 StackPane {
-    -fx-background-image:url('QuestionView.png');
+    -fx-background-image:url('../images/QuestionView.png');
 }
 
 Button {
@@ -8,6 +8,7 @@ Button {
     -fx-border-color: Transparent;
     -fx-border-width: 2;
     -fx-border-radius: 22;
+    -fx-font-family: MarkerFelt;
 }
 
 Button:hover {

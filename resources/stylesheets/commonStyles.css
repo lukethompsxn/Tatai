@@ -1,0 +1,12 @@
+@font-face {
+    font-family: Marker Felt Wide;
+    src: url('../fonts/MarkerFeltWide.ttf');
+}
+
+.button {
+    -fx-font-family: 'Marker Felt Wide';
+}
+
+.label {
+    -fx-font-family: 'Marker Felt Wide';
+}

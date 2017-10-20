@@ -51,7 +51,7 @@ public class CorrectViewController extends AbstractController implements Initial
             nextIcon.setVisible(true);
         }
 
-        setFonts(lbl, 82, null, -1, null, -1, null, -1, 1);
+        //setFonts(lbl, 82, null, -1, null, -1, null, -1, 1);
 
     }
 }

@@ -38,7 +38,7 @@ public class EnterNamePopupController extends AbstractController implements Init
     public void initialize(URL location, ResourceBundle resources) {
         error.setVisible(false);
         try {
-            final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), 20);
+            final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), 20);
             textField.setFont(f1);
             error.setFont(f1);
         } catch (FileNotFoundException e) {

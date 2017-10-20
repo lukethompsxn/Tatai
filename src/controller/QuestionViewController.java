@@ -76,7 +76,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
         numberLbl.setText(_questionMap.get(_iteration));
 
-        setFonts(numberLbl, 76, scoreLbl, 34, attemptLbl, 34, new Label(), 1, 3);
+        //setFonts(numberLbl, 76, scoreLbl, 34, attemptLbl, 34, new Label(), 1, 3);
     }
 
     // Returns to main menu when button is pressed.
