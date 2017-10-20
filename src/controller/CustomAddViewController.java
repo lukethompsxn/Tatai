@@ -404,11 +404,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         add.visibleProperty().bind(addQuestionBtn.disabledProperty().not());
         finish.visibleProperty().bind(finishQuestionsBtn.disabledProperty().not());
 
-        //setFonts(zero, 85, one, 85, two, 85, three, 85, 4);
-        //setFonts(four, 85, five, 85, six, 85, seven, 85, 4);
-        //setFonts(eight, 85, nine, 85, add, 81, finish, 81, 4);
-        //setFonts(plus, 85, minus, 85, multiply, 85, divide, 85, 4);
-        //setFonts(questionsAddedLbl, 23, equationLbl,36, null, -1, null, -1, 2);
+        setFonts(zero, 85, one, 85, two, 85, three, 85, 4);
+        setFonts(four, 85, five, 85, six, 85, seven, 85, 4);
+        setFonts(eight, 85, nine, 85, add, 81, finish, 81, 4);
+        setFonts(plus, 85, minus, 85, multiply, 85, divide, 85, 4);
+        setFonts(questionsAddedLbl, 23, equationLbl,36, null, -1, null, -1, 2);
 
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))), false);

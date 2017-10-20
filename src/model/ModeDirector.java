@@ -1,5 +1,7 @@
 package model;
 
+import java.util.LinkedList;
+
 public class ModeDirector {
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
@@ -150,6 +152,64 @@ public class ModeDirector {
 
     public boolean getPlaybackEnabled() {
         return _playbackEnabled;
+    }
+
+    public void setTotalAddScore(int score) {
+        _totalAddScore = score;
+    }
+    public void setTotalSubScore(int score) {
+        _totalSubScore = score;
+    }
+    public void setTotalMultScore(int score) {
+        _totalMultScore = score;
+    }
+    public void setTotalDivScore(int score) {
+        _totalDivScore = score;
+    }
+
+    public int getTotalScores(ModeDirector.Mode mode) {
+        if (mode == Mode.MATH_ADD) {
+            return _totalAddScore;
+        }
+        else if (mode == Mode.MATH_SUB) {
+            return _totalSubScore;
+        }
+        else if (mode == Mode.MATH_MULT) {
+            return _totalMultScore;
+        }
+        else if (mode == Mode.MATH_DIV) {
+            return _totalDivScore;
+        }
+        return 0;
+    }
+
+    public void setTotalAddIterations(int iterations) {
+        _totalAddIterations = iterations;
+    }
+    public void setTotalSubIterations(int iterations) {
+        _totalSubIterations = iterations;
+    }
+    public void setTotalMultIterations(int iterations) {
+        _totalMultIterations = iterations;
+    }
+    public void setTotalDivIterations(int iterations) {
+        _totalDivIterations = iterations;
+    }
+
+    public int getTotalIterations(ModeDirector.Mode mode) {
+        if (mode == Mode.MATH_ADD) {
+            return _totalAddIterations;
+        }
+        else if (mode == Mode.MATH_SUB) {
+            return _totalSubIterations;
+        }
+        else if (mode == Mode.MATH_MULT) {
+            return _totalMultIterations;
+        }
+        else if (mode == Mode.MATH_DIV) {
+            return _totalDivIterations;
+        }
+        return 0;
     }
 }
 

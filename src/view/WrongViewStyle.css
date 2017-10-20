@@ -1,7 +1,6 @@
-Pane {
-    -fx-background-image:url('../images/FrontGUIScreen.png');
+StackPane {
+    -fx-background-image:url('WrongView.png');
 }
-
 
 Button {
     -fx-background-color: Transparent;

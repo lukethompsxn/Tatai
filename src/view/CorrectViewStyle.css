@@ -1,7 +1,6 @@
-AnchorPane {
-    -fx-background-image:url('../images/DeletePopup.png');
+StackPane {
+    -fx-background-image:url('CorrectView.png');
 }
-
 
 Button {
     -fx-background-color: Transparent;

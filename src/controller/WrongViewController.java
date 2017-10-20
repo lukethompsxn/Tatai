@@ -86,6 +86,6 @@ public class WrongViewController extends AbstractController implements Initializ
             redoIcon.setVisible(true);
         }
 
-        //setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);
+        setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);
     }
 }

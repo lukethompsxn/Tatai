@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="360.0" prefWidth="640.0" stylesheets="/stylesheets/commonStyles.css, /stylesheets/EnterNamePopupStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnterNamePopupController">
+<AnchorPane prefHeight="360.0" prefWidth="640.0" stylesheets="@EnterNamePopupStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnterNamePopupController">
    <children>
       <Button layoutX="509.0" layoutY="291.0" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="107.0" />
       <TextField fx:id="textField" layoutX="110.0" layoutY="199.0" prefHeight="36.0" prefWidth="424.0" promptText="List Name">

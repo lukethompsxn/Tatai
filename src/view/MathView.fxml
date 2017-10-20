@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/commonStyles.css, /stylesheets/MathViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MathViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@MathViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MathViewController">
    <children>
-      <GridPane stylesheets="/stylesheets/MathViewStyle.css">
+      <GridPane stylesheets="@MathViewStyle.css">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="0.0" prefWidth="179.03993225097656" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="614.0" minWidth="10.0" prefWidth="475.96006774902344" />

@@ -1,6 +1,7 @@
-StackPane {
-    -fx-background-image:url('../images/MathView.png');
+Pane {
+    -fx-background-image:url('FrontGUIScreen.png');
 }
+
 
 Button {
     -fx-background-color: Transparent;
@@ -11,5 +12,5 @@ Button {
 }
 
 Button:hover {
-    -fx-border-color: white;
+    -fx-border-color: #e4e4e4;
 }
