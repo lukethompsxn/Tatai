@@ -326,4 +326,97 @@ public class Statistics {
             e.printStackTrace();
         }
     }
+
+    public void createFiles() {
+        try {
+            File file1 = new File("data" + File.separator + "RecentScores.txt");
+            File file2 = new File("data" + File.separator + "HighScores.txt");
+
+            if (!file1.exists()) {
+                file1.createNewFile();
+                formatNewRecentFile();
+            } else {
+                System.out.println("exists");
+            }
+            if (!file2.exists()) {
+                file2.createNewFile();
+                formatNewHighFile();
+            } else {
+                System.out.println("exists");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void formatNewRecentFile() {
+        try {
+
+            File file = new File("data" + File.separator + "RecentScores.txt");
+            File tempFile = new File("data" + File.separator + "tempFile.txt");
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+
+            writer.write("@add" + System.getProperty("line.separator"));
+            for (int i = 0; i < 10; i++) {
+                writer.write(0 + System.getProperty("line.separator"));
+            }
+            writer.write("@sub" + System.getProperty("line.separator"));
+            for (int i = 0; i < 10; i++) {
+                writer.write(0 + System.getProperty("line.separator"));
+            }
+            writer.write("@mult" + System.getProperty("line.separator"));
+            for (int i = 0; i < 10; i++) {
+                writer.write(0 + System.getProperty("line.separator"));
+            }
+            writer.write("@div" + System.getProperty("line.separator"));
+            for (int i = 0; i < 10; i++) {
+                writer.write(0 + System.getProperty("line.separator"));
+            }
+
+            bufferedReader.close();
+            writer.close();
+            tempFile.renameTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void formatNewHighFile() {
+        try {
+
+            File file = new File("data" + File.separator + "HighScores.txt");
+            File tempFile = new File("data" + File.separator + "tempFile.txt");
+
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            writer.write("@highscores" + System.getProperty("line.separator"));
+            writer.write("addhigh0" + System.getProperty("line.separator"));
+            writer.write("subhigh0" + System.getProperty("line.separator"));
+            writer.write("multhigh0" + System.getProperty("line.separator"));
+            writer.write("divhigh0" + System.getProperty("line.separator"));
+            writer.write("@averages" + System.getProperty("line.separator"));
+            writer.write("addtotsccore0" + System.getProperty("line.separator"));
+            writer.write("addtotitt0" + System.getProperty("line.separator"));
+            writer.write("subtotsccore0" + System.getProperty("line.separator"));
+            writer.write("subtotitt0" + System.getProperty("line.separator"));
+            writer.write("multtotsccore0" + System.getProperty("line.separator"));
+            writer.write("multtotitt0" + System.getProperty("line.separator"));
+            writer.write("divtotsccore0" + System.getProperty("line.separator"));
+            writer.write("divtotitt0" + System.getProperty("line.separator"));
+            writer.write("@rand" + System.getProperty("line.separator"));
+            writer.write("questans0" + System.getProperty("line.separator"));
+            writer.write("quizdone0" + System.getProperty("line.separator"));
+
+            bufferedReader.close();
+            writer.close();
+            tempFile.renameTo(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

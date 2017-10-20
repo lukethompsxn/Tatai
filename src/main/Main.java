@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.CustomCollection;
+import model.Statistics;
 
 import java.io.File;
 import java.util.Stack;
@@ -14,6 +15,7 @@ public class Main extends Application {
     private static Stage _primaryStage;
     private static Stack<Scene> _sceneStack = new Stack<>();
     private static CustomCollection _customCollection = CustomCollection.instance();
+    private static Statistics _statistics = Statistics.instance();
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -29,6 +31,7 @@ public class Main extends Application {
             File dir = new File(System.getProperty("user.dir") + File.separator + "data");
             dir.mkdir();
         }
+        _statistics.createFiles();
         _customCollection.importCustomLists();
         launch(args);
     }
