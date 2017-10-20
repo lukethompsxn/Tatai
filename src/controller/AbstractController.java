@@ -2,8 +2,6 @@ package controller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import main.Main;
-import model.NumberCollection;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,6 +23,7 @@ import java.util.Stack;
 public abstract class AbstractController {
     protected static Pane _mainPane;
     protected static Pane _popupPaneContainer;
+    protected static Pane _frontPane;
     protected static AnchorPane _popupPane;
     protected static Pane _overlay;
     protected static Stack<Parent> _parentStack = new Stack<>();
@@ -33,6 +31,7 @@ public abstract class AbstractController {
 
     //Called from subclasses to set a new scene inside the container
     protected void pushChild(String name) {
+        _mainPane.setVisible(true);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + name + ".fxml"));
             Parent root = loader.load();
