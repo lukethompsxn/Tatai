@@ -6,7 +6,6 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" stylesheets="/stylesheets/StatsViewStyle.css, /stylesheets/commonStyles.css" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/StatsViewStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StatsViewController">
    <children>
       <GridPane visible="false">
         <columnConstraints>
@@ -67,7 +66,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <BarChart fx:id="barChart" horizontalGridLinesVisible="false" layoutX="86.0" prefHeight="368.0" prefWidth="878.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <BarChart fx:id="barChart" animated="false" horizontalGridLinesVisible="false" layoutX="86.0" legendVisible="false" prefHeight="368.0" prefWidth="878.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <xAxis>
                       <CategoryAxis fx:id="xAxis" />
                     </xAxis>
@@ -79,10 +78,10 @@
             </AnchorPane>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <ToggleButton fx:id="addStatsBtn" mnemonicParsing="false" onAction="#addStatsBtnAction" text="Addition" />
-                  <ToggleButton fx:id="subStatsBtn" mnemonicParsing="false" onAction="#subStatsBtnAction" text="Subtraction" />
-                  <ToggleButton fx:id="multStatsBtn" mnemonicParsing="false" onAction="#multStatsBtnAction" text="Multiplication" />
-                  <ToggleButton fx:id="divStatsBtn" mnemonicParsing="false" onAction="#divStatsBtnAction" text="Division" />
+                  <Button fx:id="addStatsBtn" mnemonicParsing="false" onAction="#addStatsBtnAction" text="Addition" />
+                  <Button fx:id="subStatsBtn" mnemonicParsing="false" onAction="#subStatsBtnAction" text="Subtraction" />
+                  <Button fx:id="multStatsBtn" mnemonicParsing="false" onAction="#multStatsBtnAction" text="Multiplication" />
+                  <Button fx:id="divStatsBtn" mnemonicParsing="false" onAction="#divStatsBtnAction" text="Division" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="100.0" right="20.0" top="20.0" />
@@ -91,16 +90,10 @@
             <Button mnemonicParsing="false" onAction="#returnToMathView" text="Back" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <AnchorPane prefHeight="74.0" prefWidth="877.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="addHighScoreLbl" layoutX="243.0" layoutY="22.0" text="High Score:" />
-                  <Label fx:id="multAverageLbl" layoutX="5.0" layoutY="63.0" prefHeight="16.0" prefWidth="168.0" text="Average:" />
+                  <Label fx:id="highScoreLbl" layoutX="243.0" layoutY="46.0" text="High Score:" />
                   <Label fx:id="questionsAnsweredLbl" layoutX="420.0" layoutY="46.0" text="Quesitons Answered:" />
                   <Label fx:id="quizzesCompletedLbl" layoutX="667.0" layoutY="46.0" text="Quizzes Completed:" />
-                  <Label fx:id="divAverageLbl" layoutX="5.0" layoutY="84.0" prefHeight="16.0" prefWidth="175.0" text="Average:" />
-                  <Label fx:id="subAverageLbl" layoutX="4.0" layoutY="41.0" prefHeight="16.0" prefWidth="168.0" text="Average:" />
-                  <Label fx:id="addAverageLbl" layoutX="4.0" layoutY="21.0" prefHeight="16.0" prefWidth="168.0" text="Average:" />
-                  <Label fx:id="subHighScoreLbl" layoutX="243.0" layoutY="41.0" text="High Score:" />
-                  <Label fx:id="divHighScoreLbl" layoutX="243.0" layoutY="84.0" text="High Score:" />
-                  <Label fx:id="multHighScoreLbl" layoutX="243.0" layoutY="61.0" text="High Score:" />
+                  <Label fx:id="averageLbl" layoutY="46.0" prefHeight="16.0" prefWidth="168.0" text="Average:" />
                </children>
             </AnchorPane>
          </children>
