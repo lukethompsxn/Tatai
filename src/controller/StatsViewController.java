@@ -89,6 +89,7 @@ public class StatsViewController extends AbstractController implements Initializ
 
         //barChart.getData().add(series);
 
+        barChart.getData().clear();
         if (!addPressed) {
             barChart.getData().add(series);
             addPressed = true;
@@ -118,11 +119,12 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
+        barChart.getData().clear();
         if (!subPressed) {
             barChart.getData().add(series);
             subPressed = true;
         } else {
-            barChart.getData().removeAll(series);
+            barChart.getData().clear();
             subPressed = false;
         }
 
@@ -147,11 +149,12 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
+        barChart.getData().clear();
         if (!multPressed) {
             barChart.getData().add(series);
             multPressed = true;
         } else {
-            barChart.getData().removeAll(series);
+            barChart.getData().clear();
             multPressed = false;
         }
 
@@ -175,11 +178,12 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
+        barChart.getData().clear();
         if (!divPressed) {
             barChart.getData().add(series);
             divPressed = true;
         } else {
-            barChart.getData().removeAll(series);
+            barChart.getData().clear();
             divPressed = false;
         }
 
