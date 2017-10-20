@@ -32,21 +32,11 @@ public class StatsViewController extends AbstractController implements Initializ
     Label divLbl;
 
     @FXML
-    private Label addHighScoreLbl;
+    private Label highScoreLbl;
+
     @FXML
-    private Label subHighScoreLbl;
-    @FXML
-    private Label multHighScoreLbl;
-    @FXML
-    private Label divHighScoreLbl;
-    @FXML
-    private Label addAverageLbl;
-    @FXML
-    private Label subAverageLbl;
-    @FXML
-    private Label multAverageLbl;
-    @FXML
-    private Label divAverageLbl;
+    private Label averageLbl;
+
     @FXML
     private Label questionsAnsweredLbl;
     @FXML
@@ -54,13 +44,13 @@ public class StatsViewController extends AbstractController implements Initializ
 
 
     @FXML
-    private ToggleButton addStatsBtn;
+    private Button addStatsBtn;
     @FXML
-    private ToggleButton subStatsBtn;
+    private Button subStatsBtn;
     @FXML
-    private ToggleButton multStatsBtn;
+    private Button multStatsBtn;
     @FXML
-    private ToggleButton divStatsBtn;
+    private Button divStatsBtn;
 
     @FXML
     private BarChart<String, Integer> barChart;
@@ -74,136 +64,145 @@ public class StatsViewController extends AbstractController implements Initializ
     private boolean multPressed;
     private boolean divPressed;
 
-    private XYChart.Series<String, Integer> addSeries = new XYChart.Series<>();
-    private XYChart.Series<String, Integer> subSeries = new XYChart.Series<>();
-    private XYChart.Series<String, Integer> divSeries = new XYChart.Series<>();
-    private XYChart.Series<String, Integer> multSeries = new XYChart.Series<>();
+    //private XYChart.Series<String, Integer> addSeries = new XYChart.Series<>();
+    //private XYChart.Series<String, Integer> subSeries = new XYChart.Series<>();
+    //private XYChart.Series<String, Integer> divSeries = new XYChart.Series<>();
+    //private XYChart.Series<String, Integer> multSeries = new XYChart.Series<>();
 
     @FXML
     private void addStatsBtnAction() {
 
         LinkedList<Integer> recentScores = _statistics.get_recentScoresAdd();
-        if (!addPressed) {
-            addSeries = new XYChart.Series<>();
-        }
+        //if (!addPressed) {
+        //    addSeries = new XYChart.Series<>();
+        //}
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-        addSeries.setName("add");
+        //series.setName("add");
 
         int i = 0;
 
         for (int score : recentScores) {
-            addSeries.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            series.getData().add(new XYChart.Data<>(xRange.get(i), score));
             i++;
         }
 
+        //barChart.getData().add(series);
+
+        barChart.getData().clear();
         if (!addPressed) {
-            barChart.getData().add(addSeries);
+            barChart.getData().add(series);
             addPressed = true;
         } else {
-            barChart.getData().removeAll(addSeries);
+            barChart.getData().clear();
             addPressed = false;
         }
 
-        addHighScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
-        addAverageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
+        highScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
+        averageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
     }
 
     @FXML
     private void subStatsBtnAction() {
 
         LinkedList<Integer> recentScores = _statistics.get_recentScoresSub();
-        if (!subPressed) {
-            subSeries = new XYChart.Series<>();
-        }
-        subSeries.setName("sub");
+        //if (!subPressed) {
+        //    subSeries = new XYChart.Series<>();
+        //}
+        //subSeries.setName("sub");
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
 
         for (int score : recentScores) {
-            subSeries.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            series.getData().add(new XYChart.Data<>(xRange.get(i), score));
             i++;
         }
 
+        barChart.getData().clear();
         if (!subPressed) {
-            barChart.getData().add(subSeries);
+            barChart.getData().add(series);
             subPressed = true;
         } else {
-            barChart.getData().removeAll(subSeries);
+            barChart.getData().clear();
             subPressed = false;
         }
 
-        subHighScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
-        subAverageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
+        highScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
+        averageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
     }
 
     @FXML
     private void multStatsBtnAction() {
 
         LinkedList<Integer> recentScores = _statistics.get_recentScoresMult();
-        if (!multPressed) {
-            multSeries = new XYChart.Series<>();
-        }
-        multSeries.setName("mult");
+        //if (!multPressed) {
+        //    multSeries = new XYChart.Series<>();
+        //}
+        //multSeries.setName("mult");
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
 
         for (int score : recentScores) {
-            multSeries.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            series.getData().add(new XYChart.Data<>(xRange.get(i), score));
             i++;
         }
 
+        barChart.getData().clear();
         if (!multPressed) {
-            barChart.getData().add(multSeries);
+            barChart.getData().add(series);
             multPressed = true;
         } else {
-            barChart.getData().removeAll(multSeries);
+            barChart.getData().clear();
             multPressed = false;
         }
 
-        multHighScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
-        multAverageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
+        highScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
+        averageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
     }
 
     @FXML
     private void divStatsBtnAction() {
 
         LinkedList<Integer> recentScores = _statistics.get_recentScoresDiv();
-        if (!divPressed) {
-            divSeries = new XYChart.Series<>();
-        }
-
-        divSeries.setName("div");
+        //if (!divPressed) {
+        //    divSeries = new XYChart.Series<>();
+        //}
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        //divSeries.setName("div");
 
         int i = 0;
         for (int score : recentScores) {
-            divSeries.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            series.getData().add(new XYChart.Data<>(xRange.get(i), score));
             i++;
         }
 
+        barChart.getData().clear();
         if (!divPressed) {
-            barChart.getData().add(divSeries);
+            barChart.getData().add(series);
             divPressed = true;
         } else {
-            barChart.getData().removeAll(divSeries);
+            barChart.getData().clear();
             divPressed = false;
         }
 
-        divHighScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
-        divAverageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
+        highScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
+        averageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
     }
 
-    private void setSavedScores() {
-        addHighScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
-        addAverageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
-        subHighScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
-        subAverageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
-        multHighScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
-        multAverageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
-        divHighScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
-        divAverageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
-        questionsAnsweredLbl.setText("Total Questions Answered: " + _statistics.getQuestionsAnswered());
-        quizzesCompletedLbl.setText("Total Quizzes Completed: " + _statistics.getQuizzesCompleted());
-    }
+    //private void setSavedScores() {
+    //    addHighScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
+    //    addAverageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
+    //    subHighScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
+    //    subAverageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
+    //    multHighScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
+    //    multAverageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
+    //   divHighScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
+    //   divAverageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
+    //    questionsAnsweredLbl.setText("Total Questions Answered: " + _statistics.getQuestionsAnswered());
+    //    quizzesCompletedLbl.setText("Total Quizzes Completed: " + _statistics.getQuizzesCompleted());
+    //}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -215,7 +214,7 @@ public class StatsViewController extends AbstractController implements Initializ
         barChart.setTitle("Recent Scores: ");
         _statistics.readFileHighScores();
         _statistics.readFileRecentScores();
-        setSavedScores();
+        //setSavedScores();
         String[] array = {Integer.toString(1),Integer.toString(2),Integer.toString(3),Integer.toString(4),
                 Integer.toString(5),Integer.toString(6),Integer.toString(7),Integer.toString(8),
                 Integer.toString(9),Integer.toString(10)};
