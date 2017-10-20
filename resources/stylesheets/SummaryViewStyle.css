@@ -1,5 +1,5 @@
 StackPane {
-    -fx-background-image:url('WrongView.png');
+    -fx-background-image:url('../images/SummaryView.png');
 }
 
 Button {
@@ -11,5 +11,5 @@ Button {
 }
 
 Button:hover {
-    -fx-border-color: #e4e4e4;
+    -fx-border-color: white;
 }

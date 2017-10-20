@@ -1,7 +1,6 @@
-AnchorPane {
-    -fx-background-image:url('ParentsHelpPopup.png');
+StackPane {
+    -fx-background-image:url('../images/CorrectView.png');
 }
-
 
 Button {
     -fx-background-color: Transparent;

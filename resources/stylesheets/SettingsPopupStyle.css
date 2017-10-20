@@ -1,6 +1,7 @@
 AnchorPane {
-    -fx-background-image:url('EnterNamePopup.png');
+    -fx-background-image:url('../images/SettingsPopup.png');
 }
+
 
 Button {
     -fx-background-color: Transparent;
