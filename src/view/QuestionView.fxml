@@ -12,8 +12,8 @@
       <GridPane>
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0934143066406" minWidth="10.0" prefWidth="284.04925537109375" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="873.1593017578125" minWidth="10.0" prefWidth="740.9507446289062" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.574951171875" minWidth="10.0" prefWidth="254.66943359375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="873.1593017578125" minWidth="10.0" prefWidth="739.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.574951171875" minWidth="10.0" prefWidth="257.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,12 +30,12 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <ProgressBar fx:id="progressBar" prefHeight="18.0" prefWidth="358.0" progress="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+            <ProgressBar fx:id="progressBar" prefHeight="62.0" prefWidth="366.0" progress="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
                <padding>
-                  <Insets bottom="45.0" />
+                  <Insets bottom="44.0" />
                </padding>
             </ProgressBar>
             <Label fx:id="numberLbl" text="5" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

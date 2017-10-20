@@ -16,14 +16,15 @@ Button:hover {
 
 
 .progress-bar, .progress-bar > .bar, .progress-bar .track, .progress-bar > .progress {
-    -fx-background-radius: 15;
+    -fx-background-image: none;
+    -fx-background-radius: 3;
     -fx-background-color: Transparent;
-    -fx-border-radius: 15;
+    -fx-border-radius: 3;
     -fx-border-width: 0;
 }
 
 .progress-bar > .track {
-    -fx-background-color: black;
+    -fx-background-color: Transparent;
     -fx-border-width: 2;
     -fx-border-color: Transparent;
 }
