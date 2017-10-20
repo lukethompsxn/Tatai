@@ -1,5 +1,5 @@
-StackPane {
-    -fx-background-image:url('CustomAddView.png');
+.backgroundImage {
+    -fx-background-image:url('../images/CustomAddView.png');
 }
 
 Button {
@@ -15,12 +15,12 @@ Button:hover {
 }
 
 .list-cell {
-    -fx-background-color: transparent;
+    -fx-background-color: Transparent;
     -fx-text-fill: #e4e4e4;
-
 }
+
 .list-view {
-    -fx-background-color: transparent;
+    -fx-background-color: Transparent;
 }
 
 .list-cell:filled:selected:focused, .list-cell:filled:selected {

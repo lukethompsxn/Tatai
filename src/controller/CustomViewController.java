@@ -1,14 +1,12 @@
 package controller;
 
 import com.sun.javafx.scene.control.skin.VirtualFlow;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.text.Font;
 import model.CustomCollection;
 import model.ModeDirector;
@@ -30,13 +28,23 @@ public class CustomViewController extends AbstractController implements Initiali
     Button playBtn;
     @FXML
     Button deleteBtn;
+    @FXML
+    Label playLbl;
+    @FXML
+    Label deleteLbl;
+    @FXML
+    MaterialDesignIconView playIcon;
 
     public void addQuestions() {
         pushChild("CustomAddView");
     }
 
     public void mainMenu() {
-        pushChild("MenuView");
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void play() {
@@ -73,6 +81,9 @@ public class CustomViewController extends AbstractController implements Initiali
 
         playBtn.setDisable(true);
         deleteBtn.setDisable(true);
+        playLbl.visibleProperty().bind(playBtn.disabledProperty().not());
+        deleteLbl.visibleProperty().bind(deleteBtn.disabledProperty().not());
+        playIcon.visibleProperty().bind(playBtn.disabledProperty().not());
 
         customizeListView(listView);
     }

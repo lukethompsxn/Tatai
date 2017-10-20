@@ -1,0 +1,44 @@
+@font-face {
+    font-family: Marker Felt Wide;
+    src: url('../fonts/MarkerFeltWide.ttf');
+}
+
+.button {
+    -fx-font-family: 'Marker Felt Wide';
+}
+
+.label {
+    -fx-font-family: 'Marker Felt Wide';
+}
+
+.list-view {
+    -fx-font-family: 'Marker Felt Wide';
+    -fx-background-image: none;
+    -fx-background-color: transparent;
+    -fx-font-size: 25;
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e4e4e4;
+
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #784a0b;
+    -fx-text-fill: #e4e4e4;
+}
+
+.scroll-bar {
+    -fx-background-image: none;
+    -fx-background-color: Transparent;
+}
+
+.scroll-bar > .thumb {
+    -fx-background-color: white;
+}
+
+.text-field {
+    -fx-font-family:'Marker Felt Wide';
+    -fx-font-size: 25;
+}

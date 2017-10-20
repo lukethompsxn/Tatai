@@ -7,7 +7,8 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@QuestionView.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QuestionViewController">
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/QuestionView.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QuestionViewController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -16,20 +17,12 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.574951171875" minWidth="10.0" prefWidth="257.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="317.0" minHeight="10.0" prefHeight="182.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="337.0" minHeight="10.0" prefHeight="164.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="195.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="recordBtn" mnemonicParsing="false" onAction="#recordAudio" prefHeight="68.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets top="85.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
             <ProgressBar fx:id="progressBar" prefHeight="62.0" prefWidth="366.0" progress="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets />
@@ -43,7 +36,6 @@
                   <Font name="Marker Felt Wide" size="76.0" />
                </font>
             </Label>
-            <Button fx:id="skipQuestionBtn" mnemonicParsing="false" onAction="#skipQuestion" prefHeight="53.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
             <Label fx:id="scoreLbl" text="7/9" textFill="#dddddd" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="25.0" right="55.0" />
@@ -58,7 +50,47 @@
                <font>
                   <Font name="Marker Felt Wide" size="34.0" />
                </font></Label>
-            <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="84.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+            <Label fx:id="recordLbl" prefHeight="74.0" prefWidth="209.0" rotate="-0.4" text="Record" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="14.0" right="208.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Marker Felt Wide" size="48.0" />
+               </font>
+            </Label>
+            <Label fx:id="skipLbl" prefHeight="53.0" prefWidth="209.0" text="Skip" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Marker Felt Wide" size="47.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="175.0" top="4.0" />
+               </GridPane.margin>
+            </Label>
+            <MaterialDesignIconView fx:id="recordIcon" glyphName="MICROPHONE" glyphSize="52" fill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" rotate="-1.9">
+               <GridPane.margin>
+                  <Insets bottom="19.0" right="416.0" />
+               </GridPane.margin>
+            </MaterialDesignIconView>
+            <MaterialDesignIconView fx:id="skipIcon" glyphName="SKIP_NEXT" glyphSize="72" fill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" rotate="1.7">
+               <GridPane.margin>
+                  <Insets right="386.0" top="0.0" />
+               </GridPane.margin>
+            </MaterialDesignIconView>
+            <MaterialDesignIconView fx:id="homeIcon" glyphName="HOME" glyphSize="90" visible="false" fill="#e4e4e4" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets right="52.0" bottom="16.0" />
+               </GridPane.margin>
+            </MaterialDesignIconView>
+            <Button fx:id="skipQuestionBtn" mnemonicParsing="false" onAction="#skipQuestion" prefHeight="53.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+            <Button fx:id="recordBtn" mnemonicParsing="false" onAction="#recordAudio" prefHeight="68.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="85.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" fx:id="menuBtn" onAction="#mainMenu" prefHeight="84.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="20.0" right="18.0" />
                </GridPane.margin>
