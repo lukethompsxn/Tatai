@@ -33,9 +33,10 @@ public class StatsViewController extends AbstractController implements Initializ
 
     @FXML
     private Label highScoreLbl;
-
     @FXML
     private Label averageLbl;
+    @FXML
+    private Label typeLbl;
 
     @FXML
     private Label questionsAnsweredLbl;
@@ -98,8 +99,9 @@ public class StatsViewController extends AbstractController implements Initializ
             addPressed = false;
         }
 
-        highScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
-        averageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
+        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreAdd()));
+        averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
+        typeLbl.setText("Addition");
     }
 
     @FXML
@@ -128,8 +130,9 @@ public class StatsViewController extends AbstractController implements Initializ
             subPressed = false;
         }
 
-        highScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
-        averageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
+        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreSub()));
+        averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
+        typeLbl.setText("Subtraction");
     }
 
     @FXML
@@ -158,8 +161,9 @@ public class StatsViewController extends AbstractController implements Initializ
             multPressed = false;
         }
 
-        highScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
-        averageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
+        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreMult()));
+        averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
+        typeLbl.setText("Multiplication");
     }
 
     @FXML
@@ -187,8 +191,9 @@ public class StatsViewController extends AbstractController implements Initializ
             divPressed = false;
         }
 
-        highScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
-        averageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
+        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreDiv()));
+        averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
+        typeLbl.setText("Division");
     }
 
     //private void setSavedScores() {
@@ -211,7 +216,7 @@ public class StatsViewController extends AbstractController implements Initializ
         multPressed = false;
         divPressed = false;
 
-        barChart.setTitle("Recent Scores: ");
+        barChart.setTitle("");
         _statistics.readFileHighScores();
         _statistics.readFileRecentScores();
         //setSavedScores();

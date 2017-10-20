@@ -13,3 +13,11 @@ Button {
 Button:hover {
     -fx-border-color: white;
 }
+
+.chart-plot-background {
+    -fx-background-color: Transparent;
+}
+
+.axis-label {
+    -fx-text-fill: #e4e4e4;
+}
