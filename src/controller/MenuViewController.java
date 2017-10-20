@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Main;
 import model.MathsCollection;
 import model.ModeDirector;
@@ -33,13 +35,41 @@ public class MenuViewController extends AbstractController implements Initializa
     //Action for practice button
     public void practiceMenu() {
         _modeDirector.setType(ModeDirector.Type.PRACTICE);
+        _mainPane.setTranslateX(-1280);
+        _mainPane.setVisible(true);
         pushChild("PracticeView");
+
+        TranslateTransition transitionF = new TranslateTransition(Duration.millis(200), _frontPane);
+        transitionF.fromXProperty().set(0);
+        transitionF.toXProperty().set(1280);
+
+        TranslateTransition transitionM = new TranslateTransition(Duration.millis(200), _mainPane);
+        transitionM.fromXProperty().set(-1270);
+        transitionM.toXProperty().set(0);
+
+        transitionF.play();
+        transitionM.play();
+
     }
 
     //Action for math button
     public void mathMenu() {
         _modeDirector.setType(ModeDirector.Type.MATH);
+        _mainPane.setTranslateX(1280);
+        _mainPane.setVisible(true);
         pushChild("MathView");
+
+        TranslateTransition transitionF = new TranslateTransition(Duration.millis(200), _frontPane);
+        transitionF.fromXProperty().set(0);
+        transitionF.toXProperty().set(-1280);
+
+        TranslateTransition transitionM = new TranslateTransition(Duration.millis(200), _mainPane);
+        transitionM.fromXProperty().set(1270);
+        transitionM.toXProperty().set(0);
+
+        transitionF.play();
+        transitionM.play();
+
     }
 
     public void settings() {
