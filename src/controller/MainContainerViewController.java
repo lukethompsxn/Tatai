@@ -24,6 +24,8 @@ public class MainContainerViewController extends AbstractController implements I
     AnchorPane popupPane;
     @FXML
     Pane overlay;
+    @FXML
+    Pane frontPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -31,8 +33,13 @@ public class MainContainerViewController extends AbstractController implements I
         _popupPaneContainer = popupPaneContainer;
         _popupPane = popupPane;
         _overlay = overlay;
+        _frontPane = frontPane;
 
-        pushChild("MenuView");
+        try {
+            _frontPane.getChildren().add(new Scene(FXMLLoader.load(getClass().getResource("/view/MenuView.fxml"))).getRoot());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
