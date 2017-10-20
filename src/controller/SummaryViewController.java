@@ -44,14 +44,14 @@ public class SummaryViewController extends AbstractController implements Initial
     public void initialize(URL location, ResourceBundle resources) {
         int score = _modeDirector.getScore();
         scoreLbl.setText(score + "/" + _modeDirector.getNumQuestions());
-        _statistics.readFileRecentScores();
+        //_statistics.readFileRecentScores();
 
         if (_modeDirector.getMode() == ModeDirector.Mode.MATH_ADD) {
             if (score > _statistics.get_highScoreAdd()) {
                 _statistics.set_highScoreAdd(score);
-                _statistics.setAddQuestionsAnswered(_statistics.getAddQuestionsAnswered() + _modeDirector.getNumQuestions());
-                _statistics.setAddQuizzesCompleted(_statistics.getAddQuizzesCompleted() + 1);
             }
+            _statistics.setAddQuestionsAnswered(_statistics.getAddQuestionsAnswered() + _modeDirector.getNumQuestions());
+            _statistics.setAddQuizzesCompleted(_statistics.getAddQuizzesCompleted() + 1);
             _statistics.addRecentScoresAdd(score);
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_SUB) {
             if (score > _statistics.get_highScoreSub()) {
@@ -63,9 +63,9 @@ public class SummaryViewController extends AbstractController implements Initial
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_DIV) {
             if (score > _statistics.get_highScoreDiv()) {
                 _statistics.set_highScoreDiv(score);
-                _statistics.setDivQuestionsAnswered(_statistics.getDivQuestionsAnswered() + _modeDirector.getNumQuestions());
-                _statistics.setDivQuizzesCompleted(_statistics.getDivQuizzesCompleted() + 1);
             }
+            _statistics.setDivQuestionsAnswered(_statistics.getDivQuestionsAnswered() + _modeDirector.getNumQuestions());
+            _statistics.setDivQuizzesCompleted(_statistics.getDivQuizzesCompleted() + 1);
             _statistics.addRecentScoresDiv(score);
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_MULT) {
             if (score > _statistics.get_highScoreMult()) {

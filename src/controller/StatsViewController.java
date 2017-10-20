@@ -151,8 +151,10 @@ public class StatsViewController extends AbstractController implements Initializ
 
         int i = 0;
 
+        System.out.println(recentScores.size());
         for (int score : recentScores) {
             series.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            System.out.println(score + " " + i);
             i++;
         }
 
@@ -226,7 +228,7 @@ public class StatsViewController extends AbstractController implements Initializ
 
         barChart.setTitle("");
         _statistics.readFileHighScores();
-        _statistics.readFileRecentScores();
+        //_statistics.readFileRecentScores();
         //setSavedScores();
         String[] array = {Integer.toString(1),Integer.toString(2),Integer.toString(3),Integer.toString(4),
                 Integer.toString(5),Integer.toString(6),Integer.toString(7),Integer.toString(8),

@@ -32,6 +32,7 @@ public class Main extends Application {
             dir.mkdir();
         }
         _statistics.createFiles();
+        _statistics.readFileRecentScores();
         _customCollection.importCustomLists();
         launch(args);
     }

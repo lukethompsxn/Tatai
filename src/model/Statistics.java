@@ -48,6 +48,7 @@ public class Statistics {
             _recentScoresMult.removeLast();
         }
         _recentScoresMult.addFirst(score);
+        System.out.println(_recentScoresMult);
     }
 
     public LinkedList<Integer> get_recentScoresDiv() {
