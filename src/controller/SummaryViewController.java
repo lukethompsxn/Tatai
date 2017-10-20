@@ -49,6 +49,8 @@ public class SummaryViewController extends AbstractController implements Initial
         if (_modeDirector.getMode() == ModeDirector.Mode.MATH_ADD) {
             if (score > _statistics.get_highScoreAdd()) {
                 _statistics.set_highScoreAdd(score);
+                _statistics.setAddQuestionsAnswered(_statistics.getAddQuestionsAnswered() + _modeDirector.getNumQuestions());
+                _statistics.setAddQuizzesCompleted(_statistics.getAddQuizzesCompleted() + 1);
             }
             _statistics.addRecentScoresAdd(score);
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_SUB) {
@@ -56,19 +58,25 @@ public class SummaryViewController extends AbstractController implements Initial
                 _statistics.set_highScoreSub(score);
             }
             _statistics.addRecentScoresSub(score);
+            _statistics.setSubQuestionsAnswered(_statistics.getSubQuestionsAnswered() + _modeDirector.getNumQuestions());
+            _statistics.setSubQuizzesCompleted(_statistics.getSubQuizzesCompleted() + 1);
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_DIV) {
             if (score > _statistics.get_highScoreDiv()) {
                 _statistics.set_highScoreDiv(score);
+                _statistics.setDivQuestionsAnswered(_statistics.getDivQuestionsAnswered() + _modeDirector.getNumQuestions());
+                _statistics.setDivQuizzesCompleted(_statistics.getDivQuizzesCompleted() + 1);
             }
             _statistics.addRecentScoresDiv(score);
         } else if (_modeDirector.getMode() == ModeDirector.Mode.MATH_MULT) {
             if (score > _statistics.get_highScoreMult()) {
                 _statistics.set_highScoreMult(score);
             }
+            _statistics.setMultQuestionsAnswered(_statistics.getMultQuestionsAnswered() + _modeDirector.getNumQuestions());
+            _statistics.setMultQuizzesCompleted(_statistics.getMultQuizzesCompleted() + 1);
             _statistics.addRecentScoresMult(score);
         }
-        _statistics.setQuestionsAnswered(_statistics.getQuestionsAnswered() + _modeDirector.getNumQuestions());
-        _statistics.setQuizzesCompleted(_statistics.getQuizzesCompleted() + 1);
+        //_statistics.setQuestionsAnswered(_statistics.getQuestionsAnswered() + _modeDirector.getNumQuestions());
+        //_statistics.setQuizzesCompleted(_statistics.getQuizzesCompleted() + 1);
         _statistics.writeToFileHighScores();
         _statistics.writeToFileRecentScores();
 

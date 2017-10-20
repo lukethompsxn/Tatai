@@ -98,6 +98,8 @@ public class StatsViewController extends AbstractController implements Initializ
             addPressed = false;
         }
 
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getAddQuizzesCompleted()));
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getAddQuestionsAnswered()));
         highScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
         averageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
     }
@@ -128,6 +130,8 @@ public class StatsViewController extends AbstractController implements Initializ
             subPressed = false;
         }
 
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getSubQuizzesCompleted()));
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getSubQuestionsAnswered()));
         highScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
         averageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
     }
@@ -158,6 +162,8 @@ public class StatsViewController extends AbstractController implements Initializ
             multPressed = false;
         }
 
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getMultQuizzesCompleted()));
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getMultQuestionsAnswered()));
         highScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
         averageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
     }
@@ -187,8 +193,11 @@ public class StatsViewController extends AbstractController implements Initializ
             divPressed = false;
         }
 
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getDivQuizzesCompleted()));
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getDivQuestionsAnswered()));
         highScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
         averageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
+
     }
 
     //private void setSavedScores() {
