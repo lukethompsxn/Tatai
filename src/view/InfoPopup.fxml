@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="360.0" prefWidth="640.0" stylesheets="/stylesheets/InfoPopupStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InfoPopupController">
+   <children>
+      <Button layoutX="509.0" layoutY="291.0" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="107.0" />
+   </children>
+</AnchorPane>

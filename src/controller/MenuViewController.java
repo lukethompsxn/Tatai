@@ -52,6 +52,14 @@ public class MenuViewController extends AbstractController implements Initializa
 
     }
 
+    public void info() {
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "InfoPopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     //Action for math button
     public void mathMenu() {
         _modeDirector.setType(ModeDirector.Type.MATH);

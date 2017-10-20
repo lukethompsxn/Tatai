@@ -22,16 +22,22 @@ public class EnterNamePopupController extends AbstractController implements Init
     Label error;
 
     public void close() {
-        if (!textField.getText().trim().isEmpty() ) {
+        if (textField.getText().trim().isEmpty()) {
+            textField.clear();
+            error.setVisible(true);
+            error.setText("Error: You must enter a name");
+        }
+        else if (_customModel.getStoredNames().contains(textField.getText().trim())) {
+            error.setVisible(true);
+            error.setText("Error: This list already exists");
+        }
+        else {
             _customModel.configureAdd(textField.getText());
             closePopup();
             popChild();
             pushChild("CustomView");
         }
-        else {
-            textField.clear();
-        }
-        error.setVisible(true);
+
     }
 
     @Override
