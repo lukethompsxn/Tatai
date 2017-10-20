@@ -1,5 +1,6 @@
 package controller;
 
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
@@ -50,9 +51,21 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     Button skipQuestionBtn;
     @FXML
+    Button menuBtn;
+    @FXML
     Label scoreLbl;
     @FXML
     Label attemptLbl;
+    @FXML
+    Label recordLbl;
+    @FXML
+    Label skipLbl;
+    @FXML
+    MaterialDesignIconView recordIcon;
+    @FXML
+    MaterialDesignIconView skipIcon;
+    @FXML
+    MaterialDesignIconView homeIcon;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,9 +87,13 @@ public class QuestionViewController extends AbstractController implements Initia
             _questionMap = _pracModel.getCurrentQuestionMap();
             _answerMap = _pracModel.getCurrentAnswerMap();
         }
-        numberLbl.setText(_questionMap.get(_iteration));
 
-        //setFonts(numberLbl, 76, scoreLbl, 34, attemptLbl, 34, new Label(), 1, 3);
+        numberLbl.setText(_questionMap.get(_iteration));
+        recordLbl.visibleProperty().bind(recordBtn.disabledProperty().not());
+        skipLbl.visibleProperty().bind(skipQuestionBtn.disabledProperty().not());
+        recordIcon.visibleProperty().bind(recordBtn.disabledProperty().not());
+        skipIcon.visibleProperty().bind(skipQuestionBtn.disabledProperty().not());
+
     }
 
     // Returns to main menu when button is pressed.
@@ -105,6 +122,7 @@ public class QuestionViewController extends AbstractController implements Initia
 
     // Carries out calls to skip the current questions and move onto next
     public void skipQuestion() {
+        /*
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Are you sure?");
         alert.setContentText("Are you sure you want to skip the current question?");
@@ -125,6 +143,13 @@ public class QuestionViewController extends AbstractController implements Initia
                 //NEEDS LOGIC FOR NEXT ITERATION
             }
 
+        } */
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + "SkipPopup.fxml"));
+        loader.setController(new SkipPopupController(_iteration, _numQuestions, _score, this));
+        try {
+            pushPopup(new Scene(loader.load()), true);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -263,7 +288,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    private void nextQuestion() {
+    protected void nextQuestion() {
         _iteration+=1;
         _modeDirector.setIteration(_iteration);
         numberLbl.setText(_questionMap.get(_iteration));
@@ -271,7 +296,7 @@ public class QuestionViewController extends AbstractController implements Initia
         _attempt = 1;
     }
 
-    private void resetBtns() {
+    protected void resetBtns() {
         if (_attempt > 2) {
             nextQuestion();
         }
@@ -283,9 +308,12 @@ public class QuestionViewController extends AbstractController implements Initia
     }
 
     public void mainMenu() {
-        pushChild("MenuView");
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
     //Helper method to playback audio once they have finished recording
     private void playbackAudio() {

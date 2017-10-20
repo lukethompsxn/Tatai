@@ -1,8 +1,13 @@
 package controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import model.MathsCollection;
 import model.ModeDirector;
 import model.NumberCollection;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MathViewController extends AbstractController{
     private static ModeDirector _modeDirector = ModeDirector.instance();
@@ -50,7 +55,11 @@ public class MathViewController extends AbstractController{
     }
 
     public void mainMenu() {
-        pushChild("MenuView");
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void stats() {

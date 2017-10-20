@@ -360,7 +360,11 @@ public class CustomAddViewController extends AbstractController implements Initi
     }
 
     public void mainMenu() {
-        pushChild("MenuView");
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void numberBtnCtrl(boolean option) {

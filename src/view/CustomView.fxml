@@ -14,7 +14,8 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane styleClass="backgroundImage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/CustomViewStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomViewController">
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundImage" stylesheets="/stylesheets/CustomViewStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomViewController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -30,6 +31,27 @@
         </rowConstraints>
          <children>
             <ListView fx:id="listView" prefHeight="196.0" prefWidth="528.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Label fx:id="playLbl" text="Play" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                 <font>
+                     <Font name="Marker Felt Wide" size="46.0" />
+                 </font>
+                 <padding>
+                     <Insets right="207.0" top="35.0" />
+                 </padding>
+             </Label>
+             <Label fx:id="deleteLbl" text="Delete" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                 <font>
+                     <Font name="Marker Felt Wide" size="46.0" />
+                 </font>
+                 <padding>
+                     <Insets right="21.0" top="37.0" />
+                 </padding>
+             </Label>
+             <MaterialDesignIconView fx:id="playIcon" glyphName="PLAY" glyphSize="60" fill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" >
+                 <GridPane.margin>
+                     <Insets right="293.0" top="42.0" />
+                 </GridPane.margin>
+             </MaterialDesignIconView>
             <Button mnemonicParsing="false" onAction="#addQuestions" prefHeight="68.0" prefWidth="165.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
                   <Insets left="10.0" top="39.0" />
@@ -47,6 +69,7 @@
                   <Insets bottom="20.0" right="18.0" />
                </GridPane.margin>
             </Button>
+
          </children>
       </GridPane>
    </children>

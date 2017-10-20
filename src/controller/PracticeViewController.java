@@ -1,10 +1,14 @@
 package controller;
 
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import model.ModeDirector;
 import model.NumberCollection;
 import model.PracticeCollection;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,9 +32,12 @@ public class PracticeViewController extends AbstractController implements Initia
     }
 
     public void mainMenu() {
-        pushChild("MenuView");
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
