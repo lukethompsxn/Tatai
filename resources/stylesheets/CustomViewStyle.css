@@ -1,4 +1,4 @@
-StackPane {
+.backgroundImage {
     -fx-background-image:url('../images/CustomView.png');
 }
 
@@ -14,17 +14,4 @@ Button:hover {
     -fx-border-color: #e4e4e4;
 }
 
-.list-cell {
-    -fx-background-color: transparent;
-    -fx-text-fill: #e4e4e4;
-
-}
-.list-view {
-    -fx-background-color: transparent;
-}
-
-.list-cell:filled:selected:focused, .list-cell:filled:selected {
-    -fx-background-color: #784a0b;
-    -fx-text-fill: #e4e4e4;
-}
 

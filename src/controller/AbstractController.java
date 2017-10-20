@@ -146,7 +146,7 @@ public abstract class AbstractController {
 
     */
     protected void customizeListView(ListView listView) {
-        listView.setCellFactory((Object cell) -> {
+        /*listView.setCellFactory((Object cell) -> {
             return new ListCell<String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
@@ -166,7 +166,7 @@ public abstract class AbstractController {
                     }
                 }
             };
-        });
+        });*/
     }
 
     protected void setSuperAttempts(int num) {
