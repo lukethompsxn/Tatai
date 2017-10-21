@@ -99,6 +99,8 @@ public class StatsViewController extends AbstractController implements Initializ
             addPressed = false;
         }
 
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getAddQuestionsAnswered()));
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getAddQuizzesCompleted()));
         highScoreLbl.setText(Integer.toString(_statistics.get_highScoreAdd()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
         typeLbl.setText("Addition");
@@ -130,6 +132,8 @@ public class StatsViewController extends AbstractController implements Initializ
             subPressed = false;
         }
 
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getSubQuestionsAnswered()));
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getSubQuizzesCompleted()));
         highScoreLbl.setText(Integer.toString(_statistics.get_highScoreSub()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
         typeLbl.setText("Subtraction");
@@ -147,8 +151,10 @@ public class StatsViewController extends AbstractController implements Initializ
 
         int i = 0;
 
+        System.out.println(recentScores.size());
         for (int score : recentScores) {
             series.getData().add(new XYChart.Data<>(xRange.get(i), score));
+            System.out.println(score + " " + i);
             i++;
         }
 
@@ -161,6 +167,8 @@ public class StatsViewController extends AbstractController implements Initializ
             multPressed = false;
         }
 
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getMultQuestionsAnswered()));
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getMultQuizzesCompleted()));
         highScoreLbl.setText(Integer.toString(_statistics.get_highScoreMult()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
         typeLbl.setText("Multiplication");
@@ -191,6 +199,8 @@ public class StatsViewController extends AbstractController implements Initializ
             divPressed = false;
         }
 
+        questionsAnsweredLbl.setText(Integer.toString(_statistics.getDivQuestionsAnswered()));
+        quizzesCompletedLbl.setText(Integer.toString(_statistics.getDivQuizzesCompleted()));
         highScoreLbl.setText(Integer.toString(_statistics.get_highScoreDiv()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
         typeLbl.setText("Division");
@@ -218,7 +228,7 @@ public class StatsViewController extends AbstractController implements Initializ
 
         barChart.setTitle("");
         _statistics.readFileHighScores();
-        _statistics.readFileRecentScores();
+        //_statistics.readFileRecentScores();
         //setSavedScores();
         String[] array = {Integer.toString(1),Integer.toString(2),Integer.toString(3),Integer.toString(4),
                 Integer.toString(5),Integer.toString(6),Integer.toString(7),Integer.toString(8),

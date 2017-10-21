@@ -17,8 +17,14 @@ public class Statistics {
     private int _highScoreDiv = 0;
     private int _highScoreSub = 0;
     private int _highScoreAdd = 0;
-    private int _questionsAnswered = 0;
-    private int _quizzesCompleted = 0;
+    private int _addQuestionsAnswered = 0;
+    private int _addQuizzesCompleted = 0;
+    private int _subQuestionsAnswered = 0;
+    private int _subQuizzesCompleted = 0;
+    private int _multQuestionsAnswered = 0;
+    private int _multQuizzesCompleted = 0;
+    private int _divQuestionsAnswered = 0;
+    private int _divQuizzesCompleted = 0;
 
     //Singleton Constructor
     public static Statistics instance() {
@@ -42,6 +48,7 @@ public class Statistics {
             _recentScoresMult.removeLast();
         }
         _recentScoresMult.addFirst(score);
+        System.out.println(_recentScoresMult);
     }
 
     public LinkedList<Integer> get_recentScoresDiv() {
@@ -109,20 +116,68 @@ public class Statistics {
         _highScoreAdd = highScoreAdd;
     }
 
-    public int getQuizzesCompleted() {
-        return _quizzesCompleted;
+    public int getAddQuizzesCompleted() {
+        return _addQuizzesCompleted;
     }
 
-    public void setQuizzesCompleted(int quizzesCompleted) {
-        _quizzesCompleted = quizzesCompleted;
+    public void setAddQuizzesCompleted(int quizzesCompleted) {
+        _addQuizzesCompleted = quizzesCompleted;
     }
 
-    public int getQuestionsAnswered() {
-        return _questionsAnswered;
+    public int getSubQuizzesCompleted() {
+        return _subQuizzesCompleted;
     }
 
-    public void setQuestionsAnswered(int questionsAnswered) {
-        _questionsAnswered = questionsAnswered;
+    public void setSubQuizzesCompleted(int quizzesCompleted) {
+        _subQuizzesCompleted = quizzesCompleted;
+    }
+
+    public int getMultQuizzesCompleted() {
+        return _multQuizzesCompleted;
+    }
+
+    public void setMultQuizzesCompleted(int quizzesCompleted) {
+        _multQuizzesCompleted = quizzesCompleted;
+    }
+
+    public int getDivQuizzesCompleted() {
+        return _divQuizzesCompleted;
+    }
+
+    public void setDivQuizzesCompleted(int quizzesCompleted) {
+        _divQuizzesCompleted = quizzesCompleted;
+    }
+
+    public int getAddQuestionsAnswered() {
+        return _addQuestionsAnswered;
+    }
+
+    public void setAddQuestionsAnswered(int questionsAnswered) {
+        _addQuestionsAnswered = questionsAnswered;
+    }
+
+    public int getSubQuestionsAnswered() {
+        return _subQuestionsAnswered;
+    }
+
+    public void setSubQuestionsAnswered(int questionsAnswered) {
+        _subQuestionsAnswered = questionsAnswered;
+    }
+
+    public int getMultQuestionsAnswered() {
+        return _multQuestionsAnswered;
+    }
+
+    public void setMultQuestionsAnswered(int questionsAnswered) {
+        _multQuestionsAnswered = questionsAnswered;
+    }
+
+    public int getDivQuestionsAnswered() {
+        return _divQuestionsAnswered;
+    }
+
+    public void setDivQuestionsAnswered(int questionsAnswered) {
+        _divQuestionsAnswered = questionsAnswered;
     }
 
     public void writeToFileHighScores() {
@@ -172,10 +227,28 @@ public class Statistics {
                     bufferedWriter.write("divtotitt" + _modeDirector.getTotalIterations(ModeDirector.Mode.MATH_DIV) + System.getProperty("line.separator"));
                 }
 
-                else if (currentLine.startsWith("questans")) {
-                    bufferedWriter.write("questans" + _statistics.getQuestionsAnswered() + System.getProperty("line.separator"));
-                } else if (currentLine.startsWith("quizdone")) {
-                    bufferedWriter.write("quizdone" + _statistics.getQuizzesCompleted() + System.getProperty("line.separator"));
+                else if (currentLine.startsWith("addquestans")) {
+                    bufferedWriter.write("addquestans" + _statistics.getAddQuestionsAnswered() + System.getProperty("line.separator"));
+                } else if (currentLine.startsWith("addquizdone")) {
+                    bufferedWriter.write("addquizdone" + _statistics.getAddQuizzesCompleted() + System.getProperty("line.separator"));
+                }
+
+                else if (currentLine.startsWith("subquestans")) {
+                    bufferedWriter.write("subquestans" + _statistics.getSubQuestionsAnswered() + System.getProperty("line.separator"));
+                } else if (currentLine.startsWith("subquizdone")) {
+                    bufferedWriter.write("subquizdone" + _statistics.getSubQuizzesCompleted() + System.getProperty("line.separator"));
+                }
+
+                else if (currentLine.startsWith("multquestans")) {
+                    bufferedWriter.write("multquestans" + _statistics.getMultQuestionsAnswered() + System.getProperty("line.separator"));
+                } else if (currentLine.startsWith("multquizdone")) {
+                    bufferedWriter.write("multquizdone" + _statistics.getMultQuizzesCompleted() + System.getProperty("line.separator"));
+                }
+
+                else if (currentLine.startsWith("divquestans")) {
+                    bufferedWriter.write("divquestans" + _statistics.getDivQuestionsAnswered() + System.getProperty("line.separator"));
+                } else if (currentLine.startsWith("divquizdone")) {
+                    bufferedWriter.write("divquizdone" + _statistics.getDivQuizzesCompleted() + System.getProperty("line.separator"));
                 }
 
                 else {
@@ -233,10 +306,28 @@ public class Statistics {
                     _modeDirector.setTotalDivIterations(Integer.parseInt(currentLine.replaceFirst("divtotitt","")));
                 }
 
-                else if (currentLine.startsWith("questans")) {
-                    _statistics.setQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("questans","")));
-                } else if (currentLine.startsWith("quizdone")) {
-                    _statistics.setQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("quizdone","")));
+                else if (currentLine.startsWith("addquestans")) {
+                    _statistics.setAddQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("addquestans","")));
+                } else if (currentLine.startsWith("addquizdone")) {
+                    _statistics.setAddQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("addquizdone","")));
+                }
+
+                else if (currentLine.startsWith("subquestans")) {
+                    _statistics.setSubQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("subquestans","")));
+                } else if (currentLine.startsWith("subquizdone")) {
+                    _statistics.setSubQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("subquizdone","")));
+                }
+
+                else if (currentLine.startsWith("multquestans")) {
+                    _statistics.setMultQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("multquestans","")));
+                } else if (currentLine.startsWith("multquizdone")) {
+                    _statistics.setMultQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("multquizdone","")));
+                }
+
+                else if (currentLine.startsWith("divquestans")) {
+                    _statistics.setDivQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("divquestans","")));
+                } else if (currentLine.startsWith("divquizdone")) {
+                    _statistics.setDivQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("divquizdone","")));
                 }
             }
 
@@ -409,8 +500,14 @@ public class Statistics {
             writer.write("divtotsccore0" + System.getProperty("line.separator"));
             writer.write("divtotitt0" + System.getProperty("line.separator"));
             writer.write("@rand" + System.getProperty("line.separator"));
-            writer.write("questans0" + System.getProperty("line.separator"));
-            writer.write("quizdone0" + System.getProperty("line.separator"));
+            writer.write("addquestans0" + System.getProperty("line.separator"));
+            writer.write("addquizdone0" + System.getProperty("line.separator"));
+            writer.write("subquestans0" + System.getProperty("line.separator"));
+            writer.write("subquizdone0" + System.getProperty("line.separator"));
+            writer.write("multquestans0" + System.getProperty("line.separator"));
+            writer.write("multquizdone0" + System.getProperty("line.separator"));
+            writer.write("divquestans0" + System.getProperty("line.separator"));
+            writer.write("divquizdone0" + System.getProperty("line.separator"));
 
             bufferedReader.close();
             writer.close();
