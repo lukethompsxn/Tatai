@@ -244,6 +244,7 @@ public class CustomAddViewController extends AbstractController implements Initi
                 digitFirst++;
                 operationBtnsCtrl(false);
                 if (num == 0) {
+                    //zeroBtn.setDisable(true);
                     diviBtn.setDisable(true);
                     multBtn.setDisable(true);
                     subBtn.setDisable(true);
@@ -255,6 +256,12 @@ public class CustomAddViewController extends AbstractController implements Initi
                 diviBtn.setDisable(false);
                 multBtn.setDisable(false);
                 subBtn.setDisable(false);
+                if (num == 0) {
+                    //zeroBtn.setDisable(true);
+                    diviBtn.setDisable(true);
+                    multBtn.setDisable(true);
+                    subBtn.setDisable(true);
+                }
             }
         } else {
             if (digitSecond == 1) {
@@ -263,6 +270,9 @@ public class CustomAddViewController extends AbstractController implements Initi
                 addQuestionBtn.setDisable(false);
                 possibleNumberDisable();
                 if ((_operator.equals(" x ") && ((_first * ((_second*10) + 0) > 0) && (_first * ((_second*10) + 0) < 100)))) {
+                    zeroBtn.setDisable(false);
+                }
+                if (_operator.equals(" + ")) {
                     zeroBtn.setDisable(false);
                 }
             } else {
