@@ -9,7 +9,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import model.ModeDirector;
 import model.Statistics;
 
@@ -79,16 +78,12 @@ public class StatsViewController extends AbstractController implements Initializ
         //}
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
-        //series.setName("add");
-
         int i = 0;
 
         for (int score : recentScores) {
             series.getData().add(new XYChart.Data<>(xRange.get(i), score));
             i++;
         }
-
-        //barChart.getData().add(series);
 
         barChart.getData().clear();
         if (!addPressed) {
@@ -113,7 +108,7 @@ public class StatsViewController extends AbstractController implements Initializ
         //if (!subPressed) {
         //    subSeries = new XYChart.Series<>();
         //}
-        //subSeries.setName("sub");
+;
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
@@ -146,15 +141,13 @@ public class StatsViewController extends AbstractController implements Initializ
         //if (!multPressed) {
         //    multSeries = new XYChart.Series<>();
         //}
-        //multSeries.setName("mult");
+
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
 
-        System.out.println(recentScores.size());
         for (int score : recentScores) {
             series.getData().add(new XYChart.Data<>(xRange.get(i), score));
-            System.out.println(score + " " + i);
             i++;
         }
 
@@ -182,7 +175,6 @@ public class StatsViewController extends AbstractController implements Initializ
         //    divSeries = new XYChart.Series<>();
         //}
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        //divSeries.setName("div");
 
         int i = 0;
         for (int score : recentScores) {
@@ -205,19 +197,6 @@ public class StatsViewController extends AbstractController implements Initializ
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
         typeLbl.setText("Division");
     }
-
-    //private void setSavedScores() {
-    //    addHighScoreLbl.setText("Add High Score: " + Integer.toString(_statistics.get_highScoreAdd()));
-    //    addAverageLbl.setText("Add Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
-    //    subHighScoreLbl.setText("Sub High Score: " + Integer.toString(_statistics.get_highScoreSub()));
-    //    subAverageLbl.setText("Sub Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
-    //    multHighScoreLbl.setText("Mult High Score: " + Integer.toString(_statistics.get_highScoreMult()));
-    //    multAverageLbl.setText("Mult Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
-    //   divHighScoreLbl.setText("Div High Score: " + Integer.toString(_statistics.get_highScoreDiv()));
-    //   divAverageLbl.setText("Div Average Score: " + _modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
-    //    questionsAnsweredLbl.setText("Total Questions Answered: " + _statistics.getQuestionsAnswered());
-    //    quizzesCompletedLbl.setText("Total Quizzes Completed: " + _statistics.getQuizzesCompleted());
-    //}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
