@@ -404,6 +404,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         add.visibleProperty().bind(addQuestionBtn.disabledProperty().not());
         finish.visibleProperty().bind(finishQuestionsBtn.disabledProperty().not());
 
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))), false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
