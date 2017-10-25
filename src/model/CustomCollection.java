@@ -32,6 +32,15 @@ public class CustomCollection extends NumberCollection {
         initialize();
     }
 
+    /**
+     * This method takes a question number, question, and answer and arguments. This adds the questions and the
+     * corresponding number to a hashmap, likewise the same thing is done with the answer. This method is called
+     * from custom add view which passes arguments everytime the user adds a question. The question and answer is
+     * also added to a list in order to save them to file in a later method call.
+     * @param questionNumber
+     * @param question
+     * @param answer
+     */
     public void addCustomQuestion(int questionNumber, String question, int answer) {
         if (questionNumber == 0) {
             _questionsMap = new HashMap<>();
@@ -44,6 +53,11 @@ public class CustomCollection extends NumberCollection {
         _currentItems.add(Integer.toString(answer));
     }
 
+    /**
+     * This method is called from main before the program is launched. The purpose of this method is to read from
+     * the stored custom questions file, importing the lists which are stored in the file. This will populate the
+     * hashmaps inside the custom view controller so these lists can be displayed and played by the user.
+     */
     public void importCustomLists() {
         _questionsMap = new HashMap<>();
         _questionAnswersMap = new HashMap<>();
@@ -100,22 +114,36 @@ public class CustomCollection extends NumberCollection {
 
     }
 
+    //This method gets the currently selected question map
     public HashMap<Integer, String> getCurrentQuestionMap() {
         return _storedQuestions.get(_currentMap);
     }
 
+    //This method gets the currently selected answer map
     public HashMap<Integer, String> getCurrentAnswerMap() {
         return _storedAnswers.get(_currentMap);
     }
 
+    //This method gets the collection of currently stored lists
     public Set<String> getStoredNames() {
         return _storedQuestions.keySet();
     }
 
+    //This method sets the _currentMap field to be the item currently selected item in the list view from custom view
     public void setCurrentList(String name) {
         _currentMap = name;
     }
 
+    /**
+     * This method is used to write data to file. It is used to both write the question and the answer to the file,
+     * and also the list name to file. This is a helper method and is called from various places inside CustomCollection.
+     * If this method is being used to write the list name to file, the second argument is passed as -1, which results
+     * in it not being printed. When writing the question and answer to the question is passed as f1, and the anwer
+     * is passed as f2. These will both be written to the file.
+     * @param f1
+     * @param f2
+     * @param append
+     */
     private void writeToFile(String f1, int f2, boolean append) {
         try {
             FileWriter fileWriter = new FileWriter("data" + File.separator + "CustomQuestions.txt", append);
@@ -133,6 +161,15 @@ public class CustomCollection extends NumberCollection {
         }
     }
 
+    /**
+     * This method is used to delete a list from both the stored hashmaps, and from the custom question file. The name
+     * of the list which is to be deleted is passed as an arugment. This method makes a copy of the custom questions
+     * file, clears the original, then copies from the duplicate until reaching the name which is being deleted. It
+     * then consumes the list, before copying the rest of the file. Once this is done, the list is removed from the
+     * stored maps.
+     * from the
+     * @param name
+     */
     public void deleteCustomList(String name) {
         String temp = "";
 
@@ -169,6 +206,11 @@ public class CustomCollection extends NumberCollection {
 
     }
 
+    /**
+     * This method is called after the user enters a for the list which they created. It first writes the name of the
+     * list to file, followed by the questions and answers which have been stored in a list as they were added.
+     * @param name
+     */
     public void configureAdd(String name) {
         _storedQuestions.put(name, _questionsMap);
         _storedAnswers.put(name, _questionAnswersMap);
@@ -178,6 +220,4 @@ public class CustomCollection extends NumberCollection {
         }
         _currentItems = new ArrayList<>();
     }
-
-
 }
