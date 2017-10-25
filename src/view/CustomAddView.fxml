@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<StackPane styleClass="backgroundImage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/commonStyles.css, /stylesheets/CustomAddViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomAddViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="backgroundImage" stylesheets="/stylesheets/CustomAddViewStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomAddViewController">
     <children>
         <GridPane prefHeight="720.0" prefWidth="1215.0">
             <columnConstraints>
@@ -92,24 +89,24 @@
                            <Font name="Marker Felt Wide" size="85.0" />
                        </font>
                    </Label>
-                      <Button fx:id="zeroBtn" layoutX="85.0" layoutY="425.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0">
+                      <Button fx:id="zeroBtn" layoutX="85.0" layoutY="429.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="91.0" prefWidth="122.0">
                      <font>
                         <Font name="Marker Felt Wide" size="15.0" />
                      </font></Button>
-                      <Button fx:id="oneBtn" layoutX="86.0" layoutY="308.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="twoBtn" layoutX="247.0" layoutY="308.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="threeBtn" layoutX="402.0" layoutY="314.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="fourBtn" layoutX="85.0" layoutY="194.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="fiveBtn" layoutX="247.0" layoutY="201.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="eightBtn" layoutX="247.0" layoutY="76.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="133.0" />
-                      <Button fx:id="sixBtn" layoutX="402.0" layoutY="201.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="sevenBtn" layoutX="85.0" layoutY="76.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="133.0" />
-                      <Button fx:id="nineBtn" layoutX="402.0" layoutY="82.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="87.0" prefWidth="133.0" />
-                      <Button fx:id="addBtn" layoutX="564.0" layoutY="84.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="subBtn" layoutX="565.0" layoutY="201.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="93.0" prefWidth="133.0" />
-                      <Button fx:id="multBtn" layoutX="565.0" layoutY="314.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="93.0" prefWidth="126.0" />
-                      <Button fx:id="diviBtn" layoutX="564.0" layoutY="434.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="93.0" prefWidth="126.0" />
-                  <Button fx:id="clearBtn" layoutX="245.0" layoutY="431.0" mnemonicParsing="false" onAction="#clearBtnAction" prefHeight="93.0" prefWidth="278.0" />
+                      <Button fx:id="oneBtn" layoutX="86.0" layoutY="312.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="89.0" prefWidth="126.0" />
+                      <Button fx:id="twoBtn" layoutX="247.0" layoutY="314.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="90.0" prefWidth="126.0" />
+                      <Button fx:id="threeBtn" layoutX="404.0" layoutY="316.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="91.0" prefWidth="126.0" />
+                      <Button fx:id="fourBtn" layoutX="86.0" layoutY="197.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="90.0" prefWidth="125.0" />
+                      <Button fx:id="fiveBtn" layoutX="248.0" layoutY="201.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="93.0" prefWidth="125.0" />
+                      <Button fx:id="eightBtn" layoutX="249.0" layoutY="83.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="86.0" prefWidth="124.0" />
+                      <Button fx:id="sixBtn" layoutX="405.0" layoutY="203.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="91.0" prefWidth="126.0" />
+                      <Button fx:id="sevenBtn" layoutX="90.0" layoutY="80.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="89.0" prefWidth="122.0" />
+                      <Button fx:id="nineBtn" layoutX="407.0" layoutY="85.0" mnemonicParsing="false" onAction="#numberSelectAction" prefHeight="89.0" prefWidth="123.0" />
+                      <Button fx:id="addBtn" layoutX="566.0" layoutY="86.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="91.0" prefWidth="124.0" />
+                      <Button fx:id="subBtn" layoutX="567.0" layoutY="204.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="90.0" prefWidth="125.0" />
+                      <Button fx:id="multBtn" layoutX="566.0" layoutY="318.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="89.0" prefWidth="125.0" />
+                      <Button fx:id="diviBtn" layoutX="564.0" layoutY="435.0" mnemonicParsing="false" onAction="#operationAction" prefHeight="92.0" prefWidth="123.0" />
+                  <Button fx:id="clearBtn" layoutX="253.0" layoutY="432.0" mnemonicParsing="false" onAction="#clearBtnAction" prefHeight="92.0" prefWidth="266.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -124,8 +121,8 @@
                            <Font name="Marker Felt Wide" size="81.0" />
                        </font>
                    </Label>
-                  <Button fx:id="finishQuestionsBtn" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" onAction="#finishQuestionsBtnAction" prefHeight="99.0" prefWidth="243.0" />
-                  <Button fx:id="addQuestionBtn" layoutX="86.0" layoutY="37.0" mnemonicParsing="false" onAction="#addQuestionBtnAction" prefHeight="99.0" prefWidth="243.0" />
+                  <Button fx:id="finishQuestionsBtn" layoutX="456.0" layoutY="35.0" mnemonicParsing="false" onAction="#finishQuestionsBtnAction" prefHeight="99.0" prefWidth="235.0" />
+                  <Button fx:id="addQuestionBtn" layoutX="89.0" layoutY="37.0" mnemonicParsing="false" onAction="#addQuestionBtnAction" prefHeight="99.0" prefWidth="235.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">

@@ -1,16 +1,7 @@
 package controller;
 
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import model.ModeDirector;
-import model.NumberCollection;
 import model.PracticeCollection;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class PracticeViewController extends AbstractController {
     private static ModeDirector _modeDirector = ModeDirector.instance();
@@ -42,11 +33,7 @@ public class PracticeViewController extends AbstractController {
 
     //Action for the "home" button. This method calls a method from abstract controller to load the "are you sure" pop up
     public void mainMenu() {
-        try {
-            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        pushChild("MenuView");
     }
 
 }

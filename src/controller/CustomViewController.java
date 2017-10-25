@@ -41,13 +41,9 @@ public class CustomViewController extends AbstractController implements Initiali
         pushChild("CustomAddView");
     }
 
-    //Action for the "Home" button which loads the "Are you sure" pop up
+    //Action for the "Home" button which loads main menu
     public void mainMenu() {
-        try {
-            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        pushChild("MenuView");
     }
 
     /**

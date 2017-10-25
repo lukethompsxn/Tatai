@@ -27,12 +27,12 @@
                   <Insets bottom="15.0" right="40.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#hard" prefHeight="142.0" prefWidth="476.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Button mnemonicParsing="false" onAction="#hard" prefHeight="142.0" prefWidth="484.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="16.0" />
                </font>
                <GridPane.margin>
-                  <Insets bottom="15.0" left="35.0" />
+                  <Insets bottom="15.0" left="26.0" />
                </GridPane.margin>
             </Button>
             <Button mnemonicParsing="false" onAction="#mainMenu" prefHeight="81.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">

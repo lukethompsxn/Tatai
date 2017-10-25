@@ -223,7 +223,8 @@ public class StatsViewController extends AbstractController implements Initializ
         xAxis.setCategories(xRange);
     }
 
-    public void returnToMathView() {
-        popChild();
+    //Action for "home" button. Returns to main menu
+    public void mainMenu() {
+        pushChild("MenuView");
     }
 }
