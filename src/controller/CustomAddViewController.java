@@ -1,6 +1,5 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +13,24 @@ import model.ModeDirector;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomAddViewController extends AbstractController implements Initializable {
+    private static ModeDirector _modeDirector = ModeDirector.instance();
+    private static CustomCollection _customModel = CustomCollection.instance();
 
+    private int _first=0;
+    private int _second=0;
+    private int _answer;
+
+    private String _operator;
+    private boolean operatorDone = false;
+
+    private int _digitFirst = 1;
+    private int _digitSecond = 1;
+    private int _questionNumber = 0;
+
+    //Buttons
     @FXML
     private Button oneBtn;
     @FXML
@@ -52,14 +63,18 @@ public class CustomAddViewController extends AbstractController implements Initi
     private Button addQuestionBtn;
     @FXML
     private Button finishQuestionsBtn;
-    @FXML
-    private Button clearBtn;
+
+    //Regular Labels
     @FXML
     private Label equationLbl;
     @FXML
     private Label questionsAddedLbl;
+
+    //List View
     @FXML
     private ListView listView;
+
+    //Button Labels
     @FXML
     private Label zero;
     @FXML
@@ -92,19 +107,6 @@ public class CustomAddViewController extends AbstractController implements Initi
     private Label add;
     @FXML
     private Label finish;
-
-
-
-    private static ModeDirector _modeDirector = ModeDirector.instance();
-    private static CustomCollection _customModel = CustomCollection.instance();
-    private int _first=0;
-    private int _second=0;
-    private int _answer;
-    private String _operator;
-    private boolean operatorDone = false;
-    private int digitFirst = 1;
-    private int digitSecond = 1;
-    private int _questionNumber = 0;
 
     @FXML
     private void operationAction(ActionEvent event1) {
@@ -165,8 +167,8 @@ public class CustomAddViewController extends AbstractController implements Initi
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
         operatorDone = false;
-        digitFirst = 1;
-        digitSecond = 1;
+        _digitFirst = 1;
+        _digitSecond = 1;
         _first = 0;
         _second = 0;
     }
@@ -179,8 +181,8 @@ public class CustomAddViewController extends AbstractController implements Initi
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
         operatorDone = false;
-        digitFirst = 1;
-        digitSecond = 1;
+        _digitFirst = 1;
+        _digitSecond = 1;
         _questionNumber = 0;
         _first = 0;
         _second = 0;
@@ -202,8 +204,8 @@ public class CustomAddViewController extends AbstractController implements Initi
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
         operatorDone = false;
-        digitFirst = 1;
-        digitSecond = 1;
+        _digitFirst = 1;
+        _digitSecond = 1;
         _first = 0;
         _second = 0;
     }
@@ -239,9 +241,9 @@ public class CustomAddViewController extends AbstractController implements Initi
     private void formingDigits(int num) {
         equationLbl.setText(equationLbl.getText() + num);
         if (!operatorDone) {
-            if (digitFirst == 1) {
+            if (_digitFirst == 1) {
                 _first += num;
-                digitFirst++;
+                _digitFirst++;
                 operationBtnsCtrl(false);
                 if (num == 0) {
                     //zeroBtn.setDisable(true);
@@ -251,7 +253,7 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             } else {
                 _first = (_first*10) + num;
-                digitFirst--;
+                _digitFirst--;
                 numberBtnCtrl(true);
                 diviBtn.setDisable(false);
                 multBtn.setDisable(false);
@@ -264,9 +266,9 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             }
         } else {
-            if (digitSecond == 1) {
+            if (_digitSecond == 1) {
                 _second += num;
-                digitSecond += 1;
+                _digitSecond += 1;
                 addQuestionBtn.setDisable(false);
                 possibleNumberDisable();
                 if ((_operator.equals(" x ") && ((_first * ((_second*10) + 0) > 0) && (_first * ((_second*10) + 0) < 100)))) {
@@ -277,7 +279,7 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             } else {
                 _second = (_second*10) + num;
-                digitSecond--;
+                _digitSecond--;
                 numberBtnCtrl(true);
             }
         }
@@ -390,12 +392,18 @@ public class CustomAddViewController extends AbstractController implements Initi
         zeroBtn.setDisable(option);
     }
 
+    /**
+     * This method was overridden in order to disable some buttons upon intialisation, to bind the visible property
+     * of all the button labels to the buttons disabled property (so they can loook "clickable" and "not clickable"
+     * depending on whether the button is disabled) and to load the parent help pop up.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         operationBtnsCtrl(true);
         addQuestionBtn.setDisable(true);
         finishQuestionsBtn.setDisable(true);
-        customizeListView(listView);
 
         zero.visibleProperty().bind(zeroBtn.disabledProperty().not());
         one.visibleProperty().bind(oneBtn.disabledProperty().not());

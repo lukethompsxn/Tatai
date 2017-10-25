@@ -27,6 +27,14 @@ public class MainContainerViewController extends AbstractController implements I
     @FXML
     Pane frontPane;
 
+    /**
+     * This method has been overridden in order to set the static panes from abstract controller to the panes of the
+     * this class. These are then used in methods inside abstract controller which are called from its subclasses from
+     * various uses. This method also loads by default the menu view and sets it to the front pane, this allows for
+     * transitions between the panes.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         _mainPane = mainPane;

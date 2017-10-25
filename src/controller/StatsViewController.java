@@ -21,6 +21,15 @@ import java.util.ResourceBundle;
 public class StatsViewController extends AbstractController implements Initializable {
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
+    private ObservableList<String> xRange = FXCollections.observableArrayList();
+    private static Statistics _statistics = Statistics.instance();
+
+    private boolean addPressed;
+    private boolean subPressed;
+    private boolean multPressed;
+    private boolean divPressed;
+
+    //Sign Labels
     @FXML
     Label addLbl;
     @FXML
@@ -30,6 +39,7 @@ public class StatsViewController extends AbstractController implements Initializ
     @FXML
     Label divLbl;
 
+    //Regular Labels
     @FXML
     private Label highScoreLbl;
     @FXML
@@ -37,6 +47,7 @@ public class StatsViewController extends AbstractController implements Initializ
     @FXML
     private Label typeLbl;
 
+    //Answered, Completed Labels
     @FXML
     private Label questionsAnsweredLbl;
     @FXML
@@ -57,12 +68,8 @@ public class StatsViewController extends AbstractController implements Initializ
     @FXML
     private CategoryAxis xAxis;
 
-    private ObservableList<String> xRange = FXCollections.observableArrayList();
-    private static Statistics _statistics = Statistics.instance();
-    private boolean addPressed;
-    private boolean subPressed;
-    private boolean multPressed;
-    private boolean divPressed;
+    //JOEL WHOLE CLASS
+
 
     //private XYChart.Series<String, Integer> addSeries = new XYChart.Series<>();
     //private XYChart.Series<String, Integer> subSeries = new XYChart.Series<>();

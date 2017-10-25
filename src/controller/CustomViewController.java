@@ -1,19 +1,15 @@
 package controller;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Font;
 import model.CustomCollection;
 import model.ModeDirector;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,12 +18,17 @@ public class CustomViewController extends AbstractController implements Initiali
     private CustomCollection _customCollection = CustomCollection.instance();
     private ModeDirector _modeDirector = ModeDirector.instance();
 
+    //List View
     @FXML
     ListView listView;
+
+    //Buttons
     @FXML
     Button playBtn;
     @FXML
     Button deleteBtn;
+
+    //Button Labels
     @FXML
     Label playLbl;
     @FXML
@@ -35,10 +36,12 @@ public class CustomViewController extends AbstractController implements Initiali
     @FXML
     MaterialDesignIconView playIcon;
 
+    //Action for "Add" button which loads the add view
     public void addQuestions() {
         pushChild("CustomAddView");
     }
 
+    //Action for the "Home" button which loads the "Are you sure" pop up
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -47,6 +50,11 @@ public class CustomViewController extends AbstractController implements Initiali
         }
     }
 
+    /**
+     * This method is the action for the "play" button. It first sets the mode inside the mode director, the
+     * current list to the list which is currently selected in the list view, the number of questions inide the list,
+     * and then loads the question view.
+     */
     public void play() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_CUSTOM);
         _customCollection.setCurrentList(listView.getSelectionModel().getSelectedItem().toString());
@@ -54,6 +62,7 @@ public class CustomViewController extends AbstractController implements Initiali
         pushChild("QuestionView");
     }
 
+    //Action for the "delete" button which loads the delete pop up, passing in the observable list and the selected item
     public void delete() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + "DeletePopup.fxml"));
         loader.setController(new DeletePopupController(listView.getItems(), listView.getSelectionModel().getSelectedItem()));
@@ -64,6 +73,13 @@ public class CustomViewController extends AbstractController implements Initiali
         }
     }
 
+    /**
+     * This method was overridden in order to populate the list view upon initlisation, to disable certain buttons
+     * until an item in the list view is selected, and to bind the visibility property of the labels to the disabled
+     * property of the corresponding buttons.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listView.getItems().addAll(_customCollection.getStoredNames().toArray());
@@ -85,6 +101,6 @@ public class CustomViewController extends AbstractController implements Initiali
         deleteLbl.visibleProperty().bind(deleteBtn.disabledProperty().not());
         playIcon.visibleProperty().bind(playBtn.disabledProperty().not());
 
-        customizeListView(listView);
+
     }
 }

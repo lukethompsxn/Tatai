@@ -13,6 +13,7 @@ public class MathViewController extends AbstractController{
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static MathsCollection _mathModel = MathsCollection.instance();
 
+    //JOEL
     public void add() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_ADD);
         _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_ADD, false);
@@ -54,6 +55,7 @@ public class MathViewController extends AbstractController{
         pushChild("QuestionView");
     }
 
+    //Action for the "home" button. This method loads the "Are you sure" pop up.
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -62,6 +64,7 @@ public class MathViewController extends AbstractController{
         }
     }
 
+    //Action for the "stats" button. This method calls a method from abstract controller to set the child to stats view
     public void stats() {
         pushChild("StatsView");
     }

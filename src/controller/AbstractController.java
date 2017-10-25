@@ -28,7 +28,12 @@ public abstract class AbstractController {
     protected static Stack<Parent> _parentStack = new Stack<>();
     protected static int _attempts;
 
-    //Called from subclasses to set a new scene inside the container
+    /**
+     * Loads a new scene based on the input parameter, then sets add this scene to the top of the stack. The children of
+     * the main pane is set to the top of the stack. This is used for setting the scene on the main pane. This method is
+     * called from the subclasses of abstract controller in order to set the visible scene.
+     * @param name
+     */
     protected void pushChild(String name) {
         _mainPane.setVisible(true);
         try {
@@ -41,6 +46,25 @@ public abstract class AbstractController {
         }
     }
 
+    /**
+     * This method is used to return to the previous scene. This method is called from the subclasses of abstract
+     * controller. It takes no parameters. The top scene on the stack is "popped" and then the scene at the top of
+     * the stack is set as the child to the main pane. This determines what is visisble on the screen.
+     */
+    protected void popChild() {
+        _parentStack.pop();
+        _mainPane.getChildren().setAll(_parentStack.peek());
+    }
+
+    /**
+     * This method is used to load and display pop ups, it is called from the sub classes of abstract controller.
+     * Takes a scene and boolean as parameters, then sets the pop up pane (container) and darkned fade overlay to be
+     * visible. If transitions are enabled, then the overlay pane and pop up pane opacity is transitioned in, and the
+     * pop up pane's scale is also transitioned in. If transitions are not enabled then the overlay pane, and pop up
+     * container pane are instantly set to their values, instead of transitioning in.
+     * @param scene
+     * @param transitions
+     */
     protected void pushPopup(Scene scene, boolean transitions) {
         _popupPaneContainer.setVisible(true);
         _overlay.setVisible(true);
@@ -60,7 +84,6 @@ public abstract class AbstractController {
             scalePopup.setToX(1);
             scalePopup.setToY(1);
 
-
             fadeOverlay.play();
             scalePopup.play();
             fadePopup.play();
@@ -73,6 +96,10 @@ public abstract class AbstractController {
 
     }
 
+    /**
+     * This method is used to close the current pop up on screen. It is called from subclasses of abstract controller.
+     * It takes no parameters and reverse transitions the opacity of both the overlay pane and the pop up container.
+     */
     protected void closePopup() {
         _popupPaneContainer.setVisible(false);
         FadeTransition fadeOverlay = new FadeTransition(Duration.millis(100), _overlay);
@@ -87,90 +114,20 @@ public abstract class AbstractController {
         fadePopup.play();
     }
 
-    //Called from subclasses to return to the previous scene inside the container
-    protected void popChild() {
-        _parentStack.pop();
-        _mainPane.getChildren().setAll(_parentStack.peek());
-    }
-
-    //Helper method for changing the scene, takes a string of the scene name as a parameter
-    protected void sceneChange(String scene) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource( File.separator + "view" + File.separator + scene + ".fxml"));
-            Main.pushScene(new Scene(root, 1280, 720));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    protected void setFonts(Label l1, int s1, Label l2, int s2, Label l3, int s3, Label l4, int s4, int num) {
-        try {
-            if (num == 1) {
-                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s1);
-                l1.setFont(f1);
-            }
-            else if (num == 2) {
-                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s1);
-                l1.setFont(f1);
-                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s2);
-                l2.setFont(f2);
-            }
-            else if (num == 3) {
-                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s1);
-                l1.setFont(f1);
-                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s2);
-                l2.setFont(f2);
-                final Font f3 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s3);
-                l3.setFont(f3);
-            }
-            else {
-                final Font f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s1);
-                l1.setFont(f1);
-                final Font f2 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s2);
-                l2.setFont(f2);
-                final Font f3 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s3);
-                l3.setFont(f3);
-                final Font f4 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "fonts/MarkerFeltWide.ttf")), s4);
-                l4.setFont(f4);
-            }
-
-
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void customizeListView(ListView listView) {
-        /*listView.setCellFactory((Object cell) -> {
-            return new ListCell<String>() {
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (item != null) {
-                        setText(item);
-                        Font f1 = null;
-                        try {
-                            f1 = Font.loadFont(new FileInputStream(new File("fonts" + File.separator + "MarkerFeltWide.ttf")), 20);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        setFont(f1);
-                    }
-                    else {
-                        setText("");
-                    }
-                }
-            };
-        });*/
-    }
-
+    /**
+     * This method is used to set the number of attempts stored inside abstract controller. This method is used for
+     * setting the the number of attempts from question view controller, so the getter can get the number of attempts
+     * inside wrong view controller.
+     */
     protected void setSuperAttempts(int num) {
         _attempts = num;
     }
 
+    /**
+     * This method is used to get the number of attempts stored inside the abstract controller. This method is used for
+     * getting the number of attempts from the wrong view controller in order to determine which label to display.
+     * @return
+     */
     protected int getSuperAttempts() {
         return _attempts;
     }

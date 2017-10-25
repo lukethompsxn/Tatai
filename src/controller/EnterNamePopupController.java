@@ -21,6 +21,12 @@ public class EnterNamePopupController extends AbstractController implements Init
     @FXML
     Label error;
 
+    /**
+     * This method is the action for the submit button. As this is a text entry, multiple checks are conducted on
+     * the text field in order to ensure that the user has enetered a name, and that the name does not aleady exist.
+     * If either of those occur, a label is updated prompting the user of the error, otherwise the pop up is closed,
+     * the list is added to the stored lists file, and the view is changed to the custom view.
+     */
     public void close() {
         if (textField.getText().trim().isEmpty()) {
             textField.clear();
@@ -40,10 +46,9 @@ public class EnterNamePopupController extends AbstractController implements Init
 
     }
 
+    //This method was overridden in order to set the visibility of the error label to false on initialisation
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         error.setVisible(false);
-        textField.requestFocus();
-
     }
 }

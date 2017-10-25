@@ -3,10 +3,9 @@ package model;
 import java.util.*;
 
 public class MathsCollection extends NumberCollection {
-
+    private static MathsCollection _mathsCollection;
     private HashMap<Integer, String> _questionsMap;
     private HashMap<Integer, String> _questionAnswersMap;
-    private static MathsCollection _mathsCollection;
     private  int _randomQuestionCount;
 
     //Singleton Constructor
@@ -23,6 +22,7 @@ public class MathsCollection extends NumberCollection {
         initialize();
     }
 
+    //JOEL WHOLE CLASS
     public void arithmetic(int level, int questionNumber, ModeDirector.Mode mode, boolean random) {
 
         if (!random) {

@@ -9,6 +9,14 @@ public class SkipPopupController extends AbstractController  {
     private int _numQuestions;
     private int _score;
 
+    /**
+     * This constructor is used to set the iteration, number of questions, score and question view controller, as passed
+     * in from the question view controller.
+     * @param iteration
+     * @param numQuestions
+     * @param score
+     * @param qvc
+     */
     public SkipPopupController(int iteration, int numQuestions, int score, QuestionViewController qvc) {
         _iteration = iteration;
         _numQuestions = numQuestions;
@@ -16,6 +24,12 @@ public class SkipPopupController extends AbstractController  {
         _qvc = qvc;
     }
 
+    /**
+     * This method is the action for the user confirming to skip the question. It first checks which were it should be
+     * changing to, depending on the stage of the quiz which the user is it. Then methods are called on the controller
+     * in order to prepare the view for the next iteration, before closing the popup by calling a method from abstract
+     * controller.
+     */
     public void skip() {
         if (_iteration > _numQuestions) {
             _modeDirector.updateStats(_score, _iteration);
@@ -27,6 +41,7 @@ public class SkipPopupController extends AbstractController  {
         closePopup();
     }
 
+    //Action for the "cancel" button. This method calls a method from abstract controller in order to close the pop up
     public void cancel() {
         closePopup();
     }

@@ -23,16 +23,19 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuViewController extends AbstractController implements Initializable {
+public class MenuViewController extends AbstractController {
     private static ModeDirector _modeDirector = ModeDirector.instance();
-    //private static MathsCollection _mathModel = MathsCollection.instance();
 
     @FXML
     Button mathBtn;
     @FXML
     Button settingsBtn;
 
-    //Action for practice button
+    /**
+     * This method is the action for the practice button. It first sets the type inside the mode director, then sets
+     * up the panes for the transition. After loading the practice view scene, it transitions between the two panes
+     * in order to display the practice view.
+     */
     public void practiceMenu() {
         _modeDirector.setType(ModeDirector.Type.PRACTICE);
         _mainPane.setTranslateX(-1280);
@@ -52,6 +55,7 @@ public class MenuViewController extends AbstractController implements Initializa
 
     }
 
+    //Action for the "info" button. This method calls a method from abstract controller in order to disaply the info popup
     public void info() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "InfoPopup.fxml"))), true);
@@ -60,7 +64,11 @@ public class MenuViewController extends AbstractController implements Initializa
         }
     }
 
-    //Action for math button
+    /**
+     * This method is the action for the math button. It first sets the type inside the mode director, then sets
+     * up the panes for the transition. After loading the math view scene, it transitions between the two panes
+     * in order to display the math view.
+     */
     public void mathMenu() {
         _modeDirector.setType(ModeDirector.Type.MATH);
         _mainPane.setTranslateX(1280);
@@ -80,6 +88,7 @@ public class MenuViewController extends AbstractController implements Initializa
 
     }
 
+    //Action for the settings button. This method calls a method from abstract controller in order to display the settings popup
     public void settings() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "SettingsPopup.fxml"))), true);
@@ -88,8 +97,4 @@ public class MenuViewController extends AbstractController implements Initializa
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
 }

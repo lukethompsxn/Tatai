@@ -3,7 +3,7 @@ package model;
 import java.util.LinkedList;
 
 public class ModeDirector {
-
+    //JOEL WHOLE CLASS
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };

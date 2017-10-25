@@ -3,6 +3,8 @@ package model;
 import java.util.HashMap;
 
 public abstract class NumberCollection {
+    //JOEL WHOLE CLASS
+
     //private int _totalScore;
     //private int _totalIterations;
 

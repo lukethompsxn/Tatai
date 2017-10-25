@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class PracticeCollection extends NumberCollection {
+    //JOEL WHOLE CLASS
 
     private static PracticeCollection _practiceCollection = PracticeCollection.instance();
     private HashMap<Integer, String> _questionsMap;

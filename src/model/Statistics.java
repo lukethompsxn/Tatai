@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.LinkedList;
 
 public class Statistics {
+    //JOEL WHOLE CLASS
 
     private static Statistics _statistics = Statistics.instance();
     private static ModeDirector _modeDirector = ModeDirector.instance();

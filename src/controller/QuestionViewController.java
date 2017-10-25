@@ -31,7 +31,7 @@ public class QuestionViewController extends AbstractController implements Initia
     private int _score = 0;
     private int _attempt = 1;
     private int _numQuestions;
-    private MediaPlayer mediaPlayer;
+    private MediaPlayer _mediaPlayer;
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static NumberCollection _pracModel = PracticeCollection.instance();
@@ -42,16 +42,21 @@ public class QuestionViewController extends AbstractController implements Initia
     private HashMap<Integer, String> _questionMap;
     private HashMap<Integer, String> _answerMap;
 
-    @FXML
-    private Label numberLbl;
+    //Progress Bar
     @FXML
     private ProgressBar progressBar;
+
+    //Buttons
     @FXML
     private Button recordBtn;
     @FXML
     Button skipQuestionBtn;
     @FXML
     Button menuBtn;
+
+    //Labels
+    @FXML
+    private Label numberLbl;
     @FXML
     Label scoreLbl;
     @FXML
@@ -60,6 +65,8 @@ public class QuestionViewController extends AbstractController implements Initia
     Label recordLbl;
     @FXML
     Label skipLbl;
+
+    //Icons
     @FXML
     MaterialDesignIconView recordIcon;
     @FXML
@@ -67,6 +74,12 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     MaterialDesignIconView homeIcon;
 
+    /**
+     * This method was overridden in order to disable various buttons, intialise certain labels, load the first question,
+     * and to bind the visible properties of the overlay labels to the disabled properties of the corresponding buttons.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recordBtn.setDisable(false);
@@ -89,6 +102,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
 
         numberLbl.setText(_questionMap.get(_iteration));
+
         recordLbl.visibleProperty().bind(recordBtn.disabledProperty().not());
         skipLbl.visibleProperty().bind(skipQuestionBtn.disabledProperty().not());
         recordIcon.visibleProperty().bind(recordBtn.disabledProperty().not());
@@ -96,54 +110,13 @@ public class QuestionViewController extends AbstractController implements Initia
 
     }
 
-    // Returns to main menu when button is pressed.
-    public void returnToMain() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("You are about to quit!");
-        alert.setContentText("Do you want to save progress?");
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType no = new ButtonType("No");
-        ButtonType cancel = new ButtonType("Cancel");
-        alert.getButtonTypes().setAll(yes, no, cancel);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == yes) {
-            _modeDirector.updateStats(_score,_iteration);
-            popChild(); //will throw exceptions until proper menu is set up
-            //WILL NEED TO ADD LOGIC FOR SAVINGS
-
-        }
-        else if (result.get() == no) {
-            _modeDirector.updateStats(_score,_iteration);
-            popChild();
-        }
-    }
-
-    // Carries out calls to skip the current questions and move onto next
+    /**
+     * This method is the action for the "skip" button. It first loads the scene for the skip class pop up, then sets
+     * the controller, passing in the iteration, number of questions, score and the current question view controller
+     * its self. This is need so that methods can be called on this controller in order to update the question etc.
+     * After doing this is calls a method from abstract controller to push the pop up.
+     */
     public void skipQuestion() {
-        /*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Are you sure?");
-        alert.setContentText("Are you sure you want to skip the current question?");
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        ButtonType yes = new ButtonType("Yes");
-        ButtonType cancel = new ButtonType("Cancel");
-        alert.getButtonTypes().setAll(yes, cancel);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == yes) {
-            if (_iteration > _numQuestions) {
-                _modeDirector.updateStats(_score, _iteration);
-                pushChild("SummaryView");
-            } else {
-                _attempt = 1;
-                nextQuestion();
-                resetBtns();
-                //NEEDS LOGIC FOR NEXT ITERATION
-            }
-
-        } */
         FXMLLoader loader = new FXMLLoader(getClass().getResource(File.separator + "view" + File.separator + "SkipPopup.fxml"));
         loader.setController(new SkipPopupController(_iteration, _numQuestions, _score, this));
         try {
@@ -153,7 +126,11 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    //Extends Task to perform work on a worker thread for recording the audio
+    /**
+     * This class extends Task in order to perform the recording on a background thread. This is required since the
+     * recording of the users audio is done by a BASH command. This class is instantiated and executed upon the user
+     * pressing the record button.
+     */
     class AudioInBackground extends Task<Integer> {
 
         @Override
@@ -165,7 +142,10 @@ public class QuestionViewController extends AbstractController implements Initia
     }
 
 
-    //Extends Task to perform work on a worker thread for a timer used to show progress in a progress bar
+    /**
+     * This class extends Task in order to display a progress bar to assit the user on knowing the time remaining.
+     * This class is instantiated and executed when the user clicks the record button.
+     */
     class Timer extends Task<Integer> {
 
         @Override
@@ -178,7 +158,13 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    //Records audio on a different thread from a bash process
+    /**
+     * This is the action the for record button. It first disables both the record button and the skip question button.
+     * It then creates an instance of the class used to record audio in a background thread, setting the action for when
+     * it is completed to call the playBack audio method and instantiate a voice recognition class. The action on
+     * completion for the voice recognition thread is then set the display the correct view if the answer was right,
+     * or the wrong view if the answer was wrong. In addition to this it also handles the logic to do with the question.
+     */
     public void recordAudio() {
         recordBtn.setDisable(true);
         skipQuestionBtn.setDisable(true);
@@ -218,16 +204,13 @@ public class QuestionViewController extends AbstractController implements Initia
         Timer timer = new Timer();
 
         progressBar.progressProperty().bind(timer.progressProperty());
-        ColorAdjust adjust = new ColorAdjust();
-        adjust.setHue(-0.4);
-        progressBar.setEffect(adjust);
 
         new Thread(record).start();
         new Thread(timer).start();
 
     }
 
-    //Reads results of voice recognition, goes to file in documents. Need to change so it work for VM directory
+    //JOEL
     private void readResults() throws IOException {
         _textResult = "";
 
@@ -255,7 +238,11 @@ public class QuestionViewController extends AbstractController implements Initia
         _textResult = _textResult.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
     }
 
-    // Extends Task to perform work on a worker thread to carry out voice recognition
+    /**
+     * This method extends Task. It is used for completing the voice recognition in a background thread. This is done
+     * through a BASH command, so the command is set up, then it calls the helper method runInBash() which uses Java's
+     * process builder functionality y to run the process inside BASH.
+     */
     class VoiceRecognitionInBackground extends Task<Integer> {
 
         @Override
@@ -270,7 +257,11 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    //Helper method for making the process and process builder so commands can be executed in bash
+    /**
+     * This method is used to run commands in BASH. It takes the command as a String type as a parameter then uses the
+     * inbuild process and process builder functionality to run the process inside BASH.
+     * @param cmd
+     */
     private void runInBash(String cmd) {
         Process process;
         ProcessBuilder processBuilder = new ProcessBuilder(File.separator + "bin" + File.separator + "bash", "-c", cmd);
@@ -288,6 +279,10 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
+    /**
+     * This method is a helper method for updating labels and setting the next iteration. This method is called from
+     * various places inside QuestionViewController each time the next question is required to be loaded/set.
+     */
     protected void nextQuestion() {
         _iteration+=1;
         _modeDirector.setIteration(_iteration);
@@ -296,6 +291,10 @@ public class QuestionViewController extends AbstractController implements Initia
         _attempt = 1;
     }
 
+    /**
+     * This method is a helper method for resetting the buttons/artifacts for the next iteration. This method is called
+     * from various places inside QuestionViewController and is called when the next iteration is occuring.
+     */
     protected void resetBtns() {
         if (_attempt > 2) {
             nextQuestion();
@@ -307,6 +306,7 @@ public class QuestionViewController extends AbstractController implements Initia
         attemptLbl.setText("" +  _attempt);
     }
 
+    //Action for the "home" button. This method calls a method from abstract controller in order to load the "are you sure" pop up
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -315,13 +315,17 @@ public class QuestionViewController extends AbstractController implements Initia
         }
     }
 
-    //Helper method to playback audio once they have finished recording
+    /**
+     * This method is a helper method to playback the audio which the user recorded. This method is called from inside
+     * QuestionViewController upon successfully recording the users audio answer. This method first tests whether playback
+     * has been enabled by the user and if so loads and plays their recording.
+     */
     private void playbackAudio() {
         if (_modeDirector.getPlaybackEnabled()) {
             File file = new File(System.getProperty("user.dir") + File.separator + "data" + File.separator + "audio.wav");
             Media media = new Media(file.toURI().toString());
-            mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setAutoPlay(true);
+            _mediaPlayer = new MediaPlayer(media);
+            _mediaPlayer.setAutoPlay(true);
         }
     }
 
