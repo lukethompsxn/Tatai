@@ -63,6 +63,8 @@ public class WrongViewController extends AbstractController implements Initializ
         finishIcon.setVisible(false);
         redoIcon.setVisible(false);
         nextIcon.setVisible(false);
+        answerLbl.setVisible(false);
+
         String attempt = _modeDirector.getCurrentAttempt();
         String answer = _modeDirector.getCurrentAnswer();
 
@@ -85,12 +87,14 @@ public class WrongViewController extends AbstractController implements Initializ
             youSaidLbl.setText("You said " + attempt);
             answerLbl.setText("The answer was " + answer);
             finishIcon.setVisible(true);
+            answerLbl.setVisible(true);
         }
         else if ((getSuperAttempts() > 1)) {
             lbl.setText("Next");
             youSaidLbl.setText("You said " + attempt);
             answerLbl.setText("The answer was " + answer);
             nextIcon.setVisible(true);
+            answerLbl.setVisible(true);
         }
         else {
             lbl.setText("Try Again!");

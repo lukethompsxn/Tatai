@@ -213,6 +213,11 @@ public class QuestionViewController extends AbstractController implements Initia
         _textResult = "";
 
         // Reads file recout file
+        if (!(new File("data" + File.separator + "recout.mlf").exists())) {
+            _textResult="";
+            return;
+        }
+
         File file = new File("data" + File.separator + "recout.mlf");
         FileInputStream fis = new FileInputStream(file);
         byte[] bytes = new byte[(int) file.length()];
