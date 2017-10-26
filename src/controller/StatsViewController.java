@@ -80,13 +80,7 @@ public class StatsViewController extends AbstractController implements Initializ
         }
 
         barChart.getData().clear();
-        if (!addPressed) {
-            barChart.getData().add(series);
-            addPressed = true;
-        } else {
-            barChart.getData().clear();
-            addPressed = false;
-        }
+        barChart.getData().add(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getAddQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getAddQuizzesCompleted()));
@@ -114,13 +108,7 @@ public class StatsViewController extends AbstractController implements Initializ
         }
 
         barChart.getData().clear();
-        if (!subPressed) {
-            barChart.getData().add(series);
-            subPressed = true;
-        } else {
-            barChart.getData().clear();
-            subPressed = false;
-        }
+        barChart.getData().add(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getSubQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getSubQuizzesCompleted()));
@@ -149,13 +137,7 @@ public class StatsViewController extends AbstractController implements Initializ
         }
 
         barChart.getData().clear();
-        if (!multPressed) {
-            barChart.getData().add(series);
-            multPressed = true;
-        } else {
-            barChart.getData().clear();
-            multPressed = false;
-        }
+        barChart.getData().add(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getMultQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getMultQuizzesCompleted()));
@@ -182,13 +164,7 @@ public class StatsViewController extends AbstractController implements Initializ
         }
 
         barChart.getData().clear();
-        if (!divPressed) {
-            barChart.getData().add(series);
-            divPressed = true;
-        } else {
-            barChart.getData().clear();
-            divPressed = false;
-        }
+        barChart.getData().add(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getDivQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getDivQuizzesCompleted()));
