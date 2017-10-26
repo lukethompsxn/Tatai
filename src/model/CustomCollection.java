@@ -1,7 +1,5 @@
 package model;
 
-import javafx.scene.control.Alert;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -19,6 +17,7 @@ public class CustomCollection extends NumberCollection {
     private HashMap<String, HashMap<Integer, String>> _storedQuestions = new HashMap<>();
     private HashMap<String, HashMap<Integer, String>> _storedAnswers = new HashMap<>();
     private String _currentMap;
+    private boolean _error = false;
     private ArrayList<String> _currentItems = new ArrayList<>();
 
     //Singleton Constructor
@@ -66,7 +65,6 @@ public class CustomCollection extends NumberCollection {
         _questionAnswersMap = new HashMap<>();
 
         boolean toggle = true;
-        boolean error = false;
         int questionNum = 0;
         int answerNum = 0;
         String temp;
@@ -86,6 +84,9 @@ public class CustomCollection extends NumberCollection {
                 if (temp.isEmpty()) {
                     // do nothing
                 } else if (temp.startsWith("@")) {
+                    if (_error) {
+                        break;
+                    }
                     name = temp.replaceFirst("@", "");
                     _questionsMap = new HashMap<>();
                     _questionAnswersMap = new HashMap<>();
@@ -95,17 +96,15 @@ public class CustomCollection extends NumberCollection {
                     _questionsMap.put(questionNum, temp);
                     questionNum++;
                     toggle = !toggle;
-                    error = true;
+                    _error = true;
                 } else {
                     try {
                         temp = temp.replaceAll("\\s+", "");
                         _questionAnswersMap.put(answerNum, getMaoriName(Integer.parseInt(temp)));
-                        error = false;
+                        _error = false;
                     } catch (Exception e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Error");
-                        alert.setContentText("Please fix the Custom Question File");
-                        alert.showAndWait();
+                        _error = true;
+                        break;
                     }
 
                     answerNum++;
@@ -117,7 +116,6 @@ public class CustomCollection extends NumberCollection {
                 }
             }
         }
-
     }
 
     //This method gets the currently selected question map
@@ -226,4 +224,21 @@ public class CustomCollection extends NumberCollection {
         }
         _currentItems = new ArrayList<>();
     }
+
+    //This method passes on whether there was an error importing custom lists, this is called from custom view
+    public boolean getStatus() {
+        return _error;
+    }
+
+    //This method is used to reset the error status and maps after the user has chosen to fix the file error
+    public void reset() {
+        _storedAnswers = new HashMap<>();
+        _storedQuestions = new HashMap<>();
+        _questionAnswersMap = new HashMap<>();
+        _questionsMap = new HashMap<>();
+        _currentItems = new ArrayList<>();
+        _currentMap = null;
+        _error = false;
+    }
+
 }

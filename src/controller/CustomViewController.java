@@ -81,7 +81,16 @@ public class CustomViewController extends AbstractController implements Initiali
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listView.getItems().addAll(_customCollection.getStoredNames().toArray());
+        if (_customCollection.getStatus()) {
+            try {
+                pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "FileErrorPopup.fxml"))), false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            listView.getItems().addAll(_customCollection.getStoredNames().toArray());
+        }
 
         //Adds listener for selection events
         listView.getSelectionModel().selectedItemProperty().addListener((obj, before, now) -> {
@@ -99,6 +108,7 @@ public class CustomViewController extends AbstractController implements Initiali
         playLbl.visibleProperty().bind(playBtn.disabledProperty().not());
         deleteLbl.visibleProperty().bind(deleteBtn.disabledProperty().not());
         playIcon.visibleProperty().bind(playBtn.disabledProperty().not());
+
 
     }
 }

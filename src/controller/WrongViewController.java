@@ -13,12 +13,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * @author Joel Clarke, Luke Thompson
- */
 public class WrongViewController extends AbstractController implements Initializable {
 
     // Labels
+    @FXML
+    private Label youSaidLbl;
     @FXML
     private Label answerLbl;
     @FXML
@@ -35,10 +34,9 @@ public class WrongViewController extends AbstractController implements Initializ
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     /**
-     * This action method changes the the visible scene based on the state of the application. If the current quiz is
-     * finished the method will call AbstractController method pushChild() so that the summary view will become visible.
-     * Otherwise this method call AbstractControllers popChild() method which will remove the wrong view scene returning
-     * the application to the question view.
+     * This method is the action for the button. The button shows a different label depending on whether the user
+     * is on their first or second attepmt at the question and whether they have finished the quiz. After determining
+     * the logic, it calls methods from abstract controller in order to push / pop the child.
      */
     public void btnAction() {
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 1)) {
@@ -51,10 +49,7 @@ public class WrongViewController extends AbstractController implements Initializ
         }
     }
 
-    /**
-     * This method is invoked when the "home" button is pressed, it calls pushPopup method from AbstractController
-     * which loads the "are you sure" popup.
-     */
+    //Action for "home" button. This method calls a method from abstract controller in order to return to the menu
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -63,44 +58,43 @@ public class WrongViewController extends AbstractController implements Initializ
         }
     }
 
-    /**
-     * This method was overridden in order to intialise certain labels, icons and variables based on the state of the application.
-     * As well as this the method also checks that the answer and attempt have the correct Maori spelling so that it can
-     * be accurately be displayed to the user.
-     * @param location
-     * @param resources
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         finishIcon.setVisible(false);
         redoIcon.setVisible(false);
         nextIcon.setVisible(false);
+        answerLbl.setVisible(false);
+
         String attempt = _modeDirector.getCurrentAttempt();
         String answer = _modeDirector.getCurrentAnswer();
 
-        if (attempt.contains("whaa")) {
+        if (attempt.indexOf("whaa") != -1) {
             attempt = attempt.replaceAll("whaa", "whā");
         }
-        if (answer.contains("whaa")) {
+        if (answer.indexOf("whaa") != -1) {
             answer = answer.replaceAll("whaa", "whā");
         }
-        if (attempt.contains("maa")) {
+        if (attempt.indexOf("maa") != -1) {
             attempt = attempt.replaceAll("maa", "mā");
         }
-        if (answer.contains("maa")) {
+        if (answer.indexOf("maa") != -1) {
             answer = answer.replaceAll("maa", "mā");
         }
 
-        answerLbl.setText("You said " + attempt);
+        youSaidLbl.setText("You said " + attempt);
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             lbl.setText("Finish");
-            answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            youSaidLbl.setText("You said " + attempt);
+            answerLbl.setText("The answer was " + answer);
             finishIcon.setVisible(true);
+            answerLbl.setVisible(true);
         }
         else if ((getSuperAttempts() > 1)) {
             lbl.setText("Next");
-            answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            youSaidLbl.setText("You said " + attempt);
+            answerLbl.setText("The answer was " + answer);
             nextIcon.setVisible(true);
+            answerLbl.setVisible(true);
         }
         else {
             lbl.setText("Try Again!");
