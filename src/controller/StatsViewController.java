@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.ModeDirector;
 import model.Statistics;
@@ -15,7 +14,6 @@ import model.Statistics;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class StatsViewController extends AbstractController implements Initializable {

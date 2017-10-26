@@ -95,6 +95,7 @@ public class SummaryViewController extends AbstractController implements Initial
             _statistics.addRecentScoresMult(score);
         }
 
+        _modeDirector.updateStats(score, _modeDirector.getNumQuestions());
         // Updates the save files of the statistics
         _statistics.writeToFileHighScores();
         _statistics.writeToFileRecentScores();

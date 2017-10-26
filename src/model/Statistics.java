@@ -59,7 +59,6 @@ public class Statistics {
             _recentScoresMult.removeLast();
         }
         _recentScoresMult.addFirst(score);
-        System.out.println(_recentScoresMult);
     }
 
     /**
@@ -614,7 +613,6 @@ public class Statistics {
                 // Formats file
                 formatNewRecentFile();
             } else {
-                System.out.println("exists");
             }
 
             // Checks if HighScores.txt exists
@@ -626,7 +624,6 @@ public class Statistics {
                 // Formats file
                 formatNewHighFile();
             } else {
-                System.out.println("exists");
             }
 
         } catch (IOException e) {
@@ -690,13 +687,13 @@ public class Statistics {
             writer.write("multhigh0" + System.getProperty("line.separator"));
             writer.write("divhigh0" + System.getProperty("line.separator"));
             writer.write("@averages" + System.getProperty("line.separator"));
-            writer.write("addtotsccore0" + System.getProperty("line.separator"));
+            writer.write("addtotscore0" + System.getProperty("line.separator"));
             writer.write("addtotitt0" + System.getProperty("line.separator"));
-            writer.write("subtotsccore0" + System.getProperty("line.separator"));
+            writer.write("subtotscore0" + System.getProperty("line.separator"));
             writer.write("subtotitt0" + System.getProperty("line.separator"));
-            writer.write("multtotsccore0" + System.getProperty("line.separator"));
+            writer.write("multtotscore0" + System.getProperty("line.separator"));
             writer.write("multtotitt0" + System.getProperty("line.separator"));
-            writer.write("divtotsccore0" + System.getProperty("line.separator"));
+            writer.write("divtotscore0" + System.getProperty("line.separator"));
             writer.write("divtotitt0" + System.getProperty("line.separator"));
             writer.write("@rand" + System.getProperty("line.separator"));
             writer.write("addquestans0" + System.getProperty("line.separator"));
