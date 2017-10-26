@@ -32,7 +32,6 @@ public class SkipPopupController extends AbstractController  {
      */
     public void skip() {
         if (_iteration > _numQuestions) {
-            _modeDirector.updateStats(_score, _iteration);
             pushChild("SummaryView");
         } else {
             _qvc.nextQuestion();

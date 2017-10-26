@@ -68,11 +68,14 @@ public class WrongViewController extends AbstractController implements Initializ
 
         if (attempt.indexOf("whaa") != -1) {
             attempt = attempt.replaceAll("whaa", "whā");
-        } else if (answer.indexOf("whaa") != -1) {
+        }
+        if (answer.indexOf("whaa") != -1) {
             answer = answer.replaceAll("whaa", "whā");
-        } else if (attempt.indexOf("maa") != -1) {
+        }
+        if (attempt.indexOf("maa") != -1) {
             attempt = attempt.replaceAll("maa", "mā");
-        } else if (answer.indexOf("maa") != -1) {
+        }
+        if (answer.indexOf("maa") != -1) {
             answer = answer.replaceAll("maa", "mā");
         }
 

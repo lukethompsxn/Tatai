@@ -59,7 +59,6 @@ public class Statistics {
             _recentScoresMult.removeLast();
         }
         _recentScoresMult.addFirst(score);
-        System.out.println(_recentScoresMult);
     }
 
     /**
@@ -316,8 +315,8 @@ public class Statistics {
      */
     public void writeToFileHighScores() {
         try {
-            File file = new File("data" + File.separator + "HighScores.txt");
-            File tempFile = new File("data" + File.separator + "tempFile.txt");
+            File file = new File("data" + File.separator + ".HighScores.txt");
+            File tempFile = new File("data" + File.separator + ".tempFile.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
@@ -416,7 +415,7 @@ public class Statistics {
     public void readFileHighScores() {
 
         try {
-            File file = new File("data" + File.separator + "HighScores.txt");
+            File file = new File("data" + File.separator + ".HighScores.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String currentLine;
@@ -493,10 +492,10 @@ public class Statistics {
      */
     public void writeToFileRecentScores() {
         try {
-            File file = new File("data" + File.separator + "RecentScores.txt");
+            File file = new File("data" + File.separator + ".RecentScores.txt");
 
             // Creates a temp file to write to
-            File tempFile = new File("data" + File.separator + "tempFile.txt");
+            File tempFile = new File("data" + File.separator + ".tempFile.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
@@ -558,7 +557,7 @@ public class Statistics {
     public void readFileRecentScores() {
 
         try {
-            File file = new File("data" + File.separator + "RecentScores.txt");
+            File file = new File("data" + File.separator + ".RecentScores.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
             String currentLine;
@@ -602,8 +601,8 @@ public class Statistics {
      */
     public void createFiles() {
         try {
-            File file1 = new File("data" + File.separator + "RecentScores.txt");
-            File file2 = new File("data" + File.separator + "HighScores.txt");
+            File file1 = new File("data" + File.separator + ".RecentScores.txt");
+            File file2 = new File("data" + File.separator + ".HighScores.txt");
 
             // Checks if RecentScores.txt does not exist
             if (!file1.exists()) {
@@ -614,7 +613,6 @@ public class Statistics {
                 // Formats file
                 formatNewRecentFile();
             } else {
-                System.out.println("exists");
             }
 
             // Checks if HighScores.txt exists
@@ -626,7 +624,6 @@ public class Statistics {
                 // Formats file
                 formatNewHighFile();
             } else {
-                System.out.println("exists");
             }
 
         } catch (IOException e) {
@@ -640,8 +637,8 @@ public class Statistics {
     private void formatNewRecentFile() {
         try {
 
-            File file = new File("data" + File.separator + "RecentScores.txt");
-            File tempFile = new File("data" + File.separator + "tempFile.txt");
+            File file = new File("data" + File.separator + ".RecentScores.txt");
+            File tempFile = new File("data" + File.separator + ".tempFile.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
@@ -678,8 +675,8 @@ public class Statistics {
     private void formatNewHighFile() {
         try {
 
-            File file = new File("data" + File.separator + "HighScores.txt");
-            File tempFile = new File("data" + File.separator + "tempFile.txt");
+            File file = new File("data" + File.separator + ".HighScores.txt");
+            File tempFile = new File("data" + File.separator + ".tempFile.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
@@ -690,13 +687,13 @@ public class Statistics {
             writer.write("multhigh0" + System.getProperty("line.separator"));
             writer.write("divhigh0" + System.getProperty("line.separator"));
             writer.write("@averages" + System.getProperty("line.separator"));
-            writer.write("addtotsccore0" + System.getProperty("line.separator"));
+            writer.write("addtotscore0" + System.getProperty("line.separator"));
             writer.write("addtotitt0" + System.getProperty("line.separator"));
-            writer.write("subtotsccore0" + System.getProperty("line.separator"));
+            writer.write("subtotscore0" + System.getProperty("line.separator"));
             writer.write("subtotitt0" + System.getProperty("line.separator"));
-            writer.write("multtotsccore0" + System.getProperty("line.separator"));
+            writer.write("multtotscore0" + System.getProperty("line.separator"));
             writer.write("multtotitt0" + System.getProperty("line.separator"));
-            writer.write("divtotsccore0" + System.getProperty("line.separator"));
+            writer.write("divtotscore0" + System.getProperty("line.separator"));
             writer.write("divtotitt0" + System.getProperty("line.separator"));
             writer.write("@rand" + System.getProperty("line.separator"));
             writer.write("addquestans0" + System.getProperty("line.separator"));
