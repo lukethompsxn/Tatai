@@ -31,7 +31,7 @@ public class MathViewController extends AbstractController{
     public void subtract() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_SUB);
         _mathModel.arithmetic(99,10,ModeDirector.Mode.MATH_SUB, false);
-        _modeDirector.setNumQuestions(10);_modeDirector.setNumQuestions(10);
+        _modeDirector.setNumQuestions(10);
         pushChild("QuestionView");
     }
 
@@ -82,7 +82,6 @@ public class MathViewController extends AbstractController{
      */
     public void custom() {
         _modeDirector.setMode(ModeDirector.Mode.MATH_CUSTOM);
-        _modeDirector.setNumQuestions(10);
         pushChild("CustomView");
     }
 
