@@ -55,13 +55,9 @@ public class MathViewController extends AbstractController{
         pushChild("QuestionView");
     }
 
-    //Action for the "home" button. This method loads the "Are you sure" pop up.
+    //Action for the "home" button. This method loads the menu view
     public void mainMenu() {
-        try {
-            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        pushChild("MenuView");
     }
 
     //Action for the "stats" button. This method calls a method from abstract controller to set the child to stats view

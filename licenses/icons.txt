@@ -1,0 +1,11 @@
+Home Icon: Icon made by Dave Gandy from www.flaticon.com 
+
+Settings Wheel Icon: Icon made by Designmodo from www.iconfinder.com
+
+Information Icon: No attribution required - retrieved rom www.pixabay.com
+
+Mathematical Operation Icons: made my Luke Thompson
+
+In-application icons are from Material Design Icon View jar by Dave Grand, please refer
+to the license file.
+ 

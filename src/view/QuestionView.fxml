@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
@@ -81,16 +80,19 @@
                   <Insets right="52.0" bottom="16.0" />
                </GridPane.margin>
             </MaterialDesignIconView>
-            <Button fx:id="skipQuestionBtn" mnemonicParsing="false" onAction="#skipQuestion" prefHeight="53.0" prefWidth="219.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-            <Button fx:id="recordBtn" mnemonicParsing="false" onAction="#recordAudio" prefHeight="68.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+            <Button fx:id="skipQuestionBtn" mnemonicParsing="false" onAction="#skipQuestion" prefHeight="59.0" prefWidth="205.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
-                  <Insets top="85.0" />
+                  <Insets left="272.0" top="8.0" />
+               </GridPane.margin></Button>
+            <Button fx:id="recordBtn" mnemonicParsing="false" onAction="#recordAudio" prefHeight="61.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets left="272.0" top="87.0" />
                </GridPane.margin>
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" fx:id="menuBtn" onAction="#mainMenu" prefHeight="84.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+            <Button fx:id="menuBtn" mnemonicParsing="false" onAction="#mainMenu" prefHeight="84.0" prefWidth="153.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="20.0" right="18.0" />
                </GridPane.margin>
