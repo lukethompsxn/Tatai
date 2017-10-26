@@ -31,9 +31,16 @@ public class Main extends Application {
             File dir = new File(System.getProperty("user.dir") + File.separator + "data");
             dir.mkdir();
         }
+
+        // Creates statistic files if does not exist
         _statistics.createFiles();
+
+        // Reads in saved scores
         _statistics.readFileRecentScores();
+
+        // Imports custom list that have been saved on disk
         _customCollection.importCustomLists();
+
         launch(args);
     }
 

@@ -1,12 +1,10 @@
 package controller;
 
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.ModeDirector;
 
@@ -17,12 +15,13 @@ import java.util.ResourceBundle;
 
 public class WrongViewController extends AbstractController implements Initializable {
 
-    @FXML
-    private Button btn;
+    // Labels
     @FXML
     private Label answerLbl;
     @FXML
     private Label lbl;
+
+    // Icons
     @FXML
     private MaterialDesignIconView nextIcon;
     @FXML
@@ -41,7 +40,6 @@ public class WrongViewController extends AbstractController implements Initializ
         else {
             popChild();
         }
-        //other logic
     }
 
     public void mainMenu() {

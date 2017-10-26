@@ -28,7 +28,7 @@ public class PracticeCollection extends NumberCollection {
      * This populates two maps of type Integer then String. The first is the _questionsMap where a random number is
      * added as a question based on the input level. The second map is _questionAnswerMap which is populated with with
      * the matching keys question translated to Maori.
-     * @param level
+     * @param level level of difficulty for practice
      */
     public void setCollection(int level) {
 
@@ -61,7 +61,7 @@ public class PracticeCollection extends NumberCollection {
 
     /**
      * This method returns a map containing all the current questions
-     * @return
+     * @return hash map of
      */
     public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;

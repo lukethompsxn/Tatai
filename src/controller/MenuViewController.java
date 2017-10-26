@@ -3,25 +3,13 @@ package controller;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import main.Main;
-import model.MathsCollection;
 import model.ModeDirector;
-import model.NumberCollection;
-import model.PracticeCollection;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class MenuViewController extends AbstractController {
     private static ModeDirector _modeDirector = ModeDirector.instance();

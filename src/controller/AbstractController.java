@@ -5,17 +5,11 @@ import javafx.animation.ScaleTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
-import main.Main;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Stack;
 
@@ -32,7 +26,7 @@ public abstract class AbstractController {
      * Loads a new scene based on the input parameter, then sets add this scene to the top of the stack. The children of
      * the main pane is set to the top of the stack. This is used for setting the scene on the main pane. This method is
      * called from the subclasses of abstract controller in order to set the visible scene.
-     * @param name
+     * @param name name of the scene being added to the top of the stack
      */
     protected void pushChild(String name) {
         _mainPane.setVisible(true);

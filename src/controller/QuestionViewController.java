@@ -6,24 +6,17 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
-import main.Main;
 import model.*;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class QuestionViewController extends AbstractController implements Initializable{
@@ -265,7 +258,7 @@ public class QuestionViewController extends AbstractController implements Initia
     /**
      * This method is used to run commands in BASH. It takes the command as a String type as a parameter then uses the
      * inbuild process and process builder functionality to run the process inside BASH.
-     * @param cmd
+     * @param cmd desired command to run in bash
      */
     private void runInBash(String cmd) {
         Process process;
@@ -280,7 +273,6 @@ public class QuestionViewController extends AbstractController implements Initia
             process.waitFor();
         } catch (InterruptedException ie) {
             ie.printStackTrace();
-            return;
         }
     }
 

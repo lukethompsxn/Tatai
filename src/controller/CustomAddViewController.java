@@ -21,7 +21,6 @@ public class CustomAddViewController extends AbstractController implements Initi
 
     private int _first=0;
     private int _second=0;
-    private int _answer;
 
     private String _operator;
     private boolean operatorDone = false;
@@ -147,17 +146,24 @@ public class CustomAddViewController extends AbstractController implements Initi
      */
     @FXML
     private void addQuestionBtnAction() {
-        if (_operator.equals(" + ")) {
-            _answer = _first + _second;
-        } else if (_operator.equals(" - ")) {
-            _answer = _first - _second;
-        } else if (_operator.equals(" x ")) {
-            _answer = _first * _second;
-        } else {
-            _answer = _first / _second;
-            if (_first % _second != 0) {
-                _answer = 0;
-            }
+        int _answer;
+
+        switch (_operator) {
+            case " + ":
+                _answer = _first + _second;
+                break;
+            case " - ":
+                _answer = _first - _second;
+                break;
+            case " x ":
+                _answer = _first * _second;
+                break;
+            default:
+                _answer = _first / _second;
+                if (_first % _second != 0) {
+                    _answer = 0;
+                }
+                break;
         }
 
         // Check is see if answer is in allowed range
@@ -173,8 +179,6 @@ public class CustomAddViewController extends AbstractController implements Initi
             alert.setHeaderText("Answer Error");
             alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
             alert.showAndWait().ifPresent((ButtonType response) -> {
-                if (response == ButtonType.OK) {
-                }
             });
         }
 
@@ -276,7 +280,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * _second. The method then checks if _first or _second respectively have already had a number added to the field,
      * if not the number input num is simply added to the instance variable and otherwise the instance variable is
      * multiplied by 10 and then the input variable is added.
-     * @param num
+     * @param num the number corresponding to the button which has been pressed
      */
     private void formingDigits(int num) {
         equationLbl.setText(equationLbl.getText() + num);
@@ -378,7 +382,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * the second number has already been given a value (i.e. start and _second > 0), then from this the method
      * checks all of the possible equations that could be made with the input button and along with the instance
      * variable _first.
-     * @param btnNumber
+     * @param btnNumber number corresponding to the button that has been pressed
      * @return boolean
      */
     private boolean needDisable(int btnNumber) {
@@ -386,56 +390,60 @@ public class CustomAddViewController extends AbstractController implements Initi
         // The _second number has already has been given a value
         if (_second > 0) {
             // add
-            if (_operator.equals(" + ")) {
-                if (((_first + ((_second*10) + btnNumber)) <= 0) || ((_first + ((_second*10) + btnNumber)) > 99)) {
-                    return true;
-                }
-            }
-            // subtraction
-            else if (_operator.equals(" - ")) {
-                if (((_first - ((_second*10) + btnNumber)) <= 0) || ((_first - ((_second*10) + btnNumber)) > 99)) {
-                    return true;
-                }
-            }
-            // multiplication
-            else if (_operator.equals(" x ")) {
-                if (((_first * ((_second*10) + btnNumber)) <= 0) || ((_first * ((_second*10) + btnNumber)) > 99)) {
-                    return true;
-                }
-            }
-            // Have only allowed division of single digits for simplicity, hence always returns true
-            else  {
-                numberBtnCtrl(true);
+            switch (_operator) {
+                case " + ":
+                    if (((_first + ((_second * 10) + btnNumber)) <= 0) || ((_first + ((_second * 10) + btnNumber)) > 99)) {
+                        return true;
+                    }
+                    break;
+                // subtraction
+                case " - ":
+                    if (((_first - ((_second * 10) + btnNumber)) <= 0) || ((_first - ((_second * 10) + btnNumber)) > 99)) {
+                        return true;
+                    }
+                    break;
+                // multiplication
+                case " x ":
+                    if (((_first * ((_second * 10) + btnNumber)) <= 0) || ((_first * ((_second * 10) + btnNumber)) > 99)) {
+                        return true;
+                    }
+                    break;
+                // Have only allowed division of single digits for simplicity, hence always returns true
+                default:
+                    numberBtnCtrl(true);
+                    break;
             }
         }
         // The _second number has not been assigned a value
         else {
             // add
-            if (_operator.equals(" + ")) {
-                if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99)) {
-                    return true;
-                }
-            }
-            // subtraction
-            else if (_operator.equals(" - ")) {
-                if (((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99)) {
-                    return true;
-                }
-            }
-            // multiplication
-            else if (_operator.equals(" x ")) {
-                if (((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
-                    return true;
-                }
-            }
-            // division
-            else  {
-                if (btnNumber == 0) {
-                    return true;
-                }
-                if (_first % btnNumber != 0) {
-                    return true;
-                }
+            switch (_operator) {
+                case " + ":
+                    if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99)) {
+                        return true;
+                    }
+                    break;
+                // subtraction
+                case " - ":
+                    if (((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99)) {
+                        return true;
+                    }
+                    break;
+                // multiplication
+                case " x ":
+                    if (((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
+                        return true;
+                    }
+                    break;
+                // division
+                default:
+                    if (btnNumber == 0) {
+                        return true;
+                    }
+                    if (_first % btnNumber != 0) {
+                        return true;
+                    }
+                    break;
             }
         }
         return false;
@@ -444,7 +452,7 @@ public class CustomAddViewController extends AbstractController implements Initi
     /**
      * This method controls all the operator buttons and either enables or disables them based on the boolean input
      * "option".
-     * @param option
+     * @param option whether or not to disable or enable the buttons
      */
     private void operationBtnsCtrl(boolean option) {
         addBtn.setDisable(option);
@@ -468,7 +476,7 @@ public class CustomAddViewController extends AbstractController implements Initi
     /**
      * This method will control all of the the number buttons for 0-9, based on the boolean input the method will either
      * disable all of the buttons or enable them all.
-     * @param option
+     * @param option whether or not to disable or enable the buttons
      */
     private void numberBtnCtrl(boolean option) {
         oneBtn.setDisable(option);
@@ -514,7 +522,8 @@ public class CustomAddViewController extends AbstractController implements Initi
         finish.visibleProperty().bind(finishQuestionsBtn.disabledProperty().not());
 
         try {
-            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))), false);
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator +
+                    "ParentsHelpPopup.fxml"))), false);
         } catch (IOException e) {
             e.printStackTrace();
         }

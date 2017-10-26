@@ -1,13 +1,7 @@
 package controller;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import model.MathsCollection;
 import model.ModeDirector;
-import model.NumberCollection;
-
-import java.io.File;
-import java.io.IOException;
 
 public class MathViewController extends AbstractController{
     private static ModeDirector _modeDirector = ModeDirector.instance();

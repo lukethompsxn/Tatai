@@ -37,9 +37,9 @@ public class CustomCollection extends NumberCollection {
      * corresponding number to a hashmap, likewise the same thing is done with the answer. This method is called
      * from custom add view which passes arguments everytime the user adds a question. The question and answer is
      * also added to a list in order to save them to file in a later method call.
-     * @param questionNumber
-     * @param question
-     * @param answer
+     * @param questionNumber the number of the question being added
+     * @param question the question being added
+     * @param answer the answer being added
      */
     public void addCustomQuestion(int questionNumber, String question, int answer) {
         if (questionNumber == 0) {
@@ -80,7 +80,7 @@ public class CustomCollection extends NumberCollection {
                 temp = scanner.nextLine();
 
                 if (temp.isEmpty()) {
-
+                    // do nothing
                 } else if (temp.startsWith("@")) {
                     name = temp.replaceFirst("@", "");
                     _questionsMap = new HashMap<>();
@@ -168,10 +168,10 @@ public class CustomCollection extends NumberCollection {
      * then consumes the list, before copying the rest of the file. Once this is done, the list is removed from the
      * stored maps.
      * from the
-     * @param name
+     * @param name name of list being deleted
      */
     public void deleteCustomList(String name) {
-        String temp = "";
+        String temp;
 
         try {
             Files.copy(new File("data" + File.separator + "CustomQuestions.txt").toPath(), new File("data" + File.separator + ".CustomQuestions.txt").toPath());
@@ -209,7 +209,7 @@ public class CustomCollection extends NumberCollection {
     /**
      * This method is called after the user enters a for the list which they created. It first writes the name of the
      * list to file, followed by the questions and answers which have been stored in a list as they were added.
-     * @param name
+     * @param name the name of custom list being added
      */
     public void configureAdd(String name) {
         _storedQuestions.put(name, _questionsMap);

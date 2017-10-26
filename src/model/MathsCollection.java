@@ -217,7 +217,7 @@ public class MathsCollection extends NumberCollection {
 
     /**
      * This method returns a map containing all the current questions
-     * @return
+     * @return hash map of current questions
      */
     public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;
@@ -225,7 +225,7 @@ public class MathsCollection extends NumberCollection {
 
     /**
      * This method returns a map containing all the current answers corresponding to the current map of answers.
-     * @return
+     * @return hash map of current answers
      */
     public HashMap<Integer, String> getCurrentAnswerMap() {
         return _questionAnswersMap;
