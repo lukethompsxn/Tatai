@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
@@ -58,7 +57,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <BarChart fx:id="barChart" animated="false" horizontalGridLinesVisible="false" layoutX="-6.0" layoutY="66.0" legendVisible="false" prefHeight="444.0" prefWidth="819.0" style="-fx-background-color: Transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
+                  <BarChart fx:id="barChart" animated="false" horizontalGridLinesVisible="false" layoutX="-6.0" layoutY="66.0" legendVisible="false" prefHeight="416.0" prefWidth="819.0" style="-fx-background-color: Transparent;" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="66.0">
                     <xAxis>
                       <CategoryAxis fx:id="xAxis" />
                     </xAxis>
@@ -102,12 +101,12 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Button fx:id="addStatsBtn" layoutX="6.0" layoutY="41.0" mnemonicParsing="false" onAction="#addStatsBtnAction" prefHeight="65.0" prefWidth="184.0" />
-                  <Button fx:id="subStatsBtn" layoutX="219.0" layoutY="39.0" mnemonicParsing="false" onAction="#subStatsBtnAction" prefHeight="71.0" prefWidth="179.0" />
-                  <Button fx:id="divStatsBtn" layoutX="628.0" layoutY="38.0" mnemonicParsing="false" onAction="#divStatsBtnAction" prefHeight="71.0" prefWidth="191.0" />
-                  <Button fx:id="multStatsBtn" layoutX="423.0" layoutY="38.0" mnemonicParsing="false" onAction="#multStatsBtnAction" prefHeight="71.0" prefWidth="184.0" />
+                  <Button fx:id="subStatsBtn" layoutX="219.0" layoutY="39.0" mnemonicParsing="false" onAction="#subStatsBtnAction" prefHeight="65.0" prefWidth="179.0" />
+                  <Button fx:id="divStatsBtn" layoutX="628.0" layoutY="38.0" mnemonicParsing="false" onAction="#divStatsBtnAction" prefHeight="65.0" prefWidth="191.0" />
+                  <Button fx:id="multStatsBtn" layoutX="423.0" layoutY="38.0" mnemonicParsing="false" onAction="#multStatsBtnAction" prefHeight="65.0" prefWidth="184.0" />
                </children>
             </AnchorPane>
-            <Button fx:id="mainMenu" onAction="#mainMenu" mnemonicParsing="false" prefHeight="82.0" prefWidth="156.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Button fx:id="mainMenu" mnemonicParsing="false" onAction="#mainMenu" prefHeight="82.0" prefWidth="156.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="20.0" right="18.0" />
                </GridPane.margin>
