@@ -63,6 +63,7 @@ public class CustomCollection extends NumberCollection {
         _questionAnswersMap = new HashMap<>();
 
         boolean toggle = true;
+        boolean error = false;
         int questionNum = 0;
         int answerNum = 0;
         String temp;
@@ -91,10 +92,12 @@ public class CustomCollection extends NumberCollection {
                     _questionsMap.put(questionNum, temp);
                     questionNum++;
                     toggle = !toggle;
+                    error = true;
                 } else {
                     try {
                         temp = temp.replaceAll("\\s+", "");
                         _questionAnswersMap.put(answerNum, getMaoriName(Integer.parseInt(temp)));
+                        error = false;
                     } catch (Exception e) {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("Error");

@@ -3,7 +3,9 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
@@ -11,6 +13,8 @@ import javafx.scene.control.Label;
 import model.ModeDirector;
 import model.Statistics;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -202,6 +206,12 @@ public class StatsViewController extends AbstractController implements Initializ
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))),false);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         addPressed = false;
         subPressed = false;
         multPressed = false;

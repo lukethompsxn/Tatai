@@ -97,6 +97,5 @@ public class CustomViewController extends AbstractController implements Initiali
         deleteLbl.visibleProperty().bind(deleteBtn.disabledProperty().not());
         playIcon.visibleProperty().bind(playBtn.disabledProperty().not());
 
-
     }
 }

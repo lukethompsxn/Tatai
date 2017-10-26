@@ -71,3 +71,7 @@ Button:hover {
     -fx-background-image: none;
     -fx-background-color: #e4e4e4;
 }
+
+.axis {
+    -fx-tick-label-fill: Transparent;
+}

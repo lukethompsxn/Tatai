@@ -161,6 +161,7 @@ public class QuestionViewController extends AbstractController implements Initia
     public void recordAudio() {
         recordBtn.setDisable(true);
         skipQuestionBtn.setDisable(true);
+        menuBtn.setDisable(true);
 
         AudioInBackground record = new AudioInBackground();
 
@@ -298,6 +299,7 @@ public class QuestionViewController extends AbstractController implements Initia
         }
         skipQuestionBtn.setDisable(false);
         recordBtn.setDisable(false);
+        menuBtn.setDisable(false);
         progressBar.progressProperty().unbind();
         progressBar.setProgress(0.0);
         attemptLbl.setText("" +  _attempt);
