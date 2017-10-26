@@ -67,7 +67,7 @@ public class CorrectViewController extends AbstractController implements Initial
         nextIcon.setVisible(false);
         finishIcon.setVisible(false);
 
-        if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 1)) {
+        if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             lbl.setText("Finish");
             finishIcon.setVisible(true);
         } else {

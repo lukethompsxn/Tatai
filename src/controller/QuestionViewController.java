@@ -83,6 +83,7 @@ public class QuestionViewController extends AbstractController implements Initia
         attemptLbl.setText(_attempt + "");
         _numQuestions = _modeDirector.getNumQuestions() - 2;
         _modeDirector.setScore(0);
+        _modeDirector.setIteration(0);
 
         if (_modeDirector.getType() == ModeDirector.Type.MATH) {
             if (_modeDirector.getMode() == ModeDirector.Mode.MATH_CUSTOM) {
@@ -183,8 +184,8 @@ public class QuestionViewController extends AbstractController implements Initia
                 if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
                     _modeDirector.setScore(_score);
-                    nextQuestion();
                     pushChild("CorrectView");
+                    nextQuestion();
                 }
                 else {
                     setSuperAttempts(_attempt);
@@ -192,7 +193,6 @@ public class QuestionViewController extends AbstractController implements Initia
                     _attempt++;
                 }
                 resetBtns();
-
 
             });
             new Thread(recognition).start();
