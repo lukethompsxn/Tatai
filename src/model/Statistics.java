@@ -4,16 +4,17 @@ import java.io.*;
 import java.util.LinkedList;
 
 public class Statistics {
-    //JOEL WHOLE CLASS
 
     private static Statistics _statistics = Statistics.instance();
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
+    // Linked lists of recent scores
     private LinkedList<Integer> _recentScoresMult = new LinkedList<>();
     private LinkedList<Integer> _recentScoresDiv = new LinkedList<>();
     private LinkedList<Integer> _recentScoresSub = new LinkedList<>();
     private LinkedList<Integer> _recentScoresAdd = new LinkedList<>();
 
+    // Score history
     private int _highScoreMult = 0;
     private int _highScoreDiv = 0;
     private int _highScoreSub = 0;
@@ -181,8 +182,10 @@ public class Statistics {
         _divQuestionsAnswered = questionsAnswered;
     }
 
+    /**
+     * This method writes to a file called HighScores the current history and high scores so that they can be saved
+     */
     public void writeToFileHighScores() {
-        //String f1, int f2, boolean append
         try {
             File file = new File("data" + File.separator + "HighScores.txt");
             File tempFile = new File("data" + File.separator + "tempFile.txt");
@@ -192,8 +195,10 @@ public class Statistics {
 
             String currentLine;
 
+            // Reads reader until there is no more line available
             while ((currentLine = bufferedReader.readLine()) != null) {
 
+                // Saves all high scores
                 if (currentLine.startsWith("addhigh")) {
                     bufferedWriter.write("addhigh" + _highScoreAdd + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("subhigh")) {
@@ -204,48 +209,56 @@ public class Statistics {
                     bufferedWriter.write("divhigh" + _highScoreDiv + System.getProperty("line.separator"));
                 }
 
+                // Saves addition total scores and total iterations
                 else if (currentLine.startsWith("addtotscore")) {
                     bufferedWriter.write("addtotscore" + _modeDirector.getTotalScores(ModeDirector.Mode.MATH_ADD) + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("addtotitt")) {
                     bufferedWriter.write("addtotitt" + _modeDirector.getTotalIterations(ModeDirector.Mode.MATH_ADD) + System.getProperty("line.separator"));
                 }
 
+                // Saves subtraction total scores and total iterations
                 else if (currentLine.startsWith("subtotscore")) {
                     bufferedWriter.write("subtotscore" + _modeDirector.getTotalScores(ModeDirector.Mode.MATH_SUB) + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("subtotitt")) {
                     bufferedWriter.write("subtotitt" + _modeDirector.getTotalIterations(ModeDirector.Mode.MATH_SUB) + System.getProperty("line.separator"));
                 }
 
+                // Saves multiplication total scores and total iterations
                 else if (currentLine.startsWith("multtotscore")) {
                     bufferedWriter.write("multtotscore" + _modeDirector.getTotalScores(ModeDirector.Mode.MATH_MULT) + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("multtotitt")) {
                     bufferedWriter.write("multtotitt" + _modeDirector.getTotalIterations(ModeDirector.Mode.MATH_MULT) + System.getProperty("line.separator"));
                 }
 
+                // Saves division total scores and total iterations
                 else if (currentLine.startsWith("divtotscore")) {
                     bufferedWriter.write("divtotscore" + _modeDirector.getTotalScores(ModeDirector.Mode.MATH_DIV) + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("divtotitt")) {
                     bufferedWriter.write("divtotitt" + _modeDirector.getTotalIterations(ModeDirector.Mode.MATH_DIV) + System.getProperty("line.separator"));
                 }
 
+                // Saves addition total questions and quizzes completed
                 else if (currentLine.startsWith("addquestans")) {
                     bufferedWriter.write("addquestans" + _statistics.getAddQuestionsAnswered() + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("addquizdone")) {
                     bufferedWriter.write("addquizdone" + _statistics.getAddQuizzesCompleted() + System.getProperty("line.separator"));
                 }
 
+                // Saves subtraction total questions and quizzes completed
                 else if (currentLine.startsWith("subquestans")) {
                     bufferedWriter.write("subquestans" + _statistics.getSubQuestionsAnswered() + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("subquizdone")) {
                     bufferedWriter.write("subquizdone" + _statistics.getSubQuizzesCompleted() + System.getProperty("line.separator"));
                 }
 
+                // Saves multiplication total questions and quizzes completed
                 else if (currentLine.startsWith("multquestans")) {
                     bufferedWriter.write("multquestans" + _statistics.getMultQuestionsAnswered() + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("multquizdone")) {
                     bufferedWriter.write("multquizdone" + _statistics.getMultQuizzesCompleted() + System.getProperty("line.separator"));
                 }
 
+                // Saves division total questions and quizzes completed
                 else if (currentLine.startsWith("divquestans")) {
                     bufferedWriter.write("divquestans" + _statistics.getDivQuestionsAnswered() + System.getProperty("line.separator"));
                 } else if (currentLine.startsWith("divquizdone")) {
@@ -259,12 +272,18 @@ public class Statistics {
 
             bufferedReader.close();
             bufferedWriter.close();
+
+            // Renames and overwrites the temp file to the the main file HighScores.txt
             tempFile.renameTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method reads the file called HighScores.txt which contains all the score history of the application.
+     * When reading the scores it saves the values to the relevant fields.
+     */
     public void readFileHighScores() {
 
         try {
@@ -338,9 +357,16 @@ public class Statistics {
         }
     }
 
+    /**
+     * This method writes all the recent scores from the math modes addition, subtraction, multiplication and division to
+     * a file called RecentScores.txt. This is done by reading all the relevant recent score lists, iterating through
+     * them and then writing each score.
+     */
     public void writeToFileRecentScores() {
         try {
             File file = new File("data" + File.separator + "RecentScores.txt");
+
+            // Creates a temp file to write to
             File tempFile = new File("data" + File.separator + "tempFile.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
@@ -350,26 +376,33 @@ public class Statistics {
 
             while ((currentLine = bufferedReader.readLine()) != null) {
 
+                // Writes all recent addition scores
                 if (currentLine.startsWith("@add")) {
                     bufferedWriter.write("@add" + System.getProperty("line.separator"));
                     for (int i = 0; i < 10; i++) {
                         bufferedWriter.write(Integer.toString(_recentScoresAdd.get(i))+ System.getProperty("line.separator"));
 
                     }
-                } else if (currentLine.startsWith("@sub")) {
+                }
+                // Writes all recent subtraction scores
+                else if (currentLine.startsWith("@sub")) {
                     bufferedWriter.write("@sub" + System.getProperty("line.separator"));
                     for (int i = 0; i < 10; i++) {
                         bufferedWriter.write(Integer.toString(_recentScoresSub.get(i))+ System.getProperty("line.separator"));
 
                     }
-                } else if (currentLine.startsWith("@mult")) {
+                }
+                // Writes all recent multiplication scores
+                else if (currentLine.startsWith("@mult")) {
                     bufferedWriter.write("@mult" + System.getProperty("line.separator"));
                     for (int i = 0; i < 10; i++) {
 
                         bufferedWriter.write(Integer.toString(_recentScoresMult.get(i)) + System.getProperty("line.separator"));
 
                     }
-                } else if (currentLine.startsWith("@div")) {
+                }
+                // Writes all recent division scores
+                else if (currentLine.startsWith("@div")) {
                     bufferedWriter.write("@div" + System.getProperty("line.separator"));
                     for (int i = 0; i < 10; i++) {
                         bufferedWriter.write(Integer.toString(_recentScoresDiv.get(i))+ System.getProperty("line.separator"));
@@ -380,12 +413,19 @@ public class Statistics {
 
             bufferedReader.close();
             bufferedWriter.close();
+
+            // Renames and overwrites the temp file to the the main file HighScores.txt
             tempFile.renameTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method reads the file called RecentScores.txt which contains all the recent score history of the application.
+     * When the method reads an @ followed by an operator (e.g. add) the method will iterate 10 times adding the scores
+     * to the respective lists in the correct order that they were written in.
+     */
     public void readFileRecentScores() {
 
         try {
@@ -394,19 +434,27 @@ public class Statistics {
 
             String currentLine;
             while((currentLine = reader.readLine()) != null) {
+
+                // Reads the last 10 recent addition scores
                 if (currentLine.startsWith("@add")) {
                     for (int i = 0; i < 10; i++) {
                         _recentScoresAdd.addLast(Integer.parseInt(reader.readLine()));
                     }
-                } else if (currentLine.startsWith("@sub")) {
+                }
+                // Reads the last 10 recent subtraction scores
+                else if (currentLine.startsWith("@sub")) {
                     for (int i = 0; i < 10; i++) {
                         _recentScoresSub.addLast(Integer.parseInt(reader.readLine()));
                     }
-                } else if (currentLine.startsWith("@mult")) {
+                }
+                // Reads the last 10 recent multiplication scores
+                else if (currentLine.startsWith("@mult")) {
                     for (int i = 0; i < 10; i++) {
                         _recentScoresMult.addLast(Integer.parseInt(reader.readLine()));
                     }
-                } else if (currentLine.startsWith("@div")) {
+                }
+                // Reads the last 10 recent division scores
+                else if (currentLine.startsWith("@div")) {
                     for (int i = 0; i < 10; i++) {
                         _recentScoresDiv.addLast(Integer.parseInt(reader.readLine()));
                     }
@@ -419,19 +467,34 @@ public class Statistics {
         }
     }
 
+    /**
+     * This method check if the files required for the statics side of the application exist, if not the method will
+     * invoke another method which will create and format the needed file.
+     */
     public void createFiles() {
         try {
             File file1 = new File("data" + File.separator + "RecentScores.txt");
             File file2 = new File("data" + File.separator + "HighScores.txt");
 
+            // Checks if RecentScores.txt does not exist
             if (!file1.exists()) {
+
+                // Creates file
                 file1.createNewFile();
+
+                // Formats file
                 formatNewRecentFile();
             } else {
                 System.out.println("exists");
             }
+
+            // Checks if HighScores.txt exists
             if (!file2.exists()) {
+
+                // Creates file
                 file2.createNewFile();
+
+                // Formats file
                 formatNewHighFile();
             } else {
                 System.out.println("exists");
@@ -442,6 +505,9 @@ public class Statistics {
         }
     }
 
+    /**
+     * This method formats the file RecentScores.txt following its creation in a specific format.
+     */
     public void formatNewRecentFile() {
         try {
 
@@ -477,6 +543,9 @@ public class Statistics {
         }
     }
 
+    /**
+     * This method formats the file HighScores.txt following its creation in a specific format.
+     */
     public void formatNewHighFile() {
         try {
 

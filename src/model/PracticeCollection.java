@@ -1,12 +1,10 @@
 package model;
 
-import javax.imageio.stream.IIOByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
 public class PracticeCollection extends NumberCollection {
-    //JOEL WHOLE CLASS
 
     private static PracticeCollection _practiceCollection = PracticeCollection.instance();
     private HashMap<Integer, String> _questionsMap;
@@ -26,6 +24,12 @@ public class PracticeCollection extends NumberCollection {
         initialize();
     }
 
+    /**
+     * This populates two maps of type Integer then String. The first is the _questionsMap where a random number is
+     * added as a question based on the input level. The second map is _questionAnswerMap which is populated with with
+     * the matching keys question translated to Maori.
+     * @param level
+     */
     public void setCollection(int level) {
 
         _questionsMap = new HashMap<>();
@@ -34,22 +38,39 @@ public class PracticeCollection extends NumberCollection {
 
         Random randomGenerator = new Random();
 
+        // Iterates 10 times
         for (int i = 0; i < 10; i++) {
+
+            // Gets random int
             int randomInt = randomGenerator.nextInt(level) + 1;
+
+            // Checks if the random int has already been been added to the map, if so a new int is generated
             while (randNumbers.contains(randomInt)) {
                 randomInt = randomGenerator.nextInt(level) + 1;
             }
             randNumbers.add(randomInt);
+
+            // Gets Maori translation for the randomly generated number
             String maoriName = getMaoriName(randomInt);
+
+            // Questions and corresponding answer is added to the maps
             _questionsMap.put(i, "" + randomInt);
             _questionAnswersMap.put(i, maoriName);
         }
     }
 
+    /**
+     * This method returns a map containing all the current questions
+     * @return
+     */
     public HashMap<Integer, String> getCurrentQuestionMap() {
         return _questionsMap;
     }
 
+    /**
+     * This method returns a map containing all the current answers corresponding to the current map of answers.
+     * @return
+     */
     public HashMap<Integer, String> getCurrentAnswerMap() {
         return _questionAnswersMap;
     }

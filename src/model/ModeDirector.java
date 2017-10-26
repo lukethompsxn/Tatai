@@ -1,23 +1,23 @@
 package model;
 
-import java.util.LinkedList;
-
 public class ModeDirector {
-    //JOEL WHOLE CLASS
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
+    // Variables relating to the state of the application
     public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
     public enum RandomModes { MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV };
     public enum Type { PRACTICE, MATH };
     private ModeDirector.Mode _currentMode;
     private ModeDirector.Type _currentType;
 
+    // Current question information
     private int _score = 0;
     private int _iteration = 0;
     private int _numQuestions;
     private String _currentAnswer;
     private String _currentAttempt;
 
+    // Long term saved question information
     private int _totalAddScore = 0;
     private int _totalSubScore = 0;
     private int _totalMultScore = 0;

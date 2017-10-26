@@ -3,44 +3,13 @@ package model;
 import java.util.HashMap;
 
 public abstract class NumberCollection {
-    //JOEL WHOLE CLASS
-
-    //private int _totalScore;
-    //private int _totalIterations;
 
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();
 
-    //public enum Mode { PRACTICE_EASY, PRACTICE_HARD, MATH_ADD, MATH_SUB, MATH_MULT, MATH_DIV, MATH_RANDOM, MATH_CUSTOM };
-    //public enum Type { PRACTICE, MATH };
-    //private Mode _currentMode = Mode.PRACTICE_EASY;
-    //private Type _currentType = Type.PRACTICE;
-
-
-    //Singleton Constructor
-    //public static NumberCollection instance() {
-    //   if (_numberCollection == null) {
-    //        _numberCollection = new NumberCollection();
-    //    }
-    //    return _numberCollection;
-    //}
-
-    //Private Constructor
-    //private NumberCollection() {
-    //    //anything that needs to constructed
-    //
-    //    _mapOfNumbers.put(0, "");
-    //    _mapOfNumbers.put(1, "tahi");
-    //    _mapOfNumbers.put(2, "rua");
-    //    _mapOfNumbers.put(3, "toru");
-    //    _mapOfNumbers.put(4, "whaa");
-    //    _mapOfNumbers.put(5, "rima");
-    //    _mapOfNumbers.put(6, "ono");
-    //    _mapOfNumbers.put(7, "whitu");
-    //    _mapOfNumbers.put(8, "waru");
-    //    _mapOfNumbers.put(9, "iwa");
-    //    _mapOfNumbers.put(10, "tekau");
-    //}
-
+    /**
+     * This method populates the map called _mapOfNumbers which contains all the numbers needed to construct Maori
+     * words from 1 to 99.
+     */
     public void initialize() {
         _mapOfNumbers.put(0, "");
         _mapOfNumbers.put(1, "tahi");
@@ -55,6 +24,12 @@ public abstract class NumberCollection {
         _mapOfNumbers.put(10, "tekau");
     }
 
+    /**
+     * This method takes an input called number of type int and returns a String which is the Maori translation for
+     * the given input number.
+     * @param number number to be translated
+     * @return
+     */
     public String getMaoriName(int number) {
         String maoriNum = "";
 
@@ -114,30 +89,10 @@ public abstract class NumberCollection {
         return maoriNum;
     }
 
+    /**
+     * These are abstract methods that all subclasses must implement so that they can all work in the same manner.
+     * @return HashMap<Integer.String>
+     */
     public abstract HashMap<Integer, String> getCurrentQuestionMap();
-
     public abstract HashMap<Integer, String> getCurrentAnswerMap();
-
-    //public void updateStats(int score, int iterations) {
-    //   _totalScore+=score;
-    //    _totalIterations+=iterations;
-    //}
-
-    //public void setMode(Mode mode) {
-    //    _currentMode = mode;
-    //}
-
-    //public Mode getMode() {
-    //    return _currentMode;
-    //}
-
-    //public void setType(Type type) {
-    //   _currentType = type;
-    //}
-
-    //public Type getType() {
-    //    return _currentType;
-    //}
-
-
 }

@@ -108,6 +108,12 @@ public class CustomAddViewController extends AbstractController implements Initi
     @FXML
     private Label finish;
 
+    /**
+     * This is the action that occurs when an operator button has been pressed. It disables all operators buttons,
+     * adds the operator that was selected to visible equation label and also sets the instance variable _operator to
+     * the operator selected.
+     * @param event1
+     */
     @FXML
     private void operationAction(ActionEvent event1) {
         operatorDone = true;
@@ -131,6 +137,14 @@ public class CustomAddViewController extends AbstractController implements Initi
         possibleNumberDisable();
     }
 
+    /**
+     * This action method carries out the necessary operations to add a question once it has been completed and the
+     * "add" button has been pressed. The method first sets the instance variable _answer to the answer of the combination
+     * of _first and _second numbers along with the _operator. It then checks if the answer is in the allowed range, if
+     * so the question along with the answer is stored using a method from CustomCollection. Note that is should not
+     * be possible for the answer to not be not in the allowed range and the check is only for safety purposes.
+     * Lastly the method will reset all buttons and labels so that a new equation can be entered.
+     */
     @FXML
     private void addQuestionBtnAction() {
         if (_operator.equals(" + ")) {
@@ -146,6 +160,7 @@ public class CustomAddViewController extends AbstractController implements Initi
             }
         }
 
+        // Check is see if answer is in allowed range
         if ((_answer < 100) && (_answer > 0)) {
             _customModel.addCustomQuestion(_questionNumber, _first + _operator + _second, _answer);
             _questionNumber++;
@@ -162,7 +177,8 @@ public class CustomAddViewController extends AbstractController implements Initi
                 }
             });
         }
-        //operationBtnsCtrl(false);
+
+        // Resetting buttons/labels/variables
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
@@ -173,10 +189,16 @@ public class CustomAddViewController extends AbstractController implements Initi
         _second = 0;
     }
 
+    /**
+     * This action method carries out the processes needed to complete the addition of a custom list of questions when
+     * the "finish" button is pressed. It firstly resets certain buttons/labels/variables and then calls a method
+     * from AbstractController in order to display a popup that allows for naming of the custom list.
+     */
     @FXML
     private void finishQuestionsBtnAction() {
         _modeDirector.setNumQuestions(_questionNumber);
-        //operationBtnsCtrl(false);
+
+        // Resetting various buttons/labels/variables
         numberBtnCtrl(false);
         addQuestionBtn.setDisable(true);
         equationLbl.setText("");
@@ -194,6 +216,10 @@ public class CustomAddViewController extends AbstractController implements Initi
         }
     }
 
+    /**
+     * This action method is called when the "clear" button is pressed, it resets all buttons and labels relating to
+     * adding a new question to the custom list but still keeping the questions that have already been made.
+     */
     @FXML
     private void clearBtnAction() {
         if (_questionNumber > 0) {
@@ -210,6 +236,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         _second = 0;
     }
 
+    /**
+     * This action method is invoked whenever one of the number buttons has been pressed. Based on the specific number
+     * that has been pressed the method formingDigits is called with the button number being passed in as a parameter.
+     * @param event2
+     */
     @FXML
     private void numberSelectAction(ActionEvent event2) {
         finishQuestionsBtn.setDisable(true);
@@ -238,15 +269,29 @@ public class CustomAddViewController extends AbstractController implements Initi
 
     }
 
+    /**
+     * This method takes an int called "num" as a parameter and based on the state of the view will either add it to the instance
+     * variable _first or _second representing the first and second integer of the custom equation being added.
+     * The method first checks if the operator has been selected, if not it is adding to _first otherwise adding to
+     * _second. The method then checks if _first or _second respectively have already had a number added to the field,
+     * if not the number input num is simply added to the instance variable and otherwise the instance variable is
+     * multiplied by 10 and then the input variable is added.
+     * @param num
+     */
     private void formingDigits(int num) {
         equationLbl.setText(equationLbl.getText() + num);
+
+        // Checks if operator has been selected, deals with _first variable
         if (!operatorDone) {
+
+            // Checks if it the first digit being added to the variable _first
             if (_digitFirst == 1) {
                 _first += num;
                 _digitFirst++;
                 operationBtnsCtrl(false);
+
+                // Special functionality required for the zero button
                 if (num == 0) {
-                    //zeroBtn.setDisable(true);
                     diviBtn.setDisable(true);
                     multBtn.setDisable(true);
                     subBtn.setDisable(true);
@@ -258,19 +303,24 @@ public class CustomAddViewController extends AbstractController implements Initi
                 diviBtn.setDisable(false);
                 multBtn.setDisable(false);
                 subBtn.setDisable(false);
+
+                // Special functionality required for the zero button.
                 if (num == 0) {
-                    //zeroBtn.setDisable(true);
                     diviBtn.setDisable(true);
                     multBtn.setDisable(true);
                     subBtn.setDisable(true);
                 }
             }
-        } else {
+        }
+
+        // Same as above but dealing with _second variable
+        else {
             if (_digitSecond == 1) {
                 _second += num;
                 _digitSecond += 1;
                 addQuestionBtn.setDisable(false);
                 possibleNumberDisable();
+
                 if ((_operator.equals(" x ") && ((_first * ((_second*10) + 0) > 0) && (_first * ((_second*10) + 0) < 100)))) {
                     zeroBtn.setDisable(false);
                 }
@@ -285,74 +335,101 @@ public class CustomAddViewController extends AbstractController implements Initi
         }
     }
 
+    /**
+     * This method goes through each of the number buttons and checks if they need to be disabled by calling the
+     * local needDisable method. If the method returns true the respective button is disabled.
+     */
     private void possibleNumberDisable() {
-        if (needDisbale(0)) {
+        if (needDisable(0)) {
             zeroBtn.setDisable(true);
         }
-        if (needDisbale(1)) {
+        if (needDisable(1)) {
             oneBtn.setDisable(true);
         }
-        if (needDisbale(2)) {
+        if (needDisable(2)) {
             twoBtn.setDisable(true);
         }
-        if (needDisbale(3)) {
+        if (needDisable(3)) {
             threeBtn.setDisable(true);
         }
-        if (needDisbale(4)) {
+        if (needDisable(4)) {
             fourBtn.setDisable(true);
         }
-        if (needDisbale(5)) {
+        if (needDisable(5)) {
             fiveBtn.setDisable(true);
         }
-        if (needDisbale(6)) {
+        if (needDisable(6)) {
             sixBtn.setDisable(true);
         }
-        if (needDisbale(7)) {
+        if (needDisable(7)) {
             sevenBtn.setDisable(true);
         }
-        if (needDisbale(8)) {
+        if (needDisable(8)) {
             eightBtn.setDisable(true);
         }
-        if (needDisbale(9)) {
+        if (needDisable(9)) {
             nineBtn.setDisable(true);
         }
     }
 
-    private boolean needDisbale(int btnNumber) {
+    /**
+     * This method takes a parameter of type int called btnNumber and using this decides whether or not the button needs
+     * to be disabled, if so the method returns true otherwise returns false. This is done my checking first if
+     * the second number has already been given a value (i.e. start and _second > 0), then from this the method
+     * checks all of the possible equations that could be made with the input button and along with the instance
+     * variable _first.
+     * @param btnNumber
+     * @return boolean
+     */
+    private boolean needDisable(int btnNumber) {
+
+        // The _second number has already has been given a value
         if (_second > 0) {
+            // add
             if (_operator.equals(" + ")) {
                 if (((_first + ((_second*10) + btnNumber)) <= 0) || ((_first + ((_second*10) + btnNumber)) > 99)) {
                     return true;
                 }
-            } else if (_operator.equals(" - ")) {
+            }
+            // subtraction
+            else if (_operator.equals(" - ")) {
                 if (((_first - ((_second*10) + btnNumber)) <= 0) || ((_first - ((_second*10) + btnNumber)) > 99)) {
                     return true;
                 }
-            } else if (_operator.equals(" x ")) {
+            }
+            // multiplication
+            else if (_operator.equals(" x ")) {
                 if (((_first * ((_second*10) + btnNumber)) <= 0) || ((_first * ((_second*10) + btnNumber)) > 99)) {
                     return true;
                 }
-            } else  {
-                //if (_first / ((_second*10) + btnNumber) != 0) {
-                //    return true;
-                //}
+            }
+            // Have only allowed division of single digits for simplicity, hence always returns true
+            else  {
                 numberBtnCtrl(true);
             }
         }
+        // The _second number has not been assigned a value
         else {
+            // add
             if (_operator.equals(" + ")) {
                 if (((_first + btnNumber) <= 0) || ((_first + btnNumber) > 99)) {
                     return true;
                 }
-            } else if (_operator.equals(" - ")) {
+            }
+            // subtraction
+            else if (_operator.equals(" - ")) {
                 if (((_first - btnNumber) <= 0) || ((_first - btnNumber) > 99)) {
                     return true;
                 }
-            } else if (_operator.equals(" x ")) {
+            }
+            // multiplication
+            else if (_operator.equals(" x ")) {
                 if (((_first * btnNumber) <= 0) || ((_first * btnNumber) > 99)) {
                     return true;
                 }
-            } else  {
+            }
+            // division
+            else  {
                 if (btnNumber == 0) {
                     return true;
                 }
@@ -364,6 +441,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         return false;
     }
 
+    /**
+     * This method controls all the operator buttons and either enables or disables them based on the boolean input
+     * "option".
+     * @param option
+     */
     private void operationBtnsCtrl(boolean option) {
         addBtn.setDisable(option);
         subBtn.setDisable(option);
@@ -371,6 +453,10 @@ public class CustomAddViewController extends AbstractController implements Initi
         diviBtn.setDisable(option);
     }
 
+    /**
+     * This method is invoked when the "home" button is pressed, it calls pushPopup method from AbstractController
+     * which loads the "are you sure" popup.
+     */
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -379,6 +465,11 @@ public class CustomAddViewController extends AbstractController implements Initi
         }
     }
 
+    /**
+     * This method will control all of the the number buttons for 0-9, based on the boolean input the method will either
+     * disable all of the buttons or enable them all.
+     * @param option
+     */
     private void numberBtnCtrl(boolean option) {
         oneBtn.setDisable(option);
         twoBtn.setDisable(option);

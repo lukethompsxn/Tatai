@@ -210,11 +210,15 @@ public class QuestionViewController extends AbstractController implements Initia
 
     }
 
-    //JOEL
+    /**
+     * This method reads the recout.mlf file which contains the results of the HTK voice recognition software. It then
+     * sets the instance variable _textResult to the result found within the file.
+     * @throws IOException
+     */
     private void readResults() throws IOException {
         _textResult = "";
 
-        // reads file
+        // Reads file recout file
         File file = new File("data" + File.separator + "recout.mlf");
         FileInputStream fis = new FileInputStream(file);
         byte[] bytes = new byte[(int) file.length()];
@@ -222,10 +226,11 @@ public class QuestionViewController extends AbstractController implements Initia
         fis.close();
 
         String text = new String(bytes, "UTF-8");
+
         //Puts string from file into string array
         String[] words = text.split("\\W+");
 
-        // Places text file back into string without the extra format
+        // Places text file back into string without the extra formatting
         for (int j = 0; j < words.length-1; j++) {
             if (j == words.length-2) {
                 _textResult += words[j];
@@ -234,7 +239,7 @@ public class QuestionViewController extends AbstractController implements Initia
             _textResult += words[j] + " ";
         }
 
-        // Removes any text that is not needed
+        // Removes any left over text that is not needed
         _textResult = _textResult.replaceFirst(" ", "").replaceFirst("MLF audio rec sil ", "");
     }
 
