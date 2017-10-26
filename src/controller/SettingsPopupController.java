@@ -8,11 +8,14 @@ import model.ModeDirector;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class SettingsPopupController extends AbstractController implements Initializable{
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     @FXML
-    CheckBox playback;
+    private CheckBox playback;
 
     /**
      * Action for the close button. This method calls a method from abstract controller in order to close the pop up. It

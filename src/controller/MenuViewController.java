@@ -11,6 +11,9 @@ import model.ModeDirector;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class MenuViewController extends AbstractController {
     private static ModeDirector _modeDirector = ModeDirector.instance();
 

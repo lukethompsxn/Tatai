@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class CustomViewController extends AbstractController implements Initializable{
     private CustomCollection _customCollection = CustomCollection.instance();
     private ModeDirector _modeDirector = ModeDirector.instance();

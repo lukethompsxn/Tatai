@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class SummaryViewController extends AbstractController implements Initializable {
 
     @FXML
@@ -95,8 +98,8 @@ public class SummaryViewController extends AbstractController implements Initial
             _statistics.addRecentScoresMult(score);
         }
 
-        _modeDirector.updateStats(score, _modeDirector.getNumQuestions());
         // Updates the save files of the statistics
+        _modeDirector.updateStats(score, _modeDirector.getNumQuestions());
         _statistics.writeToFileHighScores();
         _statistics.writeToFileRecentScores();
 

@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class AreYouSurePopupController extends AbstractController  {
 
     /**

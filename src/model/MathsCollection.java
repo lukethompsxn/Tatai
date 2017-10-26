@@ -2,6 +2,9 @@ package model;
 
 import java.util.*;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class MathsCollection extends NumberCollection {
     private static MathsCollection _mathsCollection;
     private HashMap<Integer, String> _questionsMap;

@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class CustomCollection extends NumberCollection {
     private static CustomCollection _customCollection;
     private HashMap<Integer, String> _questionsMap;

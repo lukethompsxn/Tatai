@@ -3,6 +3,9 @@ package controller;
 import javafx.collections.ObservableList;
 import model.CustomCollection;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class DeletePopupController extends AbstractController  {
     private static CustomCollection _customCollection = CustomCollection.instance();
     private ObservableList _list;

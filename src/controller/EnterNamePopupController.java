@@ -9,6 +9,9 @@ import model.CustomCollection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class EnterNamePopupController extends AbstractController implements Initializable {
     private static CustomCollection _customModel = CustomCollection.instance();
 

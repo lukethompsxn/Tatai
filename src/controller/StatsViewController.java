@@ -20,16 +20,14 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class StatsViewController extends AbstractController implements Initializable {
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
     private ObservableList<String> xRange = FXCollections.observableArrayList();
     private static Statistics _statistics = Statistics.instance();
-
-    private boolean addPressed;
-    private boolean subPressed;
-    private boolean multPressed;
-    private boolean divPressed;
 
     //Sign Labels
     @FXML
@@ -79,8 +77,8 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
-        barChart.getData().clear();
-        barChart.getData().add(series);
+        // Populates graph
+        setGraphData(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getAddQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getAddQuizzesCompleted()));
@@ -107,8 +105,8 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
-        barChart.getData().clear();
-        barChart.getData().add(series);
+        // Populates graph
+        setGraphData(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getSubQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getSubQuizzesCompleted()));
@@ -136,8 +134,8 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
-        barChart.getData().clear();
-        barChart.getData().add(series);
+        // Populates graph
+        setGraphData(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getMultQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getMultQuizzesCompleted()));
@@ -163,14 +161,27 @@ public class StatsViewController extends AbstractController implements Initializ
             i++;
         }
 
-        barChart.getData().clear();
-        barChart.getData().add(series);
+        // Populates graph
+        setGraphData(series);
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getDivQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getDivQuizzesCompleted()));
         highScoreLbl.setText(Integer.toString(_statistics.getHighScoreDiv()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
         typeLbl.setText("Division");
+    }
+
+    /**
+     * This method takes and XYChart series as input and applies it to the graph barChart.
+     * @param series data to populate the graph
+     */
+    private void setGraphData(XYChart.Series<String, Integer> series) {
+
+        // Clears the graph
+        barChart.getData().clear();
+
+        // Repopulates the graph with the input series data
+        barChart.getData().add(series);
     }
 
     /**
@@ -183,15 +194,11 @@ public class StatsViewController extends AbstractController implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "ParentsHelpPopup.fxml"))),false);
+            pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator +
+                    "ParentsHelpPopup.fxml"))),false);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        addPressed = false;
-        subPressed = false;
-        multPressed = false;
-        divPressed = false;
 
         barChart.setTitle("");
         _statistics.readFileHighScores();

@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class WrongViewController extends AbstractController implements Initializable {
 
     // Labels
@@ -31,6 +34,12 @@ public class WrongViewController extends AbstractController implements Initializ
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
+    /**
+     * This action method changes the the visible scene based on the state of the application. If the current quiz is
+     * finished the method will call AbstractController method pushChild() so that the summary view will become visible.
+     * Otherwise this method call AbstractControllers popChild() method which will remove the wrong view scene returning
+     * the application to the question view.
+     */
     public void btnAction() {
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 1)) {
             _modeDirector.setIteration(0);
@@ -42,6 +51,10 @@ public class WrongViewController extends AbstractController implements Initializ
         }
     }
 
+    /**
+     * This method is invoked when the "home" button is pressed, it calls pushPopup method from AbstractController
+     * which loads the "are you sure" popup.
+     */
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -50,6 +63,13 @@ public class WrongViewController extends AbstractController implements Initializ
         }
     }
 
+    /**
+     * This method was overridden in order to intialise certain labels, icons and variables based on the state of the application.
+     * As well as this the method also checks that the answer and attempt have the correct Maori spelling so that it can
+     * be accurately be displayed to the user.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         finishIcon.setVisible(false);
@@ -58,16 +78,16 @@ public class WrongViewController extends AbstractController implements Initializ
         String attempt = _modeDirector.getCurrentAttempt();
         String answer = _modeDirector.getCurrentAnswer();
 
-        if (attempt.indexOf("whaa") != -1) {
+        if (attempt.contains("whaa")) {
             attempt = attempt.replaceAll("whaa", "whā");
         }
-        if (answer.indexOf("whaa") != -1) {
+        if (answer.contains("whaa")) {
             answer = answer.replaceAll("whaa", "whā");
         }
-        if (attempt.indexOf("maa") != -1) {
+        if (attempt.contains("maa")) {
             attempt = attempt.replaceAll("maa", "mā");
         }
-        if (answer.indexOf("maa") != -1) {
+        if (answer.contains("maa")) {
             answer = answer.replaceAll("maa", "mā");
         }
 
@@ -86,7 +106,5 @@ public class WrongViewController extends AbstractController implements Initializ
             lbl.setText("Try Again!");
             redoIcon.setVisible(true);
         }
-
-        //setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);
     }
 }

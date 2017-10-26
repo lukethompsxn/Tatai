@@ -13,6 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Stack;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public abstract class AbstractController {
     protected static Pane _mainPane;
     protected static Pane _popupPaneContainer;

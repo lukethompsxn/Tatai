@@ -2,6 +2,9 @@ package model;
 
 import java.util.HashMap;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public abstract class NumberCollection {
 
     private HashMap<Integer, String> _mapOfNumbers = new HashMap<>();

@@ -19,6 +19,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class QuestionViewController extends AbstractController implements Initializable{
     private int _iteration = 0;
     private int _score = 0;
@@ -43,21 +46,21 @@ public class QuestionViewController extends AbstractController implements Initia
     @FXML
     private Button recordBtn;
     @FXML
-    Button skipQuestionBtn;
+    private Button skipQuestionBtn;
     @FXML
-    Button menuBtn;
+    private Button menuBtn;
 
     //Labels
     @FXML
     private Label numberLbl;
     @FXML
-    Label scoreLbl;
+    private Label scoreLbl;
     @FXML
-    Label attemptLbl;
+    private Label attemptLbl;
     @FXML
-    Label recordLbl;
+    private Label recordLbl;
     @FXML
-    Label skipLbl;
+    private Label skipLbl;
 
     //Icons
     @FXML
@@ -327,10 +330,4 @@ public class QuestionViewController extends AbstractController implements Initia
             _mediaPlayer.setAutoPlay(true);
         }
     }
-
-
-
-
-
-
 }

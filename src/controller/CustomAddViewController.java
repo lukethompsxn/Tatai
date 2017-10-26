@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class CustomAddViewController extends AbstractController implements Initializable {
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static CustomCollection _customModel = CustomCollection.instance();
@@ -113,8 +116,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * the operator selected.
      * @param event1
      */
-    @FXML
-    private void operationAction(ActionEvent event1) {
+    public void operationAction(ActionEvent event1) {
         operatorDone = true;
         operationBtnsCtrl(true);
         numberBtnCtrl(false);
@@ -144,8 +146,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * be possible for the answer to not be not in the allowed range and the check is only for safety purposes.
      * Lastly the method will reset all buttons and labels so that a new equation can be entered.
      */
-    @FXML
-    private void addQuestionBtnAction() {
+    public void addQuestionBtnAction() {
         int _answer;
 
         switch (_operator) {
@@ -198,8 +199,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * the "finish" button is pressed. It firstly resets certain buttons/labels/variables and then calls a method
      * from AbstractController in order to display a popup that allows for naming of the custom list.
      */
-    @FXML
-    private void finishQuestionsBtnAction() {
+    public void finishQuestionsBtnAction() {
         _modeDirector.setNumQuestions(_questionNumber);
 
         // Resetting various buttons/labels/variables
@@ -224,8 +224,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * This action method is called when the "clear" button is pressed, it resets all buttons and labels relating to
      * adding a new question to the custom list but still keeping the questions that have already been made.
      */
-    @FXML
-    private void clearBtnAction() {
+    public void clearBtnAction() {
         if (_questionNumber > 0) {
             finishQuestionsBtn.setDisable(false);
         }
@@ -245,8 +244,7 @@ public class CustomAddViewController extends AbstractController implements Initi
      * that has been pressed the method formingDigits is called with the button number being passed in as a parameter.
      * @param event2
      */
-    @FXML
-    private void numberSelectAction(ActionEvent event2) {
+    public void numberSelectAction(ActionEvent event2) {
         finishQuestionsBtn.setDisable(true);
 
         if (event2.getSource() == oneBtn) {

@@ -3,6 +3,9 @@ package model;
 import java.io.*;
 import java.util.LinkedList;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class Statistics {
 
     private static Statistics _statistics = Statistics.instance();
@@ -118,194 +121,98 @@ public class Statistics {
         _recentScoresAdd.addFirst(score);
     }
 
-    /**
-     * This method returns the instance variable of type int representing the high score for the math mode multiplication
-     * @return multiplication high score
-     */
+    // Get and set the high score for multiplication
     public int getHighScoreMult() {
         return _highScoreMult;
     }
-
-    /**
-     * This method take and input of type int and sets it to the instance variable _highScoreMult.
-     * @param highScoreMult variable that _highScoreMult is set to.
-     */
     public void setHighScoreMult(int highScoreMult) {
         _highScoreMult = highScoreMult;
     }
 
-    /**
-     * Refer to getHighScoreMult(), similar method but for division.
-     * @return division high score
-     */
+    // Get and set the high score for division
     public int getHighScoreDiv() {
         return _highScoreDiv;
     }
-
-    /**
-     * Refer to setHighScoreMult(int highScoreMult), similar method but for division.
-     * @param highScoreDiv variable _highScoreDiv is set to.
-     */
     public void setHighScoreDiv(int highScoreDiv) {
         _highScoreDiv = highScoreDiv;
     }
 
-    /**
-     * Refer to getHighScoreMult(), similar method but for subtraction.
-     * @return subtraction high score
-     */
+    // Get and set the high score for subtraction
     public int getHighScoreSub() {
         return _highScoreSub;
     }
-
-    /**
-     * Refer to setHighScoreMult(int highScoreMult), similar method but for subtraction.
-     * @param highScoreSub variable _highScoreDiv is set to.
-     */
     public void setHighScoreSub(int highScoreSub) {
         _highScoreSub = highScoreSub;
     }
 
-    /**
-     * Refer to getHighScoreMult(), similar method but for addition.
-     * @return addition high score
-     */
+    // Get and set the high score for addition
     public int getHighScoreAdd() {
         return _highScoreAdd;
     }
-
-    /**
-     * Refer to setHighScoreMult(int highScoreMult), similar method but for addition.
-     * @param highScoreAdd variable _highScoreDiv is set to.
-     */
     public void setHighScoreAdd(int highScoreAdd) {
         _highScoreAdd = highScoreAdd;
     }
 
-    /**
-     * Rturns an int representing the total number of addition quizzes completed.
-     * @return total number of addition question completed
-     */
+    // Get and set the total number of addition quizzes completed
     public int getAddQuizzesCompleted() {
         return _addQuizzesCompleted;
     }
-
-    /**
-     * Sets the instance variable of addition quizzes completed to the input variable quizzesCompleted.
-     * @param quizzesCompleted new total number of addition quizzes completed
-     */
     public void setAddQuizzesCompleted(int quizzesCompleted) {
         _addQuizzesCompleted = quizzesCompleted;
     }
 
-    /**
-     * Refer to getAddQuizzesCompleted(), similar but for subtraction.
-     * @return total number of subtraction quizzes completed
-     */
+    // Get and set the total number of subtraction quizzes completed
     public int getSubQuizzesCompleted() {
         return _subQuizzesCompleted;
     }
-
-    /**
-     * Refer to setAddQuizzesCompleted(int quizzesCompleted), similar but for subtraction.
-     * @param quizzesCompleted new number of quizzes completed
-     */
     public void setSubQuizzesCompleted(int quizzesCompleted) {
         _subQuizzesCompleted = quizzesCompleted;
     }
 
-    /**
-     * Refer to getAddQuizzesCompleted(), similar but for multiplication.
-     * @return total number of multiplication quizzes completed
-     */
+    // Get and set the total number of multiplication quizzes completed
     public int getMultQuizzesCompleted() {
         return _multQuizzesCompleted;
     }
-
-    /**
-     * Refore to setAddQuizzesCompleted(int quizzesCompleted), similar but for multiplication.
-     * @param quizzesCompleted new number of quizzes completed
-     */
     public void setMultQuizzesCompleted(int quizzesCompleted) {
         _multQuizzesCompleted = quizzesCompleted;
     }
 
-    /**
-     * Refer to getAddQuizzesCompleted(), similar but for division.
-     * @return total number of division quizzes completed
-     */
+    // Get and set the total number of division quizzes completed
     public int getDivQuizzesCompleted() {
         return _divQuizzesCompleted;
     }
-
-    /**
-     * Refore to setAddQuizzesCompleted(int quizzesCompleted), similar but for division.
-     * @param quizzesCompleted new number of quizzes completed
-     */
     public void setDivQuizzesCompleted(int quizzesCompleted) {
         _divQuizzesCompleted = quizzesCompleted;
     }
 
-    /**
-     * This method returns the total number of addition questions answered.
-     * @return total number of addition questions answered
-     */
+    // Get and set the number of addition questions answered
     public int getAddQuestionsAnswered() {
         return _addQuestionsAnswered;
     }
-
-    /**
-     * This method sets the new total number of questions answered for addition.
-     * @param questionsAnswered new total number of questions answered
-     */
     public void setAddQuestionsAnswered(int questionsAnswered) {
         _addQuestionsAnswered = questionsAnswered;
     }
 
-    /**
-     * Refer to getAddQuestionsAnswered(), similar but for subtraction
-     * @return total number of subtraction questions answered
-     */
+    // Get and set the number of subtraction questions answered
     public int getSubQuestionsAnswered() {
         return _subQuestionsAnswered;
     }
-
-    /**
-     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for subtraction
-     * @param questionsAnswered new total number of questions answered
-     */
     public void setSubQuestionsAnswered(int questionsAnswered) {
         _subQuestionsAnswered = questionsAnswered;
     }
 
-    /**
-     * Refer to getAddQuestionsAnswered(), similar but for multiplication
-     * @return total number of multiplication questions answered
-     */
+    // Get and set the number of multiplcation questions answered
     public int getMultQuestionsAnswered() {
         return _multQuestionsAnswered;
     }
-
-    /**
-     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for multiplication
-     * @param questionsAnswered new total number of questions answered
-     */
     public void setMultQuestionsAnswered(int questionsAnswered) {
         _multQuestionsAnswered = questionsAnswered;
     }
 
-    /**
-     * Refer to getAddQuestionsAnswered(), similar but for division
-     * @return total number of division questions answered
-     */
+    // Get and set number of division questions answered
     public int getDivQuestionsAnswered() {
         return _divQuestionsAnswered;
     }
-
-    /**
-     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for division
-     * @param questionsAnswered new total number of questions answered
-     */
     public void setDivQuestionsAnswered(int questionsAnswered) {
         _divQuestionsAnswered = questionsAnswered;
     }
@@ -420,6 +327,8 @@ public class Statistics {
 
             String currentLine;
             while((currentLine = reader.readLine()) != null) {
+
+                // Reads highscores
                 if (currentLine.startsWith("addhigh")) {
                     _highScoreAdd = Integer.parseInt(currentLine.replaceFirst("addhigh",""));
                 } else if (currentLine.startsWith("subhigh")) {
@@ -430,48 +339,56 @@ public class Statistics {
                     _highScoreDiv = Integer.parseInt(currentLine.replaceFirst("divhigh",""));
                 }
 
+                // Reads addition average score information
                 else if (currentLine.startsWith("addtotscore")) {
                     _modeDirector.setTotalAddScore(Integer.parseInt(currentLine.replaceFirst("addtotscore","")));
                 } else if (currentLine.startsWith("addtotitt")) {
                     _modeDirector.setTotalAddIterations(Integer.parseInt(currentLine.replaceFirst("addtotitt","")));
                 }
 
+                // Reads subtraction average score information
                 else if (currentLine.startsWith("subtotscore")) {
                    _modeDirector.setTotalSubScore(Integer.parseInt(currentLine.replaceFirst("subtotscore","")));
                 } else if (currentLine.startsWith("subtotitt")) {
                     _modeDirector.setTotalSubIterations(Integer.parseInt(currentLine.replaceFirst("subtotitt","")));
                 }
 
+                // Reads multiplication average score information
                 else if (currentLine.startsWith("multtotscore")) {
                     _modeDirector.setTotalMultScore(Integer.parseInt(currentLine.replaceFirst("multtotscore","")));
                 } else if (currentLine.startsWith("multtotitt")) {
                     _modeDirector.setTotalMultIterations(Integer.parseInt(currentLine.replaceFirst("multtotitt","")));
                 }
 
+                // Reads division average score information
                 else if (currentLine.startsWith("divtotscore")) {
                     _modeDirector.setTotalDivScore(Integer.parseInt(currentLine.replaceFirst("divtotscore","")));
                 } else if (currentLine.startsWith("divtotitt")) {
                     _modeDirector.setTotalDivIterations(Integer.parseInt(currentLine.replaceFirst("divtotitt","")));
                 }
 
+                // Reads addition total questions answered and quizzes completed
                 else if (currentLine.startsWith("addquestans")) {
                     _statistics.setAddQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("addquestans","")));
                 } else if (currentLine.startsWith("addquizdone")) {
                     _statistics.setAddQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("addquizdone","")));
                 }
 
+                // Reads subtraction total questions answered and quizzes completed
                 else if (currentLine.startsWith("subquestans")) {
                     _statistics.setSubQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("subquestans","")));
                 } else if (currentLine.startsWith("subquizdone")) {
                     _statistics.setSubQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("subquizdone","")));
                 }
 
+                // Reads multiplication total questions answered and quizzes completed
                 else if (currentLine.startsWith("multquestans")) {
                     _statistics.setMultQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("multquestans","")));
                 } else if (currentLine.startsWith("multquizdone")) {
                     _statistics.setMultQuizzesCompleted(Integer.parseInt(currentLine.replaceFirst("multquizdone","")));
                 }
 
+                // Reads division total questions answered and quizzes completed
                 else if (currentLine.startsWith("divquestans")) {
                     _statistics.setDivQuestionsAnswered(Integer.parseInt(currentLine.replaceFirst("divquestans","")));
                 } else if (currentLine.startsWith("divquizdone")) {

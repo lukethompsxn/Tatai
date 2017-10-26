@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class PracticeCollection extends NumberCollection {
 
     private static PracticeCollection _practiceCollection = PracticeCollection.instance();

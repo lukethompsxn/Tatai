@@ -2,6 +2,9 @@ package controller;
 
 import model.ModeDirector;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class SkipPopupController extends AbstractController  {
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static QuestionViewController _qvc;

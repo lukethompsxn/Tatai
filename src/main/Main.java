@@ -11,6 +11,9 @@ import model.Statistics;
 import java.io.File;
 import java.util.Stack;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class Main extends Application {
     private static Stage _primaryStage;
     private static Stack<Scene> _sceneStack = new Stack<>();

@@ -3,6 +3,9 @@ package controller;
 import model.ModeDirector;
 import model.PracticeCollection;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class PracticeViewController extends AbstractController {
     private static ModeDirector _modeDirector = ModeDirector.instance();
     private static PracticeCollection _pracModel = PracticeCollection.instance();
