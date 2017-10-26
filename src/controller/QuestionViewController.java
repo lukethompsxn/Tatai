@@ -182,8 +182,8 @@ public class QuestionViewController extends AbstractController implements Initia
                 if (_textResult.equals(_answerMap.get(_iteration))) {
                     _score+=1;
                     _modeDirector.setScore(_score);
-                    pushChild("CorrectView");
                     nextQuestion();
+                    pushChild("CorrectView");
                 }
                 else {
                     setSuperAttempts(_attempt);

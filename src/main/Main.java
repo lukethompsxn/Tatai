@@ -26,6 +26,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource(File.separator  + "view" + File.separator + "MainContainerView.fxml"));
         primaryStage.setTitle("Tātai");
         primaryStage.setScene(new Scene(root, 1280, 720));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
@@ -47,7 +48,7 @@ public class Main extends Application {
         launch(args);
     }
 
-    //Called when adding a new scene to the stack and setting it
+    //Called when adding a new scene to the stack and setting itF
     public static void pushScene(Scene scene) {
         _sceneStack.add(scene);
         _primaryStage.setScene(_sceneStack.peek());

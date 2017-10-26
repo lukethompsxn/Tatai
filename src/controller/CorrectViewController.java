@@ -1,6 +1,7 @@
 package controller;
 
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +67,7 @@ public class CorrectViewController extends AbstractController implements Initial
         nextIcon.setVisible(false);
         finishIcon.setVisible(false);
 
-        if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
+        if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 1)) {
             lbl.setText("Finish");
             finishIcon.setVisible(true);
         } else {
