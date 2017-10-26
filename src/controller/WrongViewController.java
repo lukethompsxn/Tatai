@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Joel Clarke, Luke Thompson
+ */
 public class WrongViewController extends AbstractController implements Initializable {
 
     // Labels
@@ -35,7 +38,7 @@ public class WrongViewController extends AbstractController implements Initializ
 
     /**
      * This method is the action for the button. The button shows a different label depending on whether the user
-     * is on their first or second attepmt at the question and whether they have finished the quiz. After determining
+     * is on their first or second attempt at the question and whether they have finished the quiz. After determining
      * the logic, it calls methods from abstract controller in order to push / pop the child.
      */
     public void btnAction() {
