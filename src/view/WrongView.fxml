@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="/stylesheets/WrongViewStyle.css, /stylesheets/commonStyles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WrongViewController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../resources/stylesheets/WrongViewStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WrongViewController">
    <children>
       <GridPane>
         <columnConstraints>
@@ -26,13 +27,16 @@
                      <Insets bottom="20.0" left="25.0" />
                  </GridPane.margin>
              </Button>
-            <Label fx:id="answerLbl" alignment="CENTER" prefHeight="48.0" prefWidth="803.0" text="You said: " textFill="#e3e3e3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label fx:id="youSaidLbl" alignment="CENTER" prefHeight="44.0" prefWidth="803.0" text="You said: " textFill="#e3e3e3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
-                  <Insets bottom="60.0" />
+                  <Insets bottom="57.0" />
                </GridPane.margin>
                <font>
                   <Font name="Marker Felt Wide" size="30.0" />
                </font>
+               <padding>
+                  <Insets bottom="60.0" />
+               </padding>
             </Label>
             <Label fx:id="lbl" alignment="CENTER" prefHeight="115.0" prefWidth="300.0" text="Try again!" textFill="#e4e4e4" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
                <GridPane.margin>
@@ -57,6 +61,7 @@
                      <Insets right="450.0" top="18.0" />
                  </GridPane.margin>
              </MaterialDesignIconView>
+
              <Button fx:id="btn" mnemonicParsing="false" onAction="#btnAction" prefHeight="108.0" prefWidth="387.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
                  <GridPane.margin>
                      <Insets top="13.0" />
@@ -65,6 +70,14 @@
                      <Font size="17.0" />
                  </font>
              </Button>
+            <Label fx:id="answerLbl" alignment="CENTER" prefHeight="44.0" prefWidth="803.0" text="You said: " textFill="#e3e3e3" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Marker Felt Wide" size="30.0" />
+               </font>
+               <padding>
+                  <Insets bottom="75.0" />
+               </padding>
+            </Label>
          </children>
       </GridPane>
    </children>

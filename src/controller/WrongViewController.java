@@ -17,6 +17,8 @@ public class WrongViewController extends AbstractController implements Initializ
 
     // Labels
     @FXML
+    private Label youSaidLbl;
+    @FXML
     private Label answerLbl;
     @FXML
     private Label lbl;
@@ -31,6 +33,11 @@ public class WrongViewController extends AbstractController implements Initializ
 
     private static ModeDirector _modeDirector = ModeDirector.instance();
 
+    /**
+     * This method is the action for the button. The button shows a different label depending on whether the user
+     * is on their first or second attepmt at the question and whether they have finished the quiz. After determining
+     * the logic, it calls methods from abstract controller in order to push / pop the child.
+     */
     public void btnAction() {
         if (_modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 1)) {
             _modeDirector.setIteration(0);
@@ -42,6 +49,7 @@ public class WrongViewController extends AbstractController implements Initializ
         }
     }
 
+    //Action for "home" button. This method calls a method from abstract controller in order to return to the menu
     public void mainMenu() {
         try {
             pushPopup(new Scene(FXMLLoader.load(getClass().getResource(File.separator + "view" + File.separator + "AreYouSurePopup.fxml"))), true);
@@ -68,22 +76,22 @@ public class WrongViewController extends AbstractController implements Initializ
             answer = answer.replaceAll("maa", "mā");
         }
 
-        answerLbl.setText("You said " + attempt);
+        youSaidLbl.setText("You said " + attempt);
         if ((getSuperAttempts() > 1) && _modeDirector.getIteration() > (_modeDirector.getNumQuestions() - 2)) {
             lbl.setText("Finish");
-            answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            youSaidLbl.setText("You said " + attempt);
+            answerLbl.setText("The answer was " + answer);
             finishIcon.setVisible(true);
         }
         else if ((getSuperAttempts() > 1)) {
             lbl.setText("Next");
-            answerLbl.setText("You said " + attempt + ", the answer was " + answer);
+            youSaidLbl.setText("You said " + attempt);
+            answerLbl.setText("The answer was " + answer);
             nextIcon.setVisible(true);
         }
         else {
             lbl.setText("Try Again!");
             redoIcon.setVisible(true);
         }
-
-        //setFonts(lbl, 65, answerLbl, 30, null, -1, null, -1, 2);
     }
 }
