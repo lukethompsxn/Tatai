@@ -53,36 +53,21 @@ public class StatsViewController extends AbstractController implements Initializ
     @FXML
     private Label quizzesCompletedLbl;
 
-
-    @FXML
-    private Button addStatsBtn;
-    @FXML
-    private Button subStatsBtn;
-    @FXML
-    private Button multStatsBtn;
-    @FXML
-    private Button divStatsBtn;
-
+    // Graph variables
     @FXML
     private BarChart<String, Integer> barChart;
     @FXML
     private CategoryAxis xAxis;
 
-    //JOEL WHOLE CLASS
-
-
-    //private XYChart.Series<String, Integer> addSeries = new XYChart.Series<>();
-    //private XYChart.Series<String, Integer> subSeries = new XYChart.Series<>();
-    //private XYChart.Series<String, Integer> divSeries = new XYChart.Series<>();
-    //private XYChart.Series<String, Integer> multSeries = new XYChart.Series<>();
-
+    /**
+     * This action method takes all the addition statistic of the application and applies them to the StatsView to
+     * be seen. This includes 10 most recent scores, high score, average score, total questions answered and total
+     * quizzes completed.
+     */
     @FXML
     private void addStatsBtnAction() {
 
-        LinkedList<Integer> recentScores = _statistics.get_recentScoresAdd();
-        //if (!addPressed) {
-        //    addSeries = new XYChart.Series<>();
-        //}
+        LinkedList<Integer> recentScores = _statistics.getRecentScoresAdd();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
@@ -103,19 +88,20 @@ public class StatsViewController extends AbstractController implements Initializ
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getAddQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getAddQuizzesCompleted()));
-        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreAdd()));
+        highScoreLbl.setText(Integer.toString(_statistics.getHighScoreAdd()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_ADD) + "%");
         typeLbl.setText("Addition");
     }
 
+    /**
+     * This action method takes all the addition statistic of the subtraction and applies them to the StatsView to
+     * be seen. This includes 10 most recent scores, high score, average score, total questions answered and total
+     * quizzes completed.
+     */
     @FXML
     private void subStatsBtnAction() {
 
-        LinkedList<Integer> recentScores = _statistics.get_recentScoresSub();
-        //if (!subPressed) {
-        //    subSeries = new XYChart.Series<>();
-        //}
-;
+        LinkedList<Integer> recentScores = _statistics.getRecentScoresSub();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
@@ -136,18 +122,20 @@ public class StatsViewController extends AbstractController implements Initializ
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getSubQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getSubQuizzesCompleted()));
-        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreSub()));
+        highScoreLbl.setText(Integer.toString(_statistics.getHighScoreSub()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_SUB) + "%");
         typeLbl.setText("Subtraction");
     }
 
+    /**
+     * This action method takes all the multiplication statistic of the application and applies them to the StatsView to
+     * be seen. This includes 10 most recent scores, high score, average score, total questions answered and total
+     * quizzes completed.
+     */
     @FXML
     private void multStatsBtnAction() {
 
-        LinkedList<Integer> recentScores = _statistics.get_recentScoresMult();
-        //if (!multPressed) {
-        //    multSeries = new XYChart.Series<>();
-        //}
+        LinkedList<Integer> recentScores = _statistics.getRecentScoresMult();
 
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
@@ -169,18 +157,20 @@ public class StatsViewController extends AbstractController implements Initializ
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getMultQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getMultQuizzesCompleted()));
-        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreMult()));
+        highScoreLbl.setText(Integer.toString(_statistics.getHighScoreMult()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_MULT) + "%");
         typeLbl.setText("Multiplication");
     }
 
+    /**
+     * This action method takes all the division statistic of the application and applies them to the StatsView to
+     * be seen. This includes 10 most recent scores, high score, average score, total questions answered and total
+     * quizzes completed.
+     */
     @FXML
     private void divStatsBtnAction() {
 
-        LinkedList<Integer> recentScores = _statistics.get_recentScoresDiv();
-        //if (!divPressed) {
-        //    divSeries = new XYChart.Series<>();
-        //}
+        LinkedList<Integer> recentScores = _statistics.getRecentScoresDiv();
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
 
         int i = 0;
@@ -200,11 +190,18 @@ public class StatsViewController extends AbstractController implements Initializ
 
         questionsAnsweredLbl.setText(Integer.toString(_statistics.getDivQuestionsAnswered()));
         quizzesCompletedLbl.setText(Integer.toString(_statistics.getDivQuizzesCompleted()));
-        highScoreLbl.setText(Integer.toString(_statistics.get_highScoreDiv()));
+        highScoreLbl.setText(Integer.toString(_statistics.getHighScoreDiv()));
         averageLbl.setText(_modeDirector.getStats(ModeDirector.Mode.MATH_DIV) + "%");
         typeLbl.setText("Division");
     }
 
+    /**
+     * This method was overridden in order to intialise certain labels and buttons based on the state of the application.
+     * As well as this the method also reads the file containing the save high score information and sets up one of the
+     * axis required for the recent scores graph.
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addPressed = false;
@@ -214,8 +211,7 @@ public class StatsViewController extends AbstractController implements Initializ
 
         barChart.setTitle("");
         _statistics.readFileHighScores();
-        //_statistics.readFileRecentScores();
-        //setSavedScores();
+
         String[] array = {Integer.toString(1),Integer.toString(2),Integer.toString(3),Integer.toString(4),
                 Integer.toString(5),Integer.toString(6),Integer.toString(7),Integer.toString(8),
                 Integer.toString(9),Integer.toString(10)};
@@ -223,6 +219,10 @@ public class StatsViewController extends AbstractController implements Initializ
         xAxis.setCategories(xRange);
     }
 
+    /**
+     * This method returns the user to the previous screen by calling the popChild() method from abstract controller.
+     * This removes the top scene i.e. the statistics view from the stack.
+     */
     public void returnToMathView() {
         popChild();
     }

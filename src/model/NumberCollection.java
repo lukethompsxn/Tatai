@@ -28,9 +28,9 @@ public abstract class NumberCollection {
      * This method takes an input called number of type int and returns a String which is the Maori translation for
      * the given input number.
      * @param number number to be translated
-     * @return
+     * @return Maori number, type String
      */
-    public String getMaoriName(int number) {
+    String getMaoriName(int number) {
         String maoriNum = "";
 
         int length = String.valueOf(number).length();
@@ -61,28 +61,28 @@ public abstract class NumberCollection {
 
             // Number is 10
             if (number == 10) {
-                return _mapOfNumbers.get(number).toString();
+                return _mapOfNumbers.get(number);
             }
             // Number is >10 and < 20
             else if ((number > 10) && (number < 20)) {
-                return _mapOfNumbers.get(10) + " maa " + _mapOfNumbers.get(digits[1]).toString();
+                return _mapOfNumbers.get(10) + " maa " + _mapOfNumbers.get(digits[1]);
             }
             // Any other 2 digit number
             else if ((length2 == 2) && !((number > 10) && (number < 20))) {
                 if (i == 0) {
-                    maoriNum = maoriNum + _mapOfNumbers.get(currentDigit).toString();
+                    maoriNum = maoriNum + _mapOfNumbers.get(currentDigit);
                     maoriNum = maoriNum + " " + _mapOfNumbers.get(10);
                 }
                 else if (i == 1) {
                     if (digits[1] != 0) {
                         maoriNum = maoriNum + " maa ";
-                        maoriNum = maoriNum + _mapOfNumbers.get(currentDigit).toString();
+                        maoriNum = maoriNum + _mapOfNumbers.get(currentDigit);
                     }
                 }
             }
             // Any single digit number
             else {
-                return  _mapOfNumbers.get(number).toString();
+                return  _mapOfNumbers.get(number);
             }
 
         }

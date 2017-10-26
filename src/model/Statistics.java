@@ -41,10 +41,19 @@ public class Statistics {
         //anything that needs to constructed
     }
 
-    public LinkedList<Integer> get_recentScoresMult() {
+    /**
+     * This method returns a list containing the recent scores for the math mode multiplication
+     * @return list of 10 most recent scores for multiplication
+     */
+    public LinkedList<Integer> getRecentScoresMult() {
         return _recentScoresMult;
     }
 
+    /**
+     * This method takes a parameter score of type int and adds it to the start of the multiplication recent score linked list.
+     * If the list size is greater than 10 the last value is removed in order to keep a constant list size of 10.
+     * @param score recent score to be added
+     */
     public void addRecentScoresMult(int score) {
         if (_recentScoresMult.size() == 10) {
             _recentScoresMult.removeLast();
@@ -53,10 +62,18 @@ public class Statistics {
         System.out.println(_recentScoresMult);
     }
 
-    public LinkedList<Integer> get_recentScoresDiv() {
+    /**
+     * Refer to getRecentScoresMult(), similar method but for division.
+     * @return list of 10 most recent scores for division
+     */
+    public LinkedList<Integer> getRecentScoresDiv() {
         return _recentScoresDiv;
     }
 
+    /**
+     * Refer to addRecentScoresMult(int score), similar method but for division.
+     * @param score recent score to be added
+     */
     public void addRecentScoresDiv(int score) {
         if (_recentScoresDiv.size() == 10) {
             _recentScoresDiv.removeLast();
@@ -64,10 +81,18 @@ public class Statistics {
         _recentScoresDiv.addFirst(score);
     }
 
-    public LinkedList<Integer> get_recentScoresSub() {
+    /**
+     * Refer to getRecentScoresMult(), similar method but for subtraction.
+     * @return list of 10 most recent scores for subtraction
+     */
+    public LinkedList<Integer> getRecentScoresSub() {
         return _recentScoresSub;
     }
 
+    /**
+     * Refer to addRecentScoresMult(int score), similar method but for subtraction.
+     * @param score recent score to be added
+     */
     public void addRecentScoresSub(int score) {
         if (_recentScoresSub.size() == 10) {
             _recentScoresSub.removeLast();
@@ -75,10 +100,18 @@ public class Statistics {
         _recentScoresSub.addFirst(score);
     }
 
-    public LinkedList<Integer> get_recentScoresAdd() {
+    /**
+     * Refer to getRecentScoresMult(), similar method but for addition.
+     * @return list of 10 most recent scores for addition
+     */
+    public LinkedList<Integer> getRecentScoresAdd() {
         return _recentScoresAdd;
     }
 
+    /**
+     * Refer to addRecentScoresMult(int score), similar method but for addition.
+     * @param score recent score to be added
+     */
     public void addRecentScoresAdd(int score) {
         if (_recentScoresAdd.size() == 10) {
             _recentScoresAdd.removeLast();
@@ -86,98 +119,194 @@ public class Statistics {
         _recentScoresAdd.addFirst(score);
     }
 
-    public int get_highScoreMult() {
+    /**
+     * This method returns the instance variable of type int representing the high score for the math mode multiplication
+     * @return multiplication high score
+     */
+    public int getHighScoreMult() {
         return _highScoreMult;
     }
 
-    public void set_highScoreMult(int highScoreMult) {
+    /**
+     * This method take and input of type int and sets it to the instance variable _highScoreMult.
+     * @param highScoreMult variable that _highScoreMult is set to.
+     */
+    public void setHighScoreMult(int highScoreMult) {
         _highScoreMult = highScoreMult;
     }
 
-    public int get_highScoreDiv() {
+    /**
+     * Refer to getHighScoreMult(), similar method but for division.
+     * @return division high score
+     */
+    public int getHighScoreDiv() {
         return _highScoreDiv;
     }
 
-    public void set_highScoreDiv(int highScoreDiv) {
+    /**
+     * Refer to setHighScoreMult(int highScoreMult), similar method but for division.
+     * @param highScoreDiv variable _highScoreDiv is set to.
+     */
+    public void setHighScoreDiv(int highScoreDiv) {
         _highScoreDiv = highScoreDiv;
     }
 
-    public int get_highScoreSub() {
+    /**
+     * Refer to getHighScoreMult(), similar method but for subtraction.
+     * @return subtraction high score
+     */
+    public int getHighScoreSub() {
         return _highScoreSub;
     }
 
-    public void set_highScoreSub(int highScoreSub) {
+    /**
+     * Refer to setHighScoreMult(int highScoreMult), similar method but for subtraction.
+     * @param highScoreSub variable _highScoreDiv is set to.
+     */
+    public void setHighScoreSub(int highScoreSub) {
         _highScoreSub = highScoreSub;
     }
 
-    public int get_highScoreAdd() {
+    /**
+     * Refer to getHighScoreMult(), similar method but for addition.
+     * @return addition high score
+     */
+    public int getHighScoreAdd() {
         return _highScoreAdd;
     }
 
-    public void set_highScoreAdd(int highScoreAdd) {
+    /**
+     * Refer to setHighScoreMult(int highScoreMult), similar method but for addition.
+     * @param highScoreAdd variable _highScoreDiv is set to.
+     */
+    public void setHighScoreAdd(int highScoreAdd) {
         _highScoreAdd = highScoreAdd;
     }
 
+    /**
+     * Rturns an int representing the total number of addition quizzes completed.
+     * @return total number of addition question completed
+     */
     public int getAddQuizzesCompleted() {
         return _addQuizzesCompleted;
     }
 
+    /**
+     * Sets the instance variable of addition quizzes completed to the input variable quizzesCompleted.
+     * @param quizzesCompleted new total number of addition quizzes completed
+     */
     public void setAddQuizzesCompleted(int quizzesCompleted) {
         _addQuizzesCompleted = quizzesCompleted;
     }
 
+    /**
+     * Refer to getAddQuizzesCompleted(), similar but for subtraction.
+     * @return total number of subtraction quizzes completed
+     */
     public int getSubQuizzesCompleted() {
         return _subQuizzesCompleted;
     }
 
+    /**
+     * Refer to setAddQuizzesCompleted(int quizzesCompleted), similar but for subtraction.
+     * @param quizzesCompleted new number of quizzes completed
+     */
     public void setSubQuizzesCompleted(int quizzesCompleted) {
         _subQuizzesCompleted = quizzesCompleted;
     }
 
+    /**
+     * Refer to getAddQuizzesCompleted(), similar but for multiplication.
+     * @return total number of multiplication quizzes completed
+     */
     public int getMultQuizzesCompleted() {
         return _multQuizzesCompleted;
     }
 
+    /**
+     * Refore to setAddQuizzesCompleted(int quizzesCompleted), similar but for multiplication.
+     * @param quizzesCompleted new number of quizzes completed
+     */
     public void setMultQuizzesCompleted(int quizzesCompleted) {
         _multQuizzesCompleted = quizzesCompleted;
     }
 
+    /**
+     * Refer to getAddQuizzesCompleted(), similar but for division.
+     * @return total number of division quizzes completed
+     */
     public int getDivQuizzesCompleted() {
         return _divQuizzesCompleted;
     }
 
+    /**
+     * Refore to setAddQuizzesCompleted(int quizzesCompleted), similar but for division.
+     * @param quizzesCompleted new number of quizzes completed
+     */
     public void setDivQuizzesCompleted(int quizzesCompleted) {
         _divQuizzesCompleted = quizzesCompleted;
     }
 
+    /**
+     * This method returns the total number of addition questions answered.
+     * @return total number of addition questions answered
+     */
     public int getAddQuestionsAnswered() {
         return _addQuestionsAnswered;
     }
 
+    /**
+     * This method sets the new total number of questions answered for addition.
+     * @param questionsAnswered new total number of questions answered
+     */
     public void setAddQuestionsAnswered(int questionsAnswered) {
         _addQuestionsAnswered = questionsAnswered;
     }
 
+    /**
+     * Refer to getAddQuestionsAnswered(), similar but for subtraction
+     * @return total number of subtraction questions answered
+     */
     public int getSubQuestionsAnswered() {
         return _subQuestionsAnswered;
     }
 
+    /**
+     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for subtraction
+     * @param questionsAnswered new total number of questions answered
+     */
     public void setSubQuestionsAnswered(int questionsAnswered) {
         _subQuestionsAnswered = questionsAnswered;
     }
 
+    /**
+     * Refer to getAddQuestionsAnswered(), similar but for multiplication
+     * @return total number of multiplication questions answered
+     */
     public int getMultQuestionsAnswered() {
         return _multQuestionsAnswered;
     }
 
+    /**
+     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for multiplication
+     * @param questionsAnswered new total number of questions answered
+     */
     public void setMultQuestionsAnswered(int questionsAnswered) {
         _multQuestionsAnswered = questionsAnswered;
     }
 
+    /**
+     * Refer to getAddQuestionsAnswered(), similar but for division
+     * @return total number of division questions answered
+     */
     public int getDivQuestionsAnswered() {
         return _divQuestionsAnswered;
     }
 
+    /**
+     * Refer to setAddQuestionsAnswered(int questionsAnswered), similar but for division
+     * @param questionsAnswered new total number of questions answered
+     */
     public void setDivQuestionsAnswered(int questionsAnswered) {
         _divQuestionsAnswered = questionsAnswered;
     }
@@ -508,7 +637,7 @@ public class Statistics {
     /**
      * This method formats the file RecentScores.txt following its creation in a specific format.
      */
-    public void formatNewRecentFile() {
+    private void formatNewRecentFile() {
         try {
 
             File file = new File("data" + File.separator + "RecentScores.txt");
@@ -546,7 +675,7 @@ public class Statistics {
     /**
      * This method formats the file HighScores.txt following its creation in a specific format.
      */
-    public void formatNewHighFile() {
+    private void formatNewHighFile() {
         try {
 
             File file = new File("data" + File.separator + "HighScores.txt");
