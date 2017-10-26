@@ -219,11 +219,8 @@ public class StatsViewController extends AbstractController implements Initializ
         xAxis.setCategories(xRange);
     }
 
-    /**
-     * This method returns the user to the previous screen by calling the popChild() method from abstract controller.
-     * This removes the top scene i.e. the statistics view from the stack.
-     */
-    public void returnToMathView() {
-        popChild();
+    //Action for the "home" button. This method calls a method from abstract controller to return to the main menu
+    public void mainMenu() {
+        pushChild("MenuView");
     }
 }

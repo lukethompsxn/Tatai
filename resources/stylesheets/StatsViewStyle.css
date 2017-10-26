@@ -21,3 +21,53 @@ Button:hover {
 .axis-label {
     -fx-text-fill: #e4e4e4;
 }
+
+.char-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+
+.data0.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+
+.data1.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+
+.data2.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+
+.data3.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+.data4.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+.data5.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+.data6.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+
+.data7.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+.data8.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
+.data9.chart-bar {
+    -fx-background-image: none;
+    -fx-background-color: #e4e4e4;
+}
