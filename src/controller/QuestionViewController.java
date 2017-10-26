@@ -82,6 +82,7 @@ public class QuestionViewController extends AbstractController implements Initia
         scoreLbl.setText(_score + "/" + _iteration);
         attemptLbl.setText(_attempt + "");
         _numQuestions = _modeDirector.getNumQuestions() - 2;
+        _modeDirector.setScore(0);
 
         if (_modeDirector.getType() == ModeDirector.Type.MATH) {
             if (_modeDirector.getMode() == ModeDirector.Mode.MATH_CUSTOM) {
