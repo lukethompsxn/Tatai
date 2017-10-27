@@ -201,7 +201,7 @@ public class Statistics {
         _subQuestionsAnswered = questionsAnswered;
     }
 
-    // Get and set the number of multiplcation questions answered
+    // Get and set the number of multiplication questions answered
     public int getMultQuestionsAnswered() {
         return _multQuestionsAnswered;
     }

@@ -201,7 +201,6 @@ public class StatsViewController extends AbstractController implements Initializ
         }
 
         barChart.setTitle("");
-        _statistics.readFileHighScores();
 
         String[] array = {Integer.toString(1),Integer.toString(2),Integer.toString(3),Integer.toString(4),
                 Integer.toString(5),Integer.toString(6),Integer.toString(7),Integer.toString(8),

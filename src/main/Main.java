@@ -41,6 +41,7 @@ public class Main extends Application {
 
         // Reads in saved scores
         _statistics.readFileRecentScores();
+        _statistics.readFileHighScores();
 
         // Imports custom list that have been saved on disk
         _customCollection.importCustomLists();
